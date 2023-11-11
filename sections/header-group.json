@@ -1,32 +1,13 @@
 {
-    "name": "Header",
-    "type": "header",
-    "sections": {
-      "announcement-bar": {
-        "type": "announcement-bar",
-        "blocks": {
-          "Text": {
-            "type": "text",
-            "settings": {
-              "text": "dbgjgbfjghj"
-            }
-          },
-          "Text2": {
-            "type": "text",
-            "settings": {
-              "text": "dbgjg s bf jghj"
-            }
-          }
-        },
-        "block_order": [
-          "Text",
-          "Text2"
-        ],
-        "settings": {
-        }
-      }
-    },
-    "order": [
-      "announcement-bar"
-    ]
-  }
+  "type": "header",
+  "name": "Header Group",
+  "sections": {
+    "header": {
+      "type": "header",
+      "settings": {}
+    }
+  },
+  "order": [
+    "header"
+  ]
+}
