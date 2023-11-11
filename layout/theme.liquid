@@ -24,13 +24,13 @@
         
         {% render 'meta-tags' %}    
     
-        <script src="{{ 'vue.global.js' | asset_url }}" defer="defer"></script>
-        {% comment %} <script src="{{ 'vue.global.prod.js' | asset_url }}" defer="defer"></script> {% endcomment %}
+        {% comment %} <script src="{{ 'vue.global.js' | asset_url }}" defer="defer"></script> {% endcomment %}
+        <script src="{{ 'vue.global.prod.js' | asset_url }}" defer="defer"></script>
         <script src="{{ 'global.js' | asset_url }}" defer="defer"></script>
     
         {{ content_for_header }}    
         
-        {{ 'base.css' | asset_url | stylesheet_tag: preload: true }}
+        {{ 'base.css' | asset_url | stylesheet_tag }}
     
         <script>
           document.documentElement.className = document.documentElement.className.replace('no-js', 'js');
@@ -43,8 +43,7 @@
       <body>
         <a class="skip-to-content-link button visually-hidden" href="#MainContent">
           {{ 'accessibility.skip_to_text' | t }}
-        </a>
-        <button>${message}</button>
+        </a>        
         
         {% sections 'header-group' %}
                 
