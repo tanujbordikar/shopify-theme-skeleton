@@ -82,7 +82,8 @@ h2 { font-size: calc(var(--font-size-large) * 0.75); }
 
 a {
   color: var(--primary-color);
-  text-decoration: none;
+  text-decoration: underline;
+  text-underline-offset: 0.3rem;
 }
 
 a:hover {
