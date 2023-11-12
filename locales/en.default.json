@@ -1,0 +1,14 @@
+{
+    "accessibility": {
+        "skip_to_text": "Skip to main content",
+        "refresh_page": "Refresh page",
+        "link_messages": {
+            "new_window": "Opens in a new window"
+        }
+    },
+    "sections": {
+        "header": {
+            "announcement": "Announcement"
+        }
+    }
+}
