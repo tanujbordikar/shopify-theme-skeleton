@@ -14,10 +14,13 @@ Contributors are classified into Lx categories based on the points they accumula
 - **💰 Payout**: 275 INR per point (250 INR * 1.1).
 - **🎯 Redemption Policy**: Payouts are redeemable after accumulating a total of 44,000 INR or more.
 
-### 3️⃣ L2 Category (1121+ Points)
+### 3️⃣ L2 Category (1121+ Points) - velocity based multiplier for fairness
 - **💰 Payout**: (not decided yet) INR per point (250 INR * (not decided yet)).
 - **🎯 Redemption Threshold**: Payouts are redeemable after accumulating a total of (not decided yet).
 
+
+---
+(Draft)
 ## 🔢 Contribution Calculation
 - **📊 Basis**: Contribution points are calculated based on the technologies associated with each issue and your level of contribution.
 - **🔖 Issue Tags**: Technologies associated with an issue are identified in GitHub issue tags, assigned by the repository maintainer.
@@ -35,7 +38,7 @@ Contributors are classified into Lx categories based on the points they accumula
   - No prior experience required.
   - Repeated failures to submit correct PRs may result in being placed on a low priority PR list. Compliance with contribution guidelines and verification of rule understanding is required to return to the normal priority list.
 - **L1 Contributors**:
-  - Requirement of either 1 point in 'shopify-theme' or equivalent points in associated technologies.
+  - Requirement of over 160 points in associated technologies.
   - Conversion of appropriate points from associated technologies into 'shopify-theme' is necessary for attempting as an L1 contributor.
 
 ## 🎉 Conclusion
