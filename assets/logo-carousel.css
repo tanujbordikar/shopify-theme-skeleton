@@ -55,3 +55,40 @@
     height: 50px;
     margin: 0 40px;
 }
+
+/* Responsive Styles */
+@media screen and (max-width: 768px) {
+
+    .logo-carousel:before,
+    .logo-carousel:after {
+        position: absolute;
+        top: 0;
+        width: 200px;
+        height: 100%;
+        content: "";
+        z-index: 2;
+    }
+
+    .logo-carousel__wrapper img {
+        height: 40px;
+        margin: 0 20px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+
+    .logo-carousel:before,
+    .logo-carousel:after {
+        position: absolute;
+        top: 0;
+        width: 100px;
+        height: 100%;
+        content: "";
+        z-index: 2;
+    }
+
+    .logo-carousel__wrapper img {
+        height: 30px;
+        margin: 0 10px;
+    }
+}
