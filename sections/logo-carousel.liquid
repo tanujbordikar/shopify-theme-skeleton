@@ -1,0 +1,52 @@
+{{ 'logo-carousel.css' | asset_url | stylesheet_tag }}
+
+<div class="logo-carousel">
+  <div class="logo-carousel__wrapper">
+    {% for logo in section.blocks %}
+      <img
+        src="{{ logo.settings.logo | img_url: '300x' }}"
+        alt="{{ logo.settings.alt_text | escape }}"
+        loading="lazy"
+      >
+    {% endfor %}
+    {% for logo in section.blocks %}
+      <img
+        src="{{ logo.settings.logo | img_url: '300x' }}"
+        alt="{{ logo.settings.alt_text | escape }}"
+        loading="lazy"
+      >
+    {% endfor %}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "logo-carousel",
+  "class": "shopify-brand-carousel",
+  "blocks": [
+    {
+      "type": "image",
+      "name": "Logo",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "logo",
+          "label": "Logo",
+          "info": "Select the logo image"
+        },
+        {
+          "type": "text",
+          "id": "alt_text",
+          "label": "Alt Text",
+          "placeholder": "Alt text for accessibility"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "brand-carousel"
+    }
+  ]
+}
+{% endschema %}
