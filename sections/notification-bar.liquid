@@ -1,10 +1,13 @@
 {{ 'notification-bar.css' | asset_url | stylesheet_tag }}
 <div class="yummuy_only_text--wrp">
   <span class="blinking_circle"></span>
-  <p>{{ settings.notification_text }}
-  Nieuw:
-  <a href='/products/sleep' title='Sleep'>Yummygums Sleep</a> 
-  ZzzzZzzZ 🌚
+  <p>
+    {% if section.settings.notification_text != 'This is notification bar' %}
+      {{ section.settings.notification_text }}
+    {% endif %}
+    Nieuw:
+    <a href='/products/sleep' title='Sleep'>Yummygums Sleep</a> 
+    ZzzzZzzZ 🌚
   </p>
 </div>
 
@@ -15,7 +18,8 @@
     {
       "type": "text",
       "label": "Notification Text",
-      "id": "notification_text"
+      "id": "notification_text",
+      "default": "This is notification bar"
     }
   ],
   "presets": [
