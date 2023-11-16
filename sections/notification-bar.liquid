@@ -1,0 +1,31 @@
+{{ 'notification-bar.css' | asset_url | stylesheet_tag }}
+<div class="yummuy_only_text--wrp">
+  <span class="blinking_circle"></span>
+  <p>
+    {% if section.settings.notification_text != 'This is notification bar' %}
+      {{ section.settings.notification_text }}
+    {% endif %}
+    Nieuw:
+    <a href='/products/sleep' title='Sleep'>Yummygums Sleep</a> 
+    ZzzzZzzZ 🌚
+  </p>
+</div>
+
+{% schema %}
+{
+  "name": "Notification Bar",
+  "settings": [
+    {
+      "type": "text",
+      "label": "Notification Text",
+      "id": "notification_text",
+      "default": "This is notification bar"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Notification-bar"
+    }
+  ]
+}
+{% endschema %}
