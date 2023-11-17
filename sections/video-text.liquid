@@ -1,89 +1,107 @@
 {{ 'video-text.css' | asset_url | stylesheet_tag }}
 
-{{ 'video-text.css' | asset_url | stylesheet_tag }}
-
-<div class="video-text-container">
+<div class="video-text-section">
   <div class="video-container">
-    <iframe
-      width="100%"
-      height="100%"
-      src="{{ section.settings.video_source_url }}"
-      frameborder="0"
-      allowfullscreen
-    ></iframe>
+    <!-- Video iframe with play icon -->
+    <div class="video-overlay">
+      <iframe
+        src="{{ section.settings.frameVideoUrl }}"
+        frameborder="0"
+        allowfullscreen
+      ></iframe>
+      <div class="play-icon-container">
+        <svg class="play-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+          <path d="M3 22v-20l18 10-18 10z"/>
+        </svg>
+      </div>
+    </div>
+    <!-- End Video iframe with play icon -->
+
+    <!-- Modal for the Main video -->
+    <div class="video-modal" id="videoModal">
+      <iframe src="{{ section.settings.mainVideoUrl }}" frameborder="0" allowfullscreen></iframe>
+      <button class="close-modal" onclick="closeModal()">Close</button>
+    </div>
   </div>
 
-  <div class="text-container">
-    <div>
-      <h2>{{ section.blocks[1].settings.heading_1 }}</h2>
-      <h2>{{ section.blocks[1].settings.heading_2 }}</h2>
-      <div>
-        <p>{{ section.blocks[1].settings.paragraph }}</p>
-      </div>
-      <a href="/pages/over-yummygums">{{ section.blocks[1].settings.link_text }}</a>
+  <div class="text-content">
+    <!-- Right half content -->
+    <h2>{{ section.settings.heading1 }}</h2>
+    <h3>{{ section.settings.heading2 }}</h3>
+    <p>{{ section.settings.paragraph }}</p>
+    <div class="link-section">
+      <a href="{{ section.settings.linkUrl }}">{{ section.settings.linkUrlText }}</a>
     </div>
   </div>
 </div>
 
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    function openModal() {
+      const scrollY = window.scrollY;
+      document.getElementById('videoModal').style.display = 'flex';
+      document.body.classList.add('modal-open');
+    }
+
+    function closeModal() {
+      document.getElementById('videoModal').style.display = 'none';
+      document.body.classList.remove('modal-open');
+      window.scrollTo(0, scrollY);
+    }
+
+    document.querySelector('.play-icon-container').addEventListener('click', openModal);
+    document.querySelector('.close-modal').addEventListener('click', closeModal);
+  });
+</script>
+
 {% schema %}
 {
-  "name": "Video Text Section",
-  "class": "video-text-section",
-  "blocks": [
+  "name": "Video-Text Section",
+  "settings": [
     {
-      "type": "video-url",
-      "name": "Embed Video",
-      "settings": [
-        {
-          "type": "text",
-          "label": "Section Title",
-          "id": "section_title",
-          "default": "Featured Video"
-        },
-        {
-          "type": "text",
-          "label": "Video Source URL",
-          "id": "video_source_url",
-          "placeholder": "Enter the URL or embed code for your video"
-        }
-      ]
+      "type": "text",
+      "label": "Heading 1",
+      "id": "heading1",
+      "default": "GEZOND LEVEN"
     },
     {
-      "type": "richtext",
-      "name": "Text Content",
-      "settings": [
-        {
-          "type": "textarea",
-          "id": "heading_1",
-          "label": "Heading 1",
-          "placeholder": "Enter your text content here"
-        },
-        {
-          "type": "textarea",
-          "id": "heading_2",
-          "label": "Heading 2",
-          "placeholder": "Enter your text content here"
-        },
-        {
-          "type": "textarea",
-          "id": "paragraph",
-          "label": "Paragraph",
-          "placeholder": "Enter your text content here"
-        },
-        {
-          "type": "textarea",
-          "id": "link_text",
-          "label": "Link Text",
-          "placeholder": "Enter your text content here"
-        }
-      ]
+      "type": "text",
+      "label": "Heading 2",
+      "id": "heading2",
+      "default": "HET GEHEIM ZIT IN JE ROUTINE"
     },
-    {}
+    {
+      "type": "textarea",
+      "label": "Paragraph Text",
+      "id": "paragraph",
+      "default": "Elke dag supplementen slikken is best een uitdaging. Maar als het lekkere Yummygums zijn, houd je dat gemakkelijk vol. Plezier in je routine motiveert om goed voor jezelf te blijven zorgen."
+    },
+    {
+      "type": "url",
+      "label": "Link URL",
+      "id": "linkUrl"
+    },
+    {
+      "type": "text",
+      "label": "Link URL Text",
+      "id": "linkUrlText",
+      "default": "Gummies Met Een Missie"
+    },
+    {
+      "type": "url",
+      "label": "Frame Video URL",
+      "id": "frameVideoUrl"
+    },
+    {
+      "type": "url",
+      "label": "Main Video URL",
+      "id": "mainVideoUrl"
+    }
   ],
   "presets": [
     {
-      "name": "video-text-section",
-      "category": "Custom"
+      "category": "Custom",
+      "name": "Video-Text Section"
     }
   ]
 }
