@@ -1,0 +1,139 @@
+{{ 'featured-collection.css' | asset_url | stylesheet_tag }}
+
+<div class="featured-collection">
+    <div class="centered-content">
+        <div class="feature-headers">
+            <h2 id="header1">{{ section.settings.heading1 }}</h2>
+            <h2 id="header2">{{ section.settings.heading2 }}</h2>
+        </div>
+
+        <div class="link-section">
+            <a href="{{ section.settings.linkUrl }}"> View all products ➜ </a>
+        </div>
+    </div>
+
+    <div class="tabs">
+        <a href="#" class="tab-link active" data-category="all">All Gummies</a>
+        <a href="#" class="tab-link" data-category="multivitamin">Multivitamin</a>
+        <a href="#" class="tab-link" data-category="wellness_beauty">Wellness and Beauty</a>
+        <a href="#" class="tab-link" data-category="single_support">Single Support</a>
+        <a href="#" class="tab-link" data-category="kids">Kids</a>
+    </div>
+
+    <div class="product-container">
+    <!-- Product cards will be dynamically added here -->
+    </div>
+
+    {% if section.settings.show_collection_description %}
+        <p>{{ section.settings.featured_collection.description }}</p>
+    {% endif %}
+
+    <!-- Add more HTML structure and liquid code based on your design -->
+
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const tabs = document.querySelectorAll('.tab-link');
+    const productContainer = document.querySelector('.product-container');
+
+    tabs.forEach(tab => {
+      tab.addEventListener('click', function(e) {
+        e.preventDefault();
+
+        tabs.forEach(t => t.classList.remove('active'));
+        this.classList.add('active');
+
+        const category = this.getAttribute('data-category');
+        filterProducts(category);
+      });
+    });
+
+    // Initial load with 'all' category
+    filterProducts('all');
+
+    function filterProducts(category) {
+      // You need to replace this part with your logic to fetch and display products
+      // This is just a placeholder
+      const products = [
+        { category: 'multivitamin', title: 'Product 1', description: 'Description 1', price: '$10', strikeThroughPrice: '$15', image: 'product1.jpg' },
+        { category: 'wellness_beauty', title: 'Product 2', description: 'Description 2', price: '$12', strikeThroughPrice: '$18', image: 'product2.jpg' },
+        // Add more products here
+      ];
+
+      displayProducts(products.filter(product => category === 'all' || product.category === category));
+    }
+
+    function displayProducts(products) {
+      productContainer.innerHTML = '';
+
+      products.forEach(product => {
+        const card = document.createElement('div');
+        card.classList.add('product-card');
+
+        card.innerHTML = `
+          <img src="${product.image}" alt="${product.title}">
+          <p>Category: ${product.category}</p>
+          <h3>${product.title}</h3>
+          <p>${product.description}</p>
+          <p>Price: ${product.price}</p>
+          <p>Strike Through Price: ${product.strikeThroughPrice}</p>
+        `;
+
+        productContainer.appendChild(card);
+      });
+    }
+  });
+</script>
+
+
+{% schema %}
+{
+  "name": "Featured Collection",
+  "settings": [
+     {
+      "type": "text",
+      "label": "Heading 1",
+      "id": "heading1",
+      "default": "YUMMYGUMS"
+    },
+    {
+      "type": "text",
+      "label": "Heading 2",
+      "id": "heading2",
+      "default": "FOR ANY PURPOSE"
+    },
+    {
+      "type": "url",
+      "label": "Link URL",
+      "id": "linkUrl"
+    },
+    {
+      "type": "text",
+      "label": "Section Title",
+      "id": "section_title",
+      "default": "Featured Collection"
+    },
+    {
+      "type": "collection",
+      "label": "Select Collection",
+      "id": "featured_collection"
+      
+    },
+    {
+      "type": "checkbox",
+      "label": "Show Collection Description",
+      "id": "show_collection_description",
+      "default": true
+    }
+    // Add more settings based on your design specifications
+  ],
+  "presets": [
+    {
+      "name": "Featured Collection"
+    }
+  ]
+}
+{% endschema %}
+
+

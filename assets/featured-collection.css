@@ -1,0 +1,105 @@
+/* Desktop Styles */
+
+.featured-collection {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.featured-collection h2 {
+    color: #333;
+}
+
+.featured-collection p {
+    font-size: 16px;
+    color: #666;
+}
+
+.centered-content{
+    margin: 0 auto;
+    text-align: center;
+}
+
+.feature-headers{
+    text-transform: uppercase;
+    font-family: "Londrina Solid",sans-serif;
+    font-size: 60px;
+    letter-spacing: 0.6px;
+    line-height: 54px;
+}
+
+#header1{
+    color: #FF670E;
+}
+
+#header2{
+    color: #4C148A;
+}
+
+.link-section a{
+    text-decoration: underline;
+    color: inherit;
+}
+
+.link-section{
+    color: #4C148A;
+}
+
+.link-section:hover {
+    color: #691bc3;
+    font-weight: medium;
+}
+
+.tabs {
+    margin: 20px 0;
+}
+
+/* Additional styles for active link state */
+.tab-link:hover {
+    background-color: #f0f0f0;
+}
+
+ .tab-link {
+     cursor: pointer;
+     padding: 10px;
+     margin-right: 10px;
+     text-decoration: none;
+     color: #333;
+     border: 1px solid #ccc;
+     border-radius: 5px;
+ }
+
+ .tab-link.active {
+     background-color: #eee;
+ }
+
+ /* Styles for product cards */
+ .product-card {
+     width: 80%;
+     margin: 20px auto;
+     border: 1px solid #ccc;
+     padding: 10px;
+     border-radius: 5px;
+ }
+
+ .product-card img {
+     max-width: 100%;
+     height: auto;
+     margin-bottom: 10px;
+ }
+
+
+/* Mobile Styles */
+@media (max-width: 768px) {
+    .featured-collection {
+        padding: 10px;
+    }
+
+    .featured-collection h2 {
+        font-size: 25px;
+    }
+
+    .featured-collection p {
+        font-size: 14px;
+    }
+}
