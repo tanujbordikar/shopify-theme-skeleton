@@ -51,30 +51,55 @@
     font-weight: medium;
 }
 
-.tabs {
+/* .tabs {
     margin: 40px 0;
     
-}
+} */
 
 /* Additional styles for active link state */
-.tab-link:hover {
-    background-color: #f0f0f0;
+.tabs {
+    display: flex;
+    flex-wrap: wrap;
+    /* Allow tabs to wrap on smaller screens */
+    justify-content: center;
+    /* Center tabs container */
+    align-items: center;
+    /* Align tabs vertically */
+    margin: 20px 0;
+    padding: 0;
+    /* Remove padding to allow tabs to fit better */
+    list-style-type: none;
+    /* If your tabs are in a list */
 }
 
 .tab-link {
-     cursor: pointer;
-     padding: 10px;
-     margin-right: 10px;
-     text-decoration: none;
-     color: #333;
-     border: 1px solid #ccc;
-     border-radius: 5px;
-     font-size: 16px;
- }
+    padding: 10px 15px;
+    /* Increase padding for a larger touch area */
+    margin: 5px;
+    /* Add some space between tabs */
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    background-color: #f9f9f9;
+    /* Light background color */
+    font-size: 14px;
+    /* Adjust font size for mobile readability */
+    text-align: center;
+    /* Center text inside the tab */
+    text-decoration: none;
+    /* Remove underline from links */
+    color: #333;
+    /* Tab text color */
+    transition: background-color 0.3s;
+    /* Smooth background transition on hover */
+}
 
+.tab-link:hover,
 .tab-link.active {
-     background-color: #eee;
- }
+    background-color: #e0e0e0;
+    /* Slightly darker background on hover/active */
+    color: #000;
+    /* Text color for active/hover state */
+}
 
 /* Container for all product cards */
 .product-container {
@@ -202,19 +227,25 @@
         font-size: 14px;
     }
 
-    .tabs{
-        margin: 40px 0;
-        padding: 20px;
+    .tabs {
+        margin: 20px auto;
+        padding: 0;
+        width: 100%;
+        /* Full width on small screens */
     }
 
     .tab-link {
-        flex-wrap: nowrap;
-        overflow: auto;
-        padding: 5px;
-        margin: 3px 0;
-        border: 1px solid #ccc;
-        border-radius: 3px;
-        
+        flex-grow: 1;
+        /* Tabs take equal width */
+        text-overflow: ellipsis;
+        /* Handle long text in tabs */
+        overflow: hidden;
+        /* Prevent text from overflowing */
+        white-space: nowrap;
+        /* Keep text in a single line */
+        padding: 3px 2px;
     }
+
+   
 }
 
