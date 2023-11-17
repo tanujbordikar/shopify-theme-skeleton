@@ -29,8 +29,10 @@
                 <img src="{{ block.settings.image | img_url: '300x300' }}" alt="{{ block.settings.title }}">
                 <h3>{{ block.settings.title }}</h3>
                 <p>{{ block.settings.description }}</p>
-                <p>Price: {{ block.settings.price }}</p>
-                <p><s>{{ block.settings.strikeThroughPrice }}</s></p>
+                <div class="prices">
+                    <p>€{{ block.settings.price }}</p>
+                    <p><s>€{{ block.settings.strikeThroughPrice }}</s></p>
+                </div>
             </div>
         {% endfor %}
     </div>
