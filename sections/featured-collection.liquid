@@ -26,13 +26,15 @@
     <!-- Product cards will be dynamically added here -->
         {% for block in section.blocks %}
             <div class="product-card" {{ block.shopify_attributes }} data-category="{{ block.settings.category | handle }}">
-                <img src="{{ block.settings.image | img_url: '300x300' }}" alt="{{ block.settings.title }}">
+                <div class="card-img">
+                    <img src="{{ block.settings.image | img_url: '300x300' }}" alt="{{ block.settings.title }}">
+                    <div class="deal-tag"> DEAL UP TO  {{ block.settings.deal }} </div>
+                </div>
                 <h3>{{ block.settings.title }}</h3>
                 <p>{{ block.settings.description }}</p>
-                <div class="prices">
-                    <p>€{{ block.settings.price }}</p>
-                    <p><s>€{{ block.settings.strikeThroughPrice }}</s></p>
-                </div>
+                <p>€{{ block.settings.price }} <span><s>€{{ block.settings.strikeThroughPrice }}</s></span></p>
+                    
+               
             </div>
         {% endfor %}
     </div>
@@ -135,6 +137,11 @@
           "type": "image_picker",
           "id": "image",
           "label": "Image"
+        },
+        {
+          "type": "text",
+          "id": "deal",
+          "label": "Deal"
         }
       ]
     }
