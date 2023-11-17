@@ -59,7 +59,7 @@
     background-color: #f0f0f0;
 }
 
- .tab-link {
+.tab-link {
      cursor: pointer;
      padding: 10px;
      margin-right: 10px;
@@ -69,12 +69,17 @@
      border-radius: 5px;
  }
 
- .tab-link.active {
+.tab-link.active {
      background-color: #eee;
  }
 
  /* Styles for product cards */
- .product-card {
+
+/* .product-container{
+    width: 80%;
+}
+
+.product-card {
      width: 80%;
      margin: 20px auto;
      border: 1px solid #ccc;
@@ -82,10 +87,62 @@
      border-radius: 5px;
  }
 
- .product-card img {
+.product-card img {
      max-width: 100%;
      height: auto;
      margin-bottom: 10px;
+ } */
+
+ /* Updated styles.css */
+
+
+
+ /* Continue with other styles, adjusting as needed for your design */
+
+ .product-container {
+     display: flex;
+     flex-wrap: nowrap;
+     /* This ensures items don't wrap */
+     overflow-x: auto;
+     padding: 20px 0;
+     margin: 0 auto;
+     /* Center the container */
+     width: 80%;
+     /* Set to maximum width */
+ }
+
+ .product-card {
+     flex: 0 0 auto;
+     /* This prevents the card from shrinking */
+     width: 240px;
+     /* Fixed width for each product card */
+     min-width: 240px;
+     /* Ensures cards do not shrink below this width */
+     margin: 0 10px;
+     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+     border-radius: 5px;
+     background: #fff;
+     text-align: left;
+     position: relative;
+     /* For absolute positioning of elements inside */
+ }
+
+ /* Add CSS for scrollbar styling */
+ .product-container::-webkit-scrollbar {
+     height: 2px;
+     color: #4C148A !important;
+ }
+
+ .product-container::-webkit-scrollbar-track {
+     background: #FDE1FF !important;
+ }
+
+ .product-container::-webkit-scrollbar-thumb {
+     background: #888;
+ }
+
+ .product-container::-webkit-scrollbar-thumb:hover {
+     background: #555;
  }
 
 

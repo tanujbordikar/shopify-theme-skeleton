@@ -10,23 +10,31 @@
         <div class="link-section">
             <a href="{{ section.settings.linkUrl }}"> View all products ➜ </a>
         </div>
+
+        <div class="tabs">
+            <a href="#" class="tab-link active" data-category="all">All Gummies</a>
+            <a href="#" class="tab-link" data-category="multivitamin">Multivitamin</a>
+            <a href="#" class="tab-link" data-category="wellness_beauty">Wellness and Beauty</a>
+            <a href="#" class="tab-link" data-category="single_support">Single Support</a>
+            <a href="#" class="tab-link" data-category="kids">Kids</a>
+        </div>
     </div>
 
-    <div class="tabs">
-        <a href="#" class="tab-link active" data-category="all">All Gummies</a>
-        <a href="#" class="tab-link" data-category="multivitamin">Multivitamin</a>
-        <a href="#" class="tab-link" data-category="wellness_beauty">Wellness and Beauty</a>
-        <a href="#" class="tab-link" data-category="single_support">Single Support</a>
-        <a href="#" class="tab-link" data-category="kids">Kids</a>
-    </div>
+    
 
     <div class="product-container">
     <!-- Product cards will be dynamically added here -->
+        {% for block in section.blocks %}
+            <div class="product-card" {{ block.shopify_attributes }} data-category="{{ block.settings.category | handle }}">
+                <img src="{{ block.settings.image | img_url: '300x300' }}" alt="{{ block.settings.title }}">
+                <h3>{{ block.settings.title }}</h3>
+                <p>{{ block.settings.description }}</p>
+                <p>Price: {{ block.settings.price }}</p>
+                <p><s>{{ block.settings.strikeThroughPrice }}</s></p>
+            </div>
+        {% endfor %}
     </div>
 
-    {% if section.settings.show_collection_description %}
-        <p>{{ section.settings.featured_collection.description }}</p>
-    {% endif %}
 
     <!-- Add more HTML structure and liquid code based on your design -->
 
@@ -45,44 +53,26 @@
         this.classList.add('active');
 
         const category = this.getAttribute('data-category');
+        console.log('Filtering category:', category); // Debugging line
         filterProducts(category);
       });
     });
 
-    // Initial load with 'all' category
-    filterProducts('all');
-
     function filterProducts(category) {
-      // You need to replace this part with your logic to fetch and display products
-      // This is just a placeholder
-      const products = [
-        { category: 'multivitamin', title: 'Product 1', description: 'Description 1', price: '$10', strikeThroughPrice: '$15', image: 'product1.jpg' },
-        { category: 'wellness_beauty', title: 'Product 2', description: 'Description 2', price: '$12', strikeThroughPrice: '$18', image: 'product2.jpg' },
-        // Add more products here
-      ];
-
-      displayProducts(products.filter(product => category === 'all' || product.category === category));
+        const allProductCards = document.querySelectorAll('.product-card');
+        allProductCards.forEach(card => {
+            if (category === 'all' || card.getAttribute('data-category') === category) {
+            card.style.display = 'inline-block';
+            } else {
+            card.style.display = 'none';
+            }
+        });
     }
 
-    function displayProducts(products) {
-      productContainer.innerHTML = '';
+    // Trigger the 'all' category click on initial load
+    document.querySelector('.tab-link[data-category="all"]').click();
 
-      products.forEach(product => {
-        const card = document.createElement('div');
-        card.classList.add('product-card');
-
-        card.innerHTML = `
-          <img src="${product.image}" alt="${product.title}">
-          <p>Category: ${product.category}</p>
-          <h3>${product.title}</h3>
-          <p>${product.description}</p>
-          <p>Price: ${product.price}</p>
-          <p>Strike Through Price: ${product.strikeThroughPrice}</p>
-        `;
-
-        productContainer.appendChild(card);
-      });
-    }
+    
   });
 </script>
 
@@ -91,7 +81,7 @@
 {
   "name": "Featured Collection",
   "settings": [
-     {
+    {
       "type": "text",
       "label": "Heading 1",
       "id": "heading1",
@@ -107,26 +97,45 @@
       "type": "url",
       "label": "Link URL",
       "id": "linkUrl"
-    },
-    {
-      "type": "text",
-      "label": "Section Title",
-      "id": "section_title",
-      "default": "Featured Collection"
-    },
-    {
-      "type": "collection",
-      "label": "Select Collection",
-      "id": "featured_collection"
-      
-    },
-    {
-      "type": "checkbox",
-      "label": "Show Collection Description",
-      "id": "show_collection_description",
-      "default": true
     }
-    // Add more settings based on your design specifications
+  ],
+  "blocks": [
+    {
+      "type": "product",
+      "name": "Product",
+      "settings": [
+        {
+          "type": "text",
+          "id": "category",
+          "label": "Category"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title"
+        },
+        {
+          "type": "textarea",
+          "id": "description",
+          "label": "Description"
+        },
+        {
+          "type": "text",
+          "id": "price",
+          "label": "Price"
+        },
+        {
+          "type": "text",
+          "id": "strikeThroughPrice",
+          "label": "Strike Through Price"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        }
+      ]
+    }
   ],
   "presets": [
     {
@@ -135,5 +144,6 @@
   ]
 }
 {% endschema %}
+
 
 
