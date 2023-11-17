@@ -161,14 +161,12 @@ body.modal-open {
 
     .play-icon-container {
         top: 40%;
-        /* Adjusted position for better visibility on smaller screens */
     }
 
     .play-icon {
         width: 40px;
         height: 40px;
         padding: 10px;
-        /* Adjusted padding for better visibility on smaller screens */
     }
 
     .video-modal iframe {
