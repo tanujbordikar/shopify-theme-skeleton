@@ -23,9 +23,10 @@
 .feature-headers{
     text-transform: uppercase;
     font-family: "Londrina Solid",sans-serif;
-    font-size: 60px;
+    font-size: 50px !important;
+    font-weight: bolder;
     letter-spacing: 0.6px;
-    line-height: 54px;
+    line-height: 40px;
 }
 
 #header1{
@@ -52,6 +53,7 @@
 
 .tabs {
     margin: 40px 0;
+    
 }
 
 /* Additional styles for active link state */
@@ -67,6 +69,7 @@
      color: #333;
      border: 1px solid #ccc;
      border-radius: 5px;
+     font-size: 16px;
  }
 
 .tab-link.active {
@@ -98,19 +101,6 @@
     overflow: hidden;
 }
 
-/* Responsive behavior for product cards */
-@media (max-width: 768px) {
-    .product-card {
-        width: calc(60% - 20px);
-        
-    }
-}
-
-@media (max-width: 480px) {
-    .product-card {
-        width: calc(20% - 20px);
-    }
-}
 
 /* Style for the deal tag */
 .product-card .deal-tag {
@@ -200,14 +190,31 @@
 /* Mobile Styles */
 @media (max-width: 768px) {
     .featured-collection {
+        margin-top: 20px;
         padding: 10px;
     }
 
-    .featured-collection h2 {
+    .featured-collection h1 {
         font-size: 25px;
     }
 
     .featured-collection p {
         font-size: 14px;
     }
+
+    .tabs{
+        margin: 40px 0;
+        padding: 20px;
+    }
+
+    .tab-link {
+        flex-wrap: nowrap;
+        overflow: auto;
+        padding: 5px;
+        margin: 3px 0;
+        border: 1px solid #ccc;
+        border-radius: 3px;
+        
+    }
 }
+

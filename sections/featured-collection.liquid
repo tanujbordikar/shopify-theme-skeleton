@@ -3,8 +3,8 @@
 <div class="featured-collection">
     <div class="centered-content">
         <div class="feature-headers">
-            <h2 id="header1">{{ section.settings.heading1 }}</h2>
-            <h2 id="header2">{{ section.settings.heading2 }}</h2>
+            <h1 id="header1">{{ section.settings.heading1 }}</h1>
+            <h1 id="header2">{{ section.settings.heading2 }}</h1>
         </div>
 
         <div class="link-section">
@@ -28,7 +28,7 @@
             <div class="product-card" {{ block.shopify_attributes }} data-category="{{ block.settings.category | handle }}">
                 <div class="card-img">
                     <img src="{{ block.settings.image | img_url: '300x300' }}" alt="{{ block.settings.title }}">
-                    <div class="deal-tag"> DEAL UP TO  {{ block.settings.deal }} </div>
+                    <div class="deal-tag"> DEAL - {{ block.settings.deal }} </div>
                 </div>
                 <h3>{{ block.settings.title }}</h3>
                 <p>{{ block.settings.description }}</p>
