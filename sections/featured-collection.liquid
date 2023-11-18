@@ -11,7 +11,7 @@
             <a href="{{ section.settings.linkUrl }}"> View all products ➜ </a>
         </div>
 
-        <div class="tabs">
+        <div class="tabsCSS">
             <a href="#" class="tab-link active" data-category="all">All Gummies</a>
             <a href="#" class="tab-link" data-category="multivitamin">Multivitamin</a>
             <a href="#" class="tab-link" data-category="wellness_beauty">Wellness and Beauty</a>
@@ -30,6 +30,7 @@
                     <img src="{{ block.settings.image | img_url: '300x300' }}" alt="{{ block.settings.title }}">
                     <div class="deal-tag"> DEAL - {{ block.settings.deal }} </div>
                 </div>
+                <p id="categoryCSS"> {{ block.settings.category }} </p>
                 <h3>{{ block.settings.title }}</h3>
                 <p>{{ block.settings.description }}</p>
                 <p id="price">€{{ block.settings.price }} <span id="strikePrice"><s>€{{ block.settings.strikeThroughPrice }}</s></span></p>
@@ -39,49 +40,48 @@
         {% endfor %}
     </div>
 
-
-    <!-- Add more HTML structure and liquid code based on your design -->
-
 </div>
 
 <script>
-  document.addEventListener('DOMContentLoaded', function() {
+    document.addEventListener('DOMContentLoaded', function() {
     const tabs = document.querySelectorAll('.tab-link');
-    const productContainer = document.querySelector('.product-container');
+    console.log('Tabs found:', tabs.length); 
 
     tabs.forEach(tab => {
-      tab.addEventListener('click', function(e) {
-        e.preventDefault();
+        tab.addEventListener('click', function(e) {
+            e.preventDefault();
+            console.log('Tab clicked:', this.innerText); 
 
-        tabs.forEach(t => t.classList.remove('active'));
-        this.classList.add('active');
+            tabs.forEach(t => t.classList.remove('active'));
+            this.classList.add('active');
 
-        const category = this.getAttribute('data-category');
-        console.log('Filtering category:', category); // Debugging line
-        filterProducts(category);
-      });
+            const category = this.getAttribute('data-category');
+            console.log('Filtering category:', category); 
+            filterProducts(category);
+        });
     });
 
     function filterProducts(category) {
         const allProductCards = document.querySelectorAll('.product-card');
+        // console.log('Product cards found:', allProductCards.length); 
+
         allProductCards.forEach(card => {
-            if (category === 'all' || card.getAttribute('data-category') === category) {
-            card.style.display = 'inline-block';
+            if (category === 'all' || card.dataset.category === category) {
+                card.style.display = 'inline-block';
             } else {
-            card.style.display = 'none';
+                card.style.display = 'none';
             }
         });
     }
 
-    // Trigger the 'all' category click on initial load
-    document.querySelector('.tab-link[data-category="all"]').click();
+    filterProducts('all');
+});
 
-    
-  });
 </script>
 
 
 {% schema %}
+
 {
   "name": "Featured Collection",
   "settings": [
@@ -152,7 +152,9 @@
     }
   ]
 }
-{% endschema %}
 
+{% endschema %}
+{% javascript %}
+{% endjavascript %}
 
 
