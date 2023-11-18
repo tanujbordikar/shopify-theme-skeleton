@@ -1,48 +1,56 @@
 {{ 'cards.css' | asset_url | stylesheet_tag }}
 
-<div class="card-section">
-  <a href="{{ section.settings.card_link }}" class="card-link">
-    <div class="card">
-      <h3>{{ section.settings.card_title }}</h3>
-      <p>{{ section.settings.card_details }}</p>
-      <a href="{{ section.settings.card_link }}" class="btn">{{ section.settings.card_button_text }}</a>
-    </div>
-  </a>
-</div>
+{% for block in section.blocks %}
+  <div class="card-section">
+    <a href="{{ block.settings.card_link }}" class="card-link">
+      <div class="card">
+        <h3>{{ block.settings.card_title }}</h3>
+        <p>{{ block.settings.card_details }}</p>
+        <a href="{{ block.settings.card_link }}" class="btn">{{ block.settings.card_button_text }}</a>
+      </div>
+    </a>
+  </div>
+{% endfor %}
 
 {% schema %}
 {
-  "name": "Single Card Section",
-  "settings": [
+  "name": "Dynamic Card Section",
+  "blocks": [
     {
-      "type": "text",
-      "label": "Card Title",
-      "id": "card_title",
-      "default": "25% Off"
-    },
-    {
-      "type": "textarea",
-      "label": "Card Details",
-      "id": "card_details",
-      "default": "Use code: SAVE25"
-    },
-    {
-      "type": "text",
-      "label": "Card Link",
-      "id": "card_link",
-      "default": "/collections/all?discount=SAVE25"
-    },
-    {
-      "type": "text",
-      "label": "Card Button Text",
-      "id": "card_button_text",
-      "default": "Shop Now"
+      "type": "card_block",
+      "name": "Card",
+      "settings": [
+        {
+          "type": "text",
+          "label": "Card Title",
+          "id": "card_title",
+          "default": "25% Off"
+        },
+        {
+          "type": "textarea",
+          "label": "Card Details",
+          "id": "card_details",
+          "default": "Use code: SAVE25"
+        },
+        {
+          "type": "text",
+          "label": "Card Link",
+          "id": "card_link",
+          "default": "/collections/all?discount=SAVE25"
+        },
+        {
+          "type": "text",
+          "label": "Card Button Text",
+          "id": "card_button_text",
+          "default": "Shop Now"
+        }
+      ]
     }
   ],
   "presets": [
     {
       "category": "Custom",
-      "name": "Single Card Section"
+      "name": "Dynamic Card Section"
     }
   ]
 }
