@@ -29,6 +29,7 @@
   
   /* Style the card title */
   .card-title {
+    color:black;
     font-weight: bold;
     font-size: 1.2em;
     margin-bottom: 10px;
@@ -36,6 +37,7 @@
   
   /* Style the card details */
   .card-details {
+    color:black;
     margin-bottom: 10px;
   }
   
