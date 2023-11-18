@@ -1,0 +1,254 @@
+/* Desktop Styles */
+
+.featured-collection {
+    width: 90%;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.featured-collection h2 {
+    color: #333;
+}
+
+.featured-collection p {
+    font-size: 16px;
+    color: #666;
+}
+
+.centered-content{
+    margin: 0 auto;
+    text-align: center;
+}
+
+.feature-headers{
+    text-transform: uppercase;
+    font-family: "Londrina Solid",sans-serif;
+    font-size: 50px !important;
+    font-weight: bolder;
+    letter-spacing: 0.6px;
+    line-height: 40px;
+}
+
+#header1{
+    color: #FF670E;
+}
+
+#header2{
+    color: #4C148A;
+}
+
+.link-section a{
+    text-decoration: underline;
+    color: inherit;
+}
+
+.link-section{
+    color: #4C148A;
+}
+
+.link-section:hover {
+    color: #691bc3;
+    font-weight: medium;
+}
+
+
+/* Additional styles for active link state */
+.tabsCSS {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    margin: 20px 0;
+    padding: 0;
+    list-style-type: none;
+}
+
+.tab-link {
+    padding: 10px 15px;
+    margin: 5px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    background-color: #f9f9f9;
+    font-size: 14px;
+    text-align: center;
+    text-decoration: none;
+    color: #333;
+    transition: background-color 0.3s;
+}
+
+.tab-link:hover,
+.tab-link.active {
+    background-color: #e0e0e0;
+    color: #000;
+    text-decoration: none;
+}
+
+/* Container for all product cards */
+.product-container {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    margin: 0 auto;
+    justify-content: flex-start;
+    align-items: stretch;
+    padding-bottom:30px;
+}
+
+/* Individual product card styling */
+.product-card {
+    flex: 0 0 auto;
+    width: 240px;
+    min-width: 200px;
+    margin: 0 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    background: #fff;
+    text-align: left;
+    position: relative;
+    overflow: hidden;
+}
+
+
+/* Style for the deal tag */
+.product-card .deal-tag {
+    position: absolute;
+    font-size: 10px;
+    top: 10px;
+    left: 10px;
+    background-color: #ffd700;
+    padding: 2px 5px;
+    border-radius: 5px;
+    font-weight: bold;
+    color: #333;
+}
+
+/* Image styling */
+.card-img{
+    width: 240px;
+    min-width: 200px;
+    border-radius: 10px;
+    height: auto;
+    overflow: hidden;
+    position: relative;
+}
+
+.card-img img{
+    width: 100%;
+    display: block;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+/* Hover effect on the image */
+.card-img:hover img {
+    transform: scale(1.05);
+    cursor: pointer;
+}
+
+#categoryCSS{
+    margin: 10px 0;
+    padding: 2px 4px;
+    border: 1px solid gray;
+    border-radius: 20px;
+    width: fit-content;
+    font-size: 10px;
+    text-transform: uppercase;
+    font-weight: 500;
+
+}
+
+/* Product title and description inside the card */
+.product-card h3 {
+    margin: 0;
+    padding: 10px;
+    font-size: 18px;
+    color: #333;
+}
+
+.product-card p {
+    margin: 0;
+    padding: 0 10px 10px;
+    font-size: 14px;
+    color: #666;
+}
+
+/* Pricing style */
+#price {
+    font-weight: bold;
+    color: #000000;
+}
+
+#strikePrice{
+    font-weight: normal;
+    color: #666;
+}
+
+.product-card span{
+    margin-left: 10px;
+}
+
+.product-card .strike-through-price {
+    text-decoration: line-through;
+    color: #999;
+}
+
+/* Scrollbar styling */
+.product-container::-webkit-scrollbar {
+    height: 4px;
+}
+
+.product-container::-webkit-scrollbar-track {
+    background: #FDE1FF;
+}
+
+.product-container::-webkit-scrollbar-thumb {
+    background: #888;
+}
+
+.product-container::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+
+
+/* Mobile Styles */
+@media (max-width: 768px) {
+    .featured-collection {
+        margin-top: 20px;
+        padding: 10px;
+    }
+
+    .featured-collection h1 {
+        font-size: 25px;
+    }
+
+    .featured-collection p {
+        font-size: 14px;
+    }
+
+    .tabsCSS {
+        margin: 20px auto;
+        padding: 0;
+        width: 100%;
+    }
+
+    .tab-link {
+        font-size: 13px;
+        flex-grow: 1;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap;
+        padding: 3px 2px;
+    }
+
+    .product-card h3{
+        font-size: 16px;
+    }
+
+    .product-card p{
+        font-size: 13px;
+    }
+
+   
+}
+
