@@ -1,85 +1,51 @@
-<div class="multi-card-section">
-  <h2 class="section-title">{{ section.settings.section_title | default: "Featured Cards" }}</h2>
-
-  <div class="cards-container">
-    {% for card in section.settings.cards %}
-      <div class="card">
-        <img src="{{ card.image | img_url: 'medium' }}" alt="{{ card.title }}">
-        <h3>{{ card.title }}</h3>
-        <p>{{ card.details }}</p>
-        <a href="{{ card.button_url }}" class="btn">{{ card.button_text }}</a>
-      </div>
-    {% endfor %}
-  </div>
-</div>
+<!-- sections/offers.liquid -->
 
 {% schema %}
 {
-  "name": "Multi-Card Section",
+  "name": "Offers",
   "settings": [
     {
       "type": "header",
-      "content": "Multi-Card Section Settings"
+      "content": "Offers Section Settings"
     },
     {
       "type": "text",
       "label": "Section Title",
       "id": "section_title",
-      "default": "Featured Cards"
+      "default": "Special Offers"
     },
     {
-      "type": "image_picker",
-      "label": "Card 1 Image",
-      "id": "image1"
-    },
-    {
-      "type": "text",
-      "label": "Card 1 Title",
-      "id": "title1"
-    },
-    {
-      "type": "textarea",
-      "label": "Card 1 Details",
-      "id": "details1"
-    },
-    {
-      "type": "url",
-      "label": "Card 1 Button URL",
-      "id": "button_url1"
-    },
-    {
-      "type": "text",
-      "label": "Card 1 Button Text",
-      "id": "button_text1",
-      "default": "Shop Now"
-    },
-    {
-      "type": "image_picker",
-      "label": "Card 2 Image",
-      "id": "image2"
-    },
-    {
-      "type": "text",
-      "label": "Card 2 Title",
-      "id": "title2"
-    },
-    {
-      "type": "textarea",
-      "label": "Card 2 Details",
-      "id": "details2"
-    },
-    {
-      "type": "url",
-      "label": "Card 2 Button URL",
-      "id": "button_url2"
-    },
-    {
-      "type": "text",
-      "label": "Card 2 Button Text",
-      "id": "button_text2",
-      "default": "Shop Now"
+      "type": "card",
+      "label": "Card",
+      "settings": [
+        {
+          "type": "image_picker",
+          "label": "Image",
+          "id": "image"
+        },
+        {
+          "type": "text",
+          "label": "Title",
+          "id": "title"
+        },
+        {
+          "type": "textarea",
+          "label": "Details",
+          "id": "details"
+        },
+        {
+          "type": "url",
+          "label": "Button URL",
+          "id": "button_url"
+        },
+        {
+          "type": "text",
+          "label": "Button Text",
+          "id": "button_text",
+          "default": "Shop Now"
+        }
+      ]
     }
-    // Add more cards as needed
   ],
   "presets": [
     {
@@ -90,9 +56,21 @@
 }
 {% endschema %}
 
+<div class="offers-section">
+  <h2 class="section-title">{{ section.settings.section_title | default: "Special Offers" }}</h2>
+
+  <div class="cards-container">
+    <div class="card">
+      <img src="{{ section.settings.image | img_url: 'medium' }}" alt="{{ section.settings.title }}">
+      <h3>{{ section.settings.title }}</h3>
+      <p>{{ section.settings.details }}</p>
+      <a href="{{ section.settings.button_url }}" class="btn">{{ section.settings.button_text }}</a>
+    </div>
+  </div>
+</div>
 
 <style>
-  .multi-card-section {
+  .offers-section {
     text-align: center;
     padding: 20px;
   }
