@@ -1,9 +1,14 @@
 {{ 'cards.css' | asset_url | stylesheet_tag }}
+<div class="section-container">
+    <div class="section-title">Offers</div>
+</div>
 
+</div>
 {% for block in section.blocks %}
   <div class="card-section">
     <a href="{{ block.settings.card_link }}" class="card-link">
       <div class="card">
+        <img src="{{ block.settings.card_image | img_url: '300x300' }}" alt="{{ block.settings.card_title }}">
         <h3>{{ block.settings.card_title }}</h3>
         <p>{{ block.settings.card_details }}</p>
         <a href="{{ block.settings.card_link }}" class="btn">{{ block.settings.card_button_text }}</a>
@@ -14,7 +19,7 @@
 
 {% schema %}
 {
-  "name": "Dynamic Card Section",
+  "name": "Card Section",
   "blocks": [
     {
       "type": "card_block",
@@ -43,6 +48,12 @@
           "label": "Card Button Text",
           "id": "card_button_text",
           "default": "Shop Now"
+        },
+        {
+          "type": "image_picker",
+          "label": "Card Image",
+          "id": "card_image",
+          "info": "Select an image for the card"
         }
       ]
     }
@@ -50,7 +61,7 @@
   "presets": [
     {
       "category": "Custom",
-      "name": "Dynamic Card Section"
+      "name": "Card Section"
     }
   ]
 }
