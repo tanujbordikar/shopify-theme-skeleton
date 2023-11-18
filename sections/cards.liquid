@@ -1,120 +1,63 @@
-{%- assign section_name = section.settings.section_name | default: 'discount-cards' -%}
 {{ 'cards.css' | asset_url | stylesheet_tag }}
 
-<div class="section-container">
-  <h2 class="section-title">OFFERS</h2>
-
-  <div class="{{ section_name }}">
-    {% for i in (1..3) %}
-      {%- assign card_discount_type = section.settings["card#{i}_discount_type"] -%}
-      {% case card_discount_type %}
-        {% when '25_percent' %}
-          <a href="/collections/all?discount=SAVE25" class="card-link">
-            <div class="card">
-              {{ 'product-1' | placeholder_svg_tag: 'image' }}
-              <h3>25% Off</h3>
-              <p>Use code: SAVE25</p>
-              <a href="/collections/all?discount=SAVE25" class="btn">Shop Now</a>
-            </div>
-          </a>
-        {% when 'membership' %}
-          <a href="/account/login" class="card-link">
-            <div class="card">
-              {{ 'product-2' | placeholder_svg_tag: 'image' }}
-              <h3>Membership Discount</h3>
-              <p>Exclusive savings for members</p>
-              <a href="/account/login" class="btn">Login to Access</a>
-            </div>
-          </a>
-        {% when 'direct' %}
-          <a href="/collections/all" class="card-link">
-            <div class="card">
-              {{ 'product-3' | placeholder_svg_tag: 'image' }}
-              <h3>Shop Directly</h3>
-              <p>Explore our latest products</p>
-              <a href="/collections/all" class="btn">View Products</a>
-            </div>
-          </a>
-      {% endcase %}
-    {% endfor %}
-  </div>
+<div class="card-section">
+  {%- assign card_settings = section.settings.card_settings | json -%}
+  <a href="{{ card_settings.link }}" class="card-link">
+    <div class="card">
+      <img src="{{ card_settings.image | img_url: '500x' }}" alt="{{ card_settings.title }}">
+      <h3>{{ card_settings.title }}</h3>
+      <p>{{ card_settings.details }}</p>
+      <a href="{{ card_settings.link }}" class="btn">{{ card_settings.button_text }}</a>
+    </div>
+  </a>
 </div>
 
 {% schema %}
 {
-  "name": "Discount Cards Section",
+  "name": "Single Card Section",
   "settings": [
     {
-      "type": "text",
-      "label": "Section Name",
-      "id": "section_name",
-      "default": "discount-cards"
-    },
-    {
-      "type": "select",
-      "label": "Card 1 Discount Type",
-      "id": "card1_discount_type",
-      "default": "25_percent",
-      "options": [
+      "type": "group",
+      "label": "Card Settings",
+      "id": "card_settings",
+      "fields": [
         {
-          "value": "25_percent",
-          "label": "25% Off"
+          "type": "text",
+          "label": "Title",
+          "id": "title",
+          "default": "25% Off"
         },
         {
-          "value": "membership",
-          "label": "Membership Discount"
+          "type": "image_picker",
+          "label": "Image",
+          "id": "image",
+          "default": "placeholder-image.jpg"
         },
         {
-          "value": "direct",
-          "label": "Direct Shopping Link"
-        }
-      ]
-    },
-    {
-      "type": "select",
-      "label": "Card 2 Discount Type",
-      "id": "card2_discount_type",
-      "default": "membership",
-      "options": [
-        {
-          "value": "25_percent",
-          "label": "25% Off"
+          "type": "textarea",
+          "label": "Details",
+          "id": "details",
+          "default": "Use code: SAVE25"
         },
         {
-          "value": "membership",
-          "label": "Membership Discount"
+          "type": "url",
+          "label": "Link",
+          "id": "link",
+          "default": "/collections/all?discount=SAVE25"
         },
         {
-          "value": "direct",
-          "label": "Direct Shopping Link"
-        }
-      ]
-    },
-    {
-      "type": "select",
-      "label": "Card 3 Discount Type",
-      "id": "card3_discount_type",
-      "default": "direct",
-      "options": [
-        {
-          "value": "25_percent",
-          "label": "25% Off"
-        },
-        {
-          "value": "membership",
-          "label": "Membership Discount"
-        },
-        {
-          "value": "direct",
-          "label": "Direct Shopping Link"
+          "type": "text",
+          "label": "Button Text",
+          "id": "button_text",
+          "default": "Shop Now"
         }
       ]
     }
   ],
   "presets": [
     {
-      "category": "Cards",
-      "name": "Discount Cards Section"
+      "category": "Custom",
+      "name": "Single Card Section"
     }
   ]
 }
