@@ -1,80 +1,58 @@
-/* Add your custom styles for the discount cards section here */
-
-.section-container {
-    max-width: 1200px; /* Adjust the max width as needed */
-    margin: 0 auto; /* Center the section horizontally */
-    padding: 20px;
-    background-color: #f5f5f5; /* Set the background color for the section */
-  }
-  
-  .section-title {
-    text-align: center;
-    margin-bottom: 20px;
-    font-size: 24px;
-    color: #333; /* Set the title color */
-  }
-  
-  .discount-cards {
+/* Add some basic styling to the discount cards */
+.discount-cards-container {
     display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    flex-wrap: wrap; /* Allow cards to wrap on smaller screens */
-    gap: 20px; /* Adjust the gap between cards */
+    flex-wrap: wrap;
+    justify-content: space-around;
+    margin: 20px;
   }
   
-  .card-link {
-    text-decoration: none;
-  }
-  
-  .card {
-    border: 1px solid #ddd;
+  .discount-card {
+    box-sizing: border-box;
+    width: calc(33.33% - 20px);
+    margin: 10px;
     padding: 15px;
+    border: 1px solid #ccc;
     text-align: center;
-    width: calc(33.33% - 20px); /* Three cards in a row with a gap */
-    max-width: 300px;
-    cursor: pointer;
-    transition: transform 0.3s ease;
-    margin-bottom: 20px; /* Adjust the bottom margin as needed */
   }
   
-  .card:hover {
-    transform: translateY(-5px);
+  /* Add styling for the top row cards */
+  .top-row {
+    margin-bottom: 20px;
   }
   
-  .card h3 {
-    margin-top: 10px;
-    color: #333; /* Set the text color for card titles */
+  /* Style the card image */
+  .card-image {
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 10px;
   }
   
-  .btn {
+  /* Style the card title */
+  .card-title {
+    font-weight: bold;
+    font-size: 1.2em;
+    margin-bottom: 10px;
+  }
+  
+  /* Style the card details */
+  .card-details {
+    margin-bottom: 10px;
+  }
+  
+  /* Style the link button */
+  .card-link-button {
     display: inline-block;
-    padding: 8px 16px;
-    margin-top: 10px;
-    color: white;
+    padding: 8px 15px;
+    background-color: #007bff;
+    color: #fff;
     text-decoration: none;
-    cursor: pointer;
-    border: none;
     border-radius: 5px;
-    transition: background-color 0.3s ease;
-    background: rgb(96, 96, 255);
-    background: linear-gradient(0deg, rgb(156, 11, 156) 0%, rgb(156, 11, 156) 100%);
   }
   
-  .btn:hover {
-    background-color: #45a049;
-    box-shadow: 4px 4px 6px 0 rgba(255, 255, 255, .5),
-      -4px -4px 6px 0 rgba(116, 125, 136, .5),
-      inset -4px -4px 6px 0 rgba(255, 255, 255, .2),
-      inset 4px 4px 6px 0 rgba(0, 0, 0, .4);
-  }
-  
-  /* Responsive Styles */
-  @media (max-width: 1200px) {
-    .discount-cards {
-      justify-content: flex-start;
-    }
-  
-    .card {
-      max-width: 100%; /* Make cards take full width on smaller screens */
+  /* Responsive styling for smaller screens */
+  @media screen and (max-width: 768px) {
+    .discount-card {
+      width: calc(50% - 20px);
     }
   }
+  

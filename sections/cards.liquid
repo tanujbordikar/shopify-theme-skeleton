@@ -1,123 +1,48 @@
-{%- assign section_name = section.settings.section_name -%}
-{{ 'cards.css' | asset_url | stylesheet_tag }}
 
-<div class="section-container">
-  <h2 class="section-title">{{ section.settings.section_title }}</h2> 
+{% assign total_cards = section.settings.total_cards | default: 6 %}
+{% assign cards_per_row = section.settings.cards_per_row | default: 3 %}
+{% assign cards_per_column = total_cards / cards_per_row | round %}
 
-  <div class="{{ section_name }}">
-    {% for i in (1..3) %}
-      {%- assign card_title = section.settings["card#{i}_title"] -%}
-      {%- assign card_detail = section.settings["card#{i}_detail"] -%}
-      {%- assign card_image = section.settings["card#{i}_image"] -%}
-      {%- assign card_button_link = section.settings["card#{i}_button_link"] -%}
-
-      <a href="{{ card_button_link }}" class="card-link">
-        <div class="card">
-          <img src="{{ card_image | default: 'https://example.com/placeholder-image.jpg' }}" alt="{{ card_title }}" loading="lazy">
-          <h3>{{ card_title }}</h3>
-          <p>{{ card_detail }}</p>
-          <a href="{{ card_button_link }}" class="btn">Shop Now</a>
-        </div>
-      </a>
-    {% endfor %}
-  </div>
+<div class="discount-cards-container">
+  {% for i in (1..total_cards) %}
+    <div class="discount-card {% if i <= cards_per_row %}top-row{% endif %}">
+      <img src="card{{ i }}.jpg" alt="Card {{ i }}" class="card-image">
+      <h2 class="card-title">Discount Card {{ i }}</h2>
+      <p class="card-details">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla quam velit, vulputate eu pharetra nec, mattis ac neque.</p>
+      <a href="#" class="card-link-button">Shop Now</a>
+    </div>
+    {% if i % cards_per_row == 0 and i < total_cards %}
+      </div><div class="discount-cards-container">
+    {% endif %}
+  {% endfor %}
 </div>
 
 {% schema %}
 {
-  "name": "Discount Cards Section",
+  "name": "Discount Cards",
   "settings": [
     {
-      "type": "text",
-      "label": "Section Name",
-      "id": "section_name",
-      "default": "discount-cards"
+      "type": "header",
+      "content": "Discount Cards Settings"
     },
     {
       "type": "text",
-      "label": "Section Title",
-      "id": "section_title",
-      "default": "OFFERS"
+      "label": "Total Cards",
+      "id": "total_cards",
+      "default": "6"
     },
     {
       "type": "text",
-      "label": "Card 1 Title",
-      "id": "card1_title",
-      "default": "25% Off"
-    },
-    {
-      "type": "text",
-      "label": "Card 1 Detail",
-      "id": "card1_detail",
-      "default": "Use code: SAVE25"
-    },
-    {
-      "type": "text",
-      "label": "Card 1 Image",
-      "id": "card1_image",
-      "default": "https://example.com/card1_image.jpg"
-    },
-    {
-      "type": "text",
-      "label": "Card 1 Button Link",
-      "id": "card1_button_link",
-      "default": "/collections/all?discount=SAVE25"
-    },
-    {
-      "type": "text",
-      "label": "Card 2 Title",
-      "id": "card2_title",
-      "default": "Membership Discount"
-    },
-    {
-      "type": "text",
-      "label": "Card 2 Detail",
-      "id": "card2_detail",
-      "default": "Exclusive savings for members"
-    },
-    {
-      "type": "text",
-      "label": "Card 2 Image",
-      "id": "card2_image",
-      "default": "https://example.com/card2_image.jpg"
-    },
-    {
-      "type": "text",
-      "label": "Card 2 Button Link",
-      "id": "card2_button_link",
-      "default": "/account/login"
-    },
-    {
-      "type": "text",
-      "label": "Card 3 Title",
-      "id": "card3_title",
-      "default": "Shop Directly"
-    },
-    {
-      "type": "text",
-      "label": "Card 3 Detail",
-      "id": "card3_detail",
-      "default": "Explore our latest products"
-    },
-    {
-      "type": "text",
-      "label": "Card 3 Image",
-      "id": "card3_image",
-      "default": "https://example.com/card3_image.jpg"
-    },
-    {
-      "type": "text",
-      "label": "Card 3 Button Link",
-      "id": "card3_button_link",
-      "default": "/collections/all"
+      "label": "Cards per Row",
+      "id": "cards_per_row",
+      "default": "3"
     }
   ],
   "presets": [
     {
-      "category": "Custom",
-      "name": "Discount Cards Section"
+      "name": "Default",
+      "category": "Custom"
     }
   ]
 }
-
 {% endschema %}
