@@ -1,13 +1,13 @@
 {{ 'announcement-bar.css' | asset_url | stylesheet_tag }}
 
-<div class="announcement">
+<div class="announcement" {{ block.shopify_attributes }}>
   <div class="announcement__wrapper rel">
     <div
       class="announcement__content"
       role="region"
       aria-label="{{ 'sections.header.announcement' | t }}"
       data-duration="{{ section.settings.animation_duration | times: 1000 }}"
-      {{ block.shopify_attributes }}
+      
     >
       {% for block in section.blocks %}
         {%- if block.settings.text != blank -%}

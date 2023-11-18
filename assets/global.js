@@ -68,7 +68,7 @@ document.addEventListener('DOMContentLoaded', function () {
 // Shopify design mode
 if (Shopify.designMode) {
   document.addEventListener('shopify:section:load', (event) => {
-    console.log(event.detail);
+    //console.log(event.detail);
     const sectionId = event.detail.sectionId;
     const selector = `#shopify-section-${sectionId} .announcement__wrapper`;
     new AnnouncementSlider(selector);
