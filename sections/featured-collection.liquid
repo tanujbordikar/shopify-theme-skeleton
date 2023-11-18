@@ -12,18 +12,18 @@
         </div>
 
         <div class="tabsCSS">
-            <a href="#" class="tab-link active" data-category="all">All Gummies</a>
-            <a href="#" class="tab-link" data-category="multivitamin">Multivitamin</a>
-            <a href="#" class="tab-link" data-category="wellness_beauty">Wellness and Beauty</a>
-            <a href="#" class="tab-link" data-category="single_support">Single Support</a>
-            <a href="#" class="tab-link" data-category="kids">Kids</a>
+          {% assign tags = section.settings.tags | split: "," %}
+          {% for tag in tags %}
+              {% assign formattedTag = tag | replace: "_", " " | capitalize %}
+              <a href="#" class="tab-link" data-category="{{ formattedTag | handle }}">{{ formattedTag }}</a>
+          {% endfor %}
         </div>
+
     </div>
 
     
 
     <div class="product-container">
-    <!-- Product cards will be dynamically added here -->
         {% for block in section.blocks %}
             <div class="product-card" {{ block.shopify_attributes }} data-category="{{ block.settings.category | handle }}">
                 <div class="card-img">
@@ -62,19 +62,14 @@
     });
 
     function filterProducts(category) {
-        const allProductCards = document.querySelectorAll('.product-card');
-        // console.log('Product cards found:', allProductCards.length); 
+            const allProductCards = document.querySelectorAll('.product-card');
+            allProductCards.forEach(card => {
+                const isActive = category === 'all';
+                card.style.display = isActive || category === card.dataset.category ? 'inline-block' : 'none';
+            });
+        }
 
-        allProductCards.forEach(card => {
-            if (category === 'all' || card.dataset.category === category) {
-                card.style.display = 'inline-block';
-            } else {
-                card.style.display = 'none';
-            }
-        });
-    }
-
-    filterProducts('all');
+        filterProducts('all');
 });
 
 </script>
@@ -101,6 +96,12 @@
       "type": "url",
       "label": "Link URL",
       "id": "linkUrl"
+    },
+    {
+      "type": "text",
+      "label": "Tags (Comma Separated)",
+      "id": "tags",
+      "default": "all,multivitamin,wellness_beauty,single_support,kids"
     }
   ],
   "blocks": [
@@ -131,7 +132,7 @@
         {
           "type": "text",
           "id": "strikeThroughPrice",
-          "label": "Strike Through Price"
+          "label": "Original Price"
         },
         {
           "type": "image_picker",
