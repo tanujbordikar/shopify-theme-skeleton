@@ -1,0 +1,74 @@
+.section-container {
+    background-color: #4C148A;
+    text-align: center;
+    padding: 20px;
+}
+
+.section-title {
+    font-size: 36px;
+    color: white;
+    margin-bottom: 20px;
+}
+
+.card-link {
+    text-decoration: none;
+}
+
+.card-section {
+    background-color: #4C148A;
+    box-sizing: border-box;
+    width: 100%; /* Set the width of each card */
+}
+
+.card-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  
+  .card {
+    border: 2px solid #ccc;
+    padding: 10px;
+    text-align: center;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+    background-color: white;
+  }
+
+.card img {
+    max-width: 100%;
+    height: auto;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+.card h3, p {
+    margin-top: 10px;
+    color: #4C148A;
+}
+
+.btn {
+    display: inline-block;
+    padding: 8px 16px;
+    margin-top: 10px;
+    color: white;
+    text-decoration: none;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+    background: rgb(96, 96, 255);
+    background: linear-gradient(0deg, #FF670E 0%, #FF670E 100%);
+}
+
+.btn:hover {
+    background-color: #45a049;
+    box-shadow: 4px 4px 6px 0 rgba(255, 255, 255, .5),
+    -4px -4px 6px 0 rgba(116, 125, 136, .5),
+    inset -4px -4px 6px 0 rgba(255, 255, 255, .2),
+    inset 4px 4px 6px 0 rgba(0, 0, 0, .4);
+    text-decoration: none;
+}
