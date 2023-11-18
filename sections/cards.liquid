@@ -1,13 +1,11 @@
 {{ 'cards.css' | asset_url | stylesheet_tag }}
 
 <div class="card-section">
-  {%- assign card_settings = section.settings.card_settings | json -%}
-  <a href="{{ card_settings.link }}" class="card-link">
+  <a href="{{ section.settings.card_link }}" class="card-link">
     <div class="card">
-      <img src="{{ card_settings.image | img_url: '500x' }}" alt="{{ card_settings.title }}">
-      <h3>{{ card_settings.title }}</h3>
-      <p>{{ card_settings.details }}</p>
-      <a href="{{ card_settings.link }}" class="btn">{{ card_settings.button_text }}</a>
+      <h3>{{ section.settings.card_title }}</h3>
+      <p>{{ section.settings.card_details }}</p>
+      <a href="{{ section.settings.card_link }}" class="btn">{{ section.settings.card_button_text }}</a>
     </div>
   </a>
 </div>
@@ -17,41 +15,34 @@
   "name": "Single Card Section",
   "settings": [
     {
-      "type": "group",
-      "label": "Card Settings",
-      "id": "card_settings",
-      "fields": [
-        {
-          "type": "text",
-          "label": "Title",
-          "id": "title",
-          "default": "25% Off"
-        },
-        {
-          "type": "image_picker",
-          "label": "Image",
-          "id": "image",
-          "default": "placeholder-image.jpg"
-        },
-        {
-          "type": "textarea",
-          "label": "Details",
-          "id": "details",
-          "default": "Use code: SAVE25"
-        },
-        {
-          "type": "url",
-          "label": "Link",
-          "id": "link",
-          "default": "/collections/all?discount=SAVE25"
-        },
-        {
-          "type": "text",
-          "label": "Button Text",
-          "id": "button_text",
-          "default": "Shop Now"
-        }
-      ]
+      "type": "text",
+      "label": "Card Title",
+      "id": "card_title",
+      "default": "25% Off"
+    },
+    {
+      "type": "image_picker",
+      "label": "Card Image",
+      "id": "card_image",
+      "default": "placeholder-image.jpg"
+    },
+    {
+      "type": "textarea",
+      "label": "Card Details",
+      "id": "card_details",
+      "default": "Use code: SAVE25"
+    },
+    {
+      "type": "url",
+      "label": "Card Link",
+      "id": "card_link",
+      "default": "/collections/all?discount=SAVE25"
+    },
+    {
+      "type": "text",
+      "label": "Card Button Text",
+      "id": "card_button_text",
+      "default": "Shop Now"
     }
   ],
   "presets": [

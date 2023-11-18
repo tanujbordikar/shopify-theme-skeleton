@@ -31,7 +31,9 @@
   .card-link {
     text-decoration: none;
   }
-  
+  .card-section{
+    align-items: center;
+  }
   .card {
     border: 1px solid #ddd;
     padding: 15px;
