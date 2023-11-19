@@ -229,3 +229,37 @@ async function clearCart() {
       throw error;
   }
 }
+
+async function prepareShippingRates() {
+  try {
+      const response = await fetch(window.Shopify.routes.root + 'cart/prepare_shipping_rates.json', {
+          method: 'POST'
+      });
+
+      if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+      }
+
+      return await response.text(); // This endpoint does not return JSON, but a successful response indicates the calculation has started.
+  } catch (error) {
+      console.error('Error preparing shipping rates:', error);
+      throw error;
+  }
+}
+
+async function fetchShippingRates() {
+  try {
+      const response = await fetch(window.Shopify.routes.root + 'cart/async_shipping_rates.json', {
+          method: 'GET'
+      });
+
+      if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+      }
+
+      return await response.json();
+  } catch (error) {
+      console.error('Error fetching shipping rates:', error);
+      throw error;
+  }
+}
