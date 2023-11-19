@@ -1,5 +1,3 @@
-{{ 'featured-collection.css' | asset_url | stylesheet_tag }}
-
 <div class="featured-collection">
     <div class="centered-content">
         <div class="feature-headers">
@@ -27,7 +25,10 @@
         {% for block in section.blocks %}
             <div class="product-card" {{ block.shopify_attributes }} data-category="{{ block.settings.category | handle }}">
                 <div class="card-img">
-                    <img src="{{ block.settings.image | img_url: '300x300' }}" alt="{{ block.settings.title }} loading="lazy"">
+                    {{
+                        block.settings.image
+                        | image_url: width: '300px', height: '300px'
+                     }}
                     <div class="deal-tag"> DEAL - {{ block.settings.deal }} </div>
                 </div>
                 <p id="categoryCSS"> {{ block.settings.category }} </p>

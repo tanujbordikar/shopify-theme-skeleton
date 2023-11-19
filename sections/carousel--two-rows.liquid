@@ -1,52 +1,6 @@
-{{ 'carousel--two-rows.css' | asset_url | stylesheet_tag }}
 <!-- Carousel Text -->
 <div class="carousel-container">
-  <div class="carousel-text">
-    <h2>{{ section.settings.heading_text }}</h2>
-    <p>{{ section.settings.subheading_text }}</p>
-    <div class="follow-container">
-        <a href="{{ section.settings.cta_url }}" target="_blank">{{ section.settings.cta_text }}</a>
-      </div>
-      
-  </div>
 
-  <!-- Upper Row Carousel -->
-  <div class="carousel upper-row">
-    {% for block in section.blocks %}
-      {% if block.type == 'upper-image' %}
-        <div class="carousel-cell">
-          <img src="{{ block.settings.image | img_url: '800x' }}" alt="{{ block.settings.image.alt | escape }}">
-        </div>
-      {% endif %}
-    {% endfor %}
-      <!-- Duplicate the images for a continuous loop -->
-  {% for block in section.blocks %}
-    {% if block.type == 'upper-image' %}
-      <div class="carousel-cell">
-        <img src="{{ block.settings.image | img_url: '800x' }}" alt="{{ block.settings.image.alt | escape }}">
-      </div>
-    {% endif %}
-  {% endfor %}
-  </div>
-
-  <!-- Lower Row Carousel -->
-  <div class="carousel lower-row">
-    {% for block in section.blocks %}
-      {% if block.type == 'lower-image' %}
-        <div class="carousel-cell">
-          <img src="{{ block.settings.image | img_url: '800x' }}" alt="{{ block.settings.image.alt | escape }}">
-        </div>
-      {% endif %}
-    {% endfor %}
-      <!-- Duplicate the images for a continuous loop -->
-  {% for block in section.blocks %}
-    {% if block.type == 'lower-image' %}
-      <div class="carousel-cell">
-        <img src="{{ block.settings.image | img_url: '800x' }}" alt="{{ block.settings.image.alt | escape }}">
-      </div>
-    {% endif %}
-  {% endfor %}
-  </div>
 </div>
 
 {% schema %}
