@@ -1,42 +1,43 @@
-<!-- section-name.liquid -->
+<!-- dev__background.liquid -->
 <div
   class="{{ section.settings.display_mode }} custom-spacing"
   style="
-      {%- if section.settings.margin_top_unit == "auto" -%}
-        margin-top: auto;
+    background-color: {{ section.settings.background_color }};
+    {%- if section.settings.margin_top_unit == 'auto' -%}
+      margin-top: auto;
     {%- elsif section.settings.margin_top_value > 0 -%}
-        margin-top: {{ section.settings.margin_top_value }}{{ section.settings.margin_top_unit }};
+      margin-top: {{ section.settings.margin_top_value }}{{ section.settings.margin_top_unit }};
     {%- endif -%}
-    {%- if section.settings.margin_right_unit == "auto" -%}
-        margin-right: auto;
+    {%- if section.settings.margin_right_unit == 'auto' -%}
+      margin-right: auto;
     {%- elsif section.settings.margin_right_value > 0 -%}
-        margin-right: {{ section.settings.margin_right_value }}{{ section.settings.margin_right_unit }};
+      margin-right: {{ section.settings.margin_right_value }}{{ section.settings.margin_right_unit }};
     {%- endif -%}
-    {%- if section.settings.margin_bottom_unit == "auto" -%}
-        margin-bottom: auto;
+    {%- if section.settings.margin_bottom_unit == 'auto' -%}
+      margin-bottom: auto;
     {%- elsif section.settings.margin_bottom_value > 0 -%}
-        margin-bottom: {{ section.settings.margin_bottom_value }}{{ section.settings.margin_bottom_unit }};
+      margin-bottom: {{ section.settings.margin_bottom_value }}{{ section.settings.margin_bottom_unit }};
     {%- endif -%}
-    {%- if section.settings.margin_left_unit == "auto" -%}
-        margin-left: auto;
+    {%- if section.settings.margin_left_unit == 'auto' -%}
+      margin-left: auto;
     {%- elsif section.settings.margin_left_value > 0 -%}
-        margin-left: {{ section.settings.margin_left_value }}{{ section.settings.margin_left_unit }};
+      margin-left: {{ section.settings.margin_left_value }}{{ section.settings.margin_left_unit }};
     {%- endif -%}
     {%- if section.settings.padding_top_value > 0 -%}
-        padding-top: {{ section.settings.padding_top_value }}{{ section.settings.padding_top_unit }};
+      padding-top: {{ section.settings.padding_top_value }}{{ section.settings.padding_top_unit }};
     {%- endif -%}
     {%- if section.settings.padding_right_value > 0 -%}
-        padding-right: {{ section.settings.padding_right_value }}{{ section.settings.padding_right_unit }};
+      padding-right: {{ section.settings.padding_right_value }}{{ section.settings.padding_right_unit }};
     {%- endif -%}
     {%- if section.settings.padding_bottom_value > 0 -%}
-        padding-bottom: {{ section.settings.padding_bottom_value }}{{ section.settings.padding_bottom_unit }};
+      padding-bottom: {{ section.settings.padding_bottom_value }}{{ section.settings.padding_bottom_unit }};
     {%- endif -%}
     {%- if section.settings.padding_left_value > 0 -%}
-        padding-left: {{ section.settings.padding_left_value }}{{ section.settings.padding_left_unit }};
+      padding-left: {{ section.settings.padding_left_value }}{{ section.settings.padding_left_unit }};
     {%- endif -%}
   "
 >
-  {{ section.settings.display_mode }}
+    {{ section.settings.display_mode }}
 </div>
 
 {% schema %}
@@ -262,14 +263,21 @@
         { "value": "svh", "label": "SVH (Small Viewport Height)" }
       ],
       "default": "px"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background color",
+      "default": "transparent"
     }
   ],
   "presets": [
     {
-      "name": "Custom Layout",
+      "name": "Custom Layout with Background Color",
       "category": "Layout",
       "settings": {
-        "display_mode": "block"
+        "display_mode": "block",
+        "background_color": "transparent"
       }
     }
   ]

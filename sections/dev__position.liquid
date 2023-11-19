@@ -1,8 +1,36 @@
-<!-- section-name.liquid -->
+<!-- dev__position.liquid -->
 <div
   class="{{ section.settings.display_mode }} custom-spacing"
   style="
-      {%- if section.settings.margin_top_unit == "auto" -%}
+
+    {%- if section.settings.position != "static" -%}
+        position: {{ section.settings.position }};
+        {%- if section.settings.top_offset_unit == "auto" -%}
+            top: auto;
+        {%- elsif section.settings.top_offset > 0 -%}
+            top: {{ section.settings.top_offset }}{{ section.settings.top_offset_unit }};
+        {%- endif -%}
+
+        {%- if section.settings.right_offset_unit == "auto" -%}
+            right: auto;
+        {%- elsif section.settings.right_offset > 0 -%}
+            right: {{ section.settings.right_offset }}{{ section.settings.right_offset_unit }};
+        {%- endif -%}
+
+        {%- if section.settings.bottom_offset_unit == "auto" -%}
+            bottom: auto;
+        {%- elsif section.settings.bottom_offset > 0 -%}
+            bottom: {{ section.settings.bottom_offset }}{{ section.settings.bottom_offset_unit }};
+        {%- endif -%}
+
+        {%- if section.settings.left_offset_unit == "auto" -%}
+            left: auto;
+        {%- elsif section.settings.left_offset > 0 -%}
+            left: {{ section.settings.left_offset }}{{ section.settings.left_offset_unit }};
+        {%- endif -%}
+    {%- endif -%}
+
+    {%- if section.settings.margin_top_unit == "auto" -%}
         margin-top: auto;
     {%- elsif section.settings.margin_top_value > 0 -%}
         margin-top: {{ section.settings.margin_top_value }}{{ section.settings.margin_top_unit }};
@@ -41,7 +69,7 @@
 
 {% schema %}
 {
-  "name": "Custom Layout",
+  "name": "Custom Layout(Position)",
   "settings": [
     {
       "type": "header",
@@ -78,6 +106,115 @@
         }
       ],
       "default": "block"
+    },
+    {
+      "type": "header",
+      "content": "Position"
+    },
+    {
+      "type": "select",
+      "id": "position",
+      "label": "Position",
+      "options": [
+        { "value": "static", "label": "Static" },
+        { "value": "relative", "label": "Relative" },
+        { "value": "absolute", "label": "Absolute" },
+        { "value": "fixed", "label": "Fixed" },
+        { "value": "sticky", "label": "Sticky" }
+      ],
+      "default": "static"
+    },
+    {
+      "type": "number",
+      "id": "top_offset",
+      "label": "Top Offset",
+      "default": 0
+    },
+    {
+      "type": "select",
+      "id": "top_offset_unit",
+      "label": "Top Offset Unit",
+      "options": [
+        { "value": "px", "label": "px (pixels)" },
+        { "value": "%", "label": "% (percentage)" },
+        { "value": "em", "label": "em" },
+        { "value": "rem", "label": "rem (root em)" },
+        { "value": "vw", "label": "vw (viewport width)" },
+        { "value": "vh", "label": "vh (viewport height)" },
+        { "value": "svw", "label": "SVW (Small Viewport Width)" },
+        { "value": "svh", "label": "SVH (Small Viewport Height)" },
+        { "value": "auto", "label": "Auto (only for margins)" }
+      ],
+      "default": "px"
+    },
+    {
+      "type": "number",
+      "id": "right_offset",
+      "label": "Right Offset",
+      "default": 0
+    },
+    {
+      "type": "select",
+      "id": "right_offset_unit",
+      "label": "Right Offset Unit",
+      "options": [
+        { "value": "px", "label": "px (pixels)" },
+        { "value": "%", "label": "% (percentage)" },
+        { "value": "em", "label": "em" },
+        { "value": "rem", "label": "rem (root em)" },
+        { "value": "vw", "label": "vw (viewport width)" },
+        { "value": "vh", "label": "vh (viewport height)" },
+        { "value": "svw", "label": "SVW (Small Viewport Width)" },
+        { "value": "svh", "label": "SVH (Small Viewport Height)" },
+        { "value": "auto", "label": "Auto (only for margins)" }
+      ],
+      "default": "px"
+    },
+    {
+      "type": "number",
+      "id": "bottom_offset",
+      "label": "Bottom Offset",
+      "default": 0
+    },
+    {
+      "type": "select",
+      "id": "bottom_offset_unit",
+      "label": "Bottom Offset Unit",
+      "options": [
+        { "value": "px", "label": "px (pixels)" },
+        { "value": "%", "label": "% (percentage)" },
+        { "value": "em", "label": "em" },
+        { "value": "rem", "label": "rem (root em)" },
+        { "value": "vw", "label": "vw (viewport width)" },
+        { "value": "vh", "label": "vh (viewport height)" },
+        { "value": "svw", "label": "SVW (Small Viewport Width)" },
+        { "value": "svh", "label": "SVH (Small Viewport Height)" },
+        { "value": "auto", "label": "Auto (only for margins)" }
+      ],
+      "default": "px"
+    },
+    {
+      "type": "number",
+      "id": "left_offset",
+      "label": "Left Offset",
+      "default": 0
+    },
+    {
+      "type": "select",
+      "id": "left_offset_unit",
+      "label": "Left Offset Unit",
+      "options": [
+        { "value": "px", "label": "px (pixels)" },
+        { "value": "%", "label": "% (percentage)" },
+        { "value": "em", "label": "em" },
+        { "value": "rem", "label": "rem (root em)" },
+        { "value": "vw", "label": "vw (viewport width)" },
+        { "value": "vh", "label": "vh (viewport height)" },
+        { "value": "svw", "label": "SVW (Small Viewport Width)" },
+        { "value": "svh", "label": "SVH (Small Viewport Height)" },
+        { "value": "auto", "label": "Auto (only for margins)" }
+      ],
+      "default": "px"
     },
     {
       "type": "header",
@@ -266,10 +403,15 @@
   ],
   "presets": [
     {
-      "name": "Custom Layout",
+      "name": "Custom Layout with Position",
       "category": "Layout",
       "settings": {
-        "display_mode": "block"
+        "display_mode": "block",
+        "position": "static",
+        "top_offset": 0,
+        "right_offset": 0,
+        "bottom_offset": 0,
+        "left_offset": 0
       }
     }
   ]
