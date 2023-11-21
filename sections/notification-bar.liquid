@@ -2,11 +2,17 @@
   <span class="blinking_circle"></span>
   <p>
     {% if section.settings.notification_text != 'This is notification bar' %}
-      {{ section.settings.notification_text }}
+      <a href="{{ section.settings.linkUrl }}" target="_blank">  {{ section.settings.notification_text }} </a>
+      {% else %}
+      New: <a href='https://www.yummygums.com/' target="_blank">Yummygums Sleep</a> ZzzzZzzZ 🌚
     {% endif %}
-    Nieuw:
-    <a href='/products/sleep' title='Sleep'>Yummygums Sleep</a> 
-    ZzzzZzzZ 🌚
+
+    <p>
+    {% if section.settings.sub_notification_text != 'Sub Notification' %}
+      {{ section.settings.sub_notification_text }}
+    {% endif %}
+    </p>
+    
   </p>
 </div>
 
@@ -19,7 +25,19 @@
       "label": "Notification Text",
       "id": "notification_text",
       "default": "This is notification bar"
+    },
+    {
+      "type": "url",
+      "label": "Link URL",
+      "id": "linkUrl"
+    },
+    {
+      "type": "text",
+      "label": "Sub Notification Text",
+      "id": "sub_notification_text",
+      "default": "Sub Notification"
     }
+    
   ],
   "presets": [
     {
