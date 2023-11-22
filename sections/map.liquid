@@ -1,0 +1,87 @@
+<!-- sections/map.liquid -->
+{% schema %}
+{
+  "name": "Map",
+  "settings": [
+    {
+      "type": "text",
+      "label": "API Key",
+      "id": "api_key",
+      "default": "YOUR_API_KEY"
+    },
+    {
+      "type": "text",
+      "label": "Default Latitude",
+      "id": "default_latitude",
+      "default": "34.0522"
+    },
+    {
+      "type": "text",
+      "label": "Default Longitude",
+      "id": "default_longitude",
+      "default": "-118.2437"
+    },
+    {
+      "type": "range",
+      "label": "Default Zoom Level",
+      "id": "default_zoom",
+      "min": 1,
+      "max": 20,
+      "step": 1,
+      "default": 10
+    },
+    {
+      "type": "select",
+      "label": "Default Map Type",
+      "id": "default_map_type",
+      "options": [
+        { "value": "roadmap", "label": "Roadmap" },
+        { "value": "satellite", "label": "Satellite" },
+        { "value": "hybrid", "label": "Hybrid" },
+        { "value": "terrain", "label": "Terrain" }
+      ],
+      "default": "roadmap"
+    }
+  ],
+  "presets": [
+    {
+      "category": "Custom",
+      "name": "Custom Map",
+      "settings": {
+        "api_key": "YOUR_CUSTOM_API_KEY",
+        "default_latitude": "40.7128",
+        "default_longitude": "-74.0060",
+        "default_zoom": 12,
+        "default_map_type": "roadmap"
+      }
+    }
+  ]
+}
+{% endschema %}
+
+<div id="map-section">
+  <div id="map-container"></div>
+</div>
+
+<script>
+  function initializeMap() {
+    var apiKey = '{{ section.settings.api_key }}';
+    var defaultLat = parseFloat('{{ section.settings.default_latitude }}') || 34.0522;
+    var defaultLng = parseFloat('{{ section.settings.default_longitude }}') || -118.2437;
+    var defaultZoom = {{ section.settings.default_zoom | default: 10 }};
+    var defaultMapType = '{{ section.settings.default_map_type | default: "roadmap" }}';
+
+    // Use the settings to initialize the map
+    var map = new google.maps.Map(document.getElementById('map-container'), {
+      center: { lat: defaultLat, lng: defaultLng },
+      zoom: defaultZoom,
+      mapTypeId: defaultMapType
+    });
+  }
+
+  // Load the Google Maps API script
+  var script = document.createElement('script');
+  script.src = 'https://maps.googleapis.com/maps/api/js?key=' + apiKey + '&callback=initializeMap';
+  script.defer = true;
+  document.head.appendChild(script);
+</script>
