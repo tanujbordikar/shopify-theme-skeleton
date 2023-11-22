@@ -1,12 +1,3 @@
-const abc = Vue.createApp({  
-  delimiters: ['${', '}'],
-  data() {
-    return {
-      message: 'Hello Vue df.js!'
-    }
-  }
-}).mount('body')
-
 class AnnouncementSlider {
   constructor(selector) {
     // If already initialized, skip creating a new instance

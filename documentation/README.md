@@ -7,8 +7,6 @@
 💡 This theme is tailored for developers looking to streamline their workflow. Leveraging Skeleton, you can rapidly develop unique, client-specific themes by adapting and extending its base features.
 
 ## Resources and Tech Stack
-- 🌐 **Vue.js (JavaScript Framework)** - [Learn More](https://vuejs.org/guide/introduction.html) 
-  - _Benefits_: Vue.js offers a reactive and composable data model, making it easier to manage state and build interactive user interfaces.
 - 🎨 **CSS using BEM Methodology** - [Learn More](https://getbem.com/introduction/)
   - _Benefits_: BEM (Block, Element, Modifier) methodology simplifies CSS class naming, making your stylesheets more readable and easier to maintain.
 - 🛠️ **Shopify CLI** - [Learn More](https://shopify.dev/docs/themes/tools/cli)
