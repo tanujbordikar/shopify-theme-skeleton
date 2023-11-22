@@ -6,7 +6,12 @@
             {% for block in section.blocks %}
                 <li><a href="{{ block.settings.url }}">{{ block.settings.text }}</a></li>
             {% endfor %}
+            
+          {% for link in section.settings.menu.links %}
+            {{ link.title | link_to: link.url }}
+          {%- endfor %}
         </ul>
+        
     </nav>
 </header>
 
@@ -14,6 +19,13 @@
 {
   "name": "Navbar",
   "class": "shopify-header",
+  "settings": [
+    {
+      "type": "link_list",
+      "id": "menu",
+      "label": "Menu"
+    }
+  ],
   "blocks":[
       {
       "type": "list",
