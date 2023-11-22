@@ -1,9 +1,8 @@
 <div class="yummuy_only_text--wrp">
   <span class="blinking_circle"></span>
-  {% if section.settings.notification_text != blank %}
+  {% if section.settings.notification_text != blank and section.settings.linkUrl != blank %}
     <p>
-        {% assign linkUrl = section.settings.linkUrl | default: 'https://www.yummygums.com/' %}
-        <a href="{{ linkUrl }}" target="_blank">  {{ section.settings.notification_text }} </a>
+        <a href="{{ section.settings.linkUrl }}" target="_blank">  {{ section.settings.notification_text }} </a>
         {% if section.settings.sub_notification_text != blank %}
           <p>
             {{ section.settings.sub_notification_text }}
