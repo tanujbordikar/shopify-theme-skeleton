@@ -1,4 +1,31 @@
 <!-- sections/map.liquid -->
+<div class="map-section">
+  <div class="map-container" id="map-container"></div>
+</div>
+
+<script>
+  function initializeMap() {
+    var apiKey = '{{ section.settings.api_key }}';
+    var defaultLat = parseFloat('{{ section.settings.default_latitude }}') || 34.0522;
+    var defaultLng = parseFloat('{{ section.settings.default_longitude }}') || -118.2437;
+    var defaultZoom = '{{ section.settings.default_zoom | default: 10 }}';
+    var defaultMapType = '{{ section.settings.default_map_type | default: "roadmap" }}';
+
+    // Use the settings to initialize the map
+    var map = new google.maps.Map(document.getElementById('map-container'), {
+      center: { lat: defaultLat, lng: defaultLng },
+      zoom: defaultZoom,
+      mapTypeId: defaultMapType,
+    });
+  }
+
+  // Load the Google Maps API script
+  var script = document.createElement('script');
+  script.src = 'https://maps.googleapis.com/maps/api/js?key=' + apiKey + '&callback=initializeMap';
+  script.defer = true;
+  document.head.appendChild(script);
+</script>
+
 {% schema %}
 {
   "name": "Map",
@@ -58,30 +85,3 @@
   ]
 }
 {% endschema %}
-
-<div id="map-section">
-  <div id="map-container"></div>
-</div>
-
-<script>
-  function initializeMap() {
-    var apiKey = '{{ section.settings.api_key }}';
-    var defaultLat = parseFloat('{{ section.settings.default_latitude }}') || 34.0522;
-    var defaultLng = parseFloat('{{ section.settings.default_longitude }}') || -118.2437;
-    var defaultZoom = {{ section.settings.default_zoom | default: 10 }};
-    var defaultMapType = '{{ section.settings.default_map_type | default: "roadmap" }}';
-
-    // Use the settings to initialize the map
-    var map = new google.maps.Map(document.getElementById('map-container'), {
-      center: { lat: defaultLat, lng: defaultLng },
-      zoom: defaultZoom,
-      mapTypeId: defaultMapType
-    });
-  }
-
-  // Load the Google Maps API script
-  var script = document.createElement('script');
-  script.src = 'https://maps.googleapis.com/maps/api/js?key=' + apiKey + '&callback=initializeMap';
-  script.defer = true;
-  document.head.appendChild(script);
-</script>
