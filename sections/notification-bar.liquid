@@ -1,11 +1,16 @@
 <div class="yummuy_only_text--wrp">
   <span class="blinking_circle"></span>
-  <p>
-      <a href="{{ section.settings.linkUrl }}" target="_blank">  {{ section.settings.notification_text }} </a>
-      <p>
-        {{ section.settings.sub_notification_text }}
-      </p>
-  </p>
+  {% if section.settings.notification_text != blank %}
+    <p>
+        {% assign linkUrl = section.settings.linkUrl | default: 'https://www.yummygums.com/' %}
+        <a href="{{ linkUrl }}" target="_blank">  {{ section.settings.notification_text }} </a>
+        {% if section.settings.sub_notification_text != blank %}
+          <p>
+            {{ section.settings.sub_notification_text }}
+          </p>
+        {% endif %}
+    </p>
+  {% endif %}
 </div>
 
 {% schema %}
@@ -15,8 +20,7 @@
     {
       "type": "text",
       "label": "Notification Text",
-      "id": "notification_text",
-      "default": "Notification URL Text"
+      "id": "notification_text"
     },
     {
       "type": "url",
@@ -26,8 +30,7 @@
     {
       "type": "text",
       "label": "Sub Notification Text",
-      "id": "sub_notification_text",
-      "default": "Sub Notification"
+      "id": "sub_notification_text"
     }
     
   ],
