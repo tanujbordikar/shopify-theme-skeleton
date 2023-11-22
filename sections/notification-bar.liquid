@@ -1,13 +1,15 @@
 <div class="yummuy_only_text--wrp">
   <span class="blinking_circle"></span>
-  <p>
-    {% if section.settings.notification_text != 'This is notification bar' %}
-      {{ section.settings.notification_text }}
-    {% endif %}
-    Nieuw:
-    <a href='/products/sleep' title='Sleep'>Yummygums Sleep</a> 
-    ZzzzZzzZ 🌚
-  </p>
+  {% if section.settings.notification_text != blank and section.settings.linkUrl != blank %}
+    <p>
+        <a href="{{ section.settings.linkUrl }}" target="_blank">  {{ section.settings.notification_text }} </a>
+        {% if section.settings.sub_notification_text != blank %}
+          <p>
+            {{ section.settings.sub_notification_text }}
+          </p>
+        {% endif %}
+    </p>
+  {% endif %}
 </div>
 
 {% schema %}
@@ -17,9 +19,19 @@
     {
       "type": "text",
       "label": "Notification Text",
-      "id": "notification_text",
-      "default": "This is notification bar"
+      "id": "notification_text"
+    },
+    {
+      "type": "url",
+      "label": "Link URL",
+      "id": "linkUrl"
+    },
+    {
+      "type": "text",
+      "label": "Sub Notification Text",
+      "id": "sub_notification_text"
     }
+    
   ],
   "presets": [
     {
