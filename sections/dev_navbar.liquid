@@ -2,11 +2,6 @@
 
 <header>
     <nav>
-        <ul>
-            {% for block in section.blocks %}
-                <li><a href="{{ block.settings.url }}">{{ block.settings.text }}</a></li>
-            {% endfor %}
-        </ul>
         <ul>  
             {% for link in section.settings.menu.links %}
               <li> {{ link.title | link_to: link.url }} </li>
@@ -45,24 +40,6 @@
       "label": "Menu"
     }
   ],
-  "blocks":[
-      {
-      "type": "list",
-      "name": "nav-item",
-      "settings": [
-        {
-          "type": "text",
-          "id": "text",
-          "label": "Text"
-        },
-        {
-          "type": "url",
-          "id": "url",
-          "label": "URL"
-        }
-      ]
-    }
-    ],
   "presets": [
     {
       "name": "Add Navbar"
