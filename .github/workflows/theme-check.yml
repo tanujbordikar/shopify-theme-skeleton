@@ -2,7 +2,7 @@ name: theme-check
 on:
   push:
     branches:
-      - main
+      - main  # Change to your default branch name if different
 jobs:
   theme-check:
     name: Theme Check
