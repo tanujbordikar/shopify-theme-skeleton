@@ -1,17 +1,10 @@
 <div class="yummuy_only_text--wrp">
   <span class="blinking_circle"></span>
   <p>
-    {% if section.settings.notification_text != 'This is notification bar' %}
       <a href="{{ section.settings.linkUrl }}" target="_blank">  {{ section.settings.notification_text }} </a>
-      {% else %}
-      New: <a href='https://www.yummygums.com/' target="_blank">Yummygums Sleep</a> ZzzzZzzZ 🌚
-    {% endif %}
-
-    <p>
-    {% if section.settings.sub_notification_text != 'Sub Notification' %}
-      {{ section.settings.sub_notification_text }}
-    {% endif %}
-    </p>
+      <p>
+        {{ section.settings.sub_notification_text }}
+      </p>
     
   </p>
 </div>
@@ -24,7 +17,7 @@
       "type": "text",
       "label": "Notification Text",
       "id": "notification_text",
-      "default": "This is notification bar"
+      "default": "Notification URL Text"
     },
     {
       "type": "url",
