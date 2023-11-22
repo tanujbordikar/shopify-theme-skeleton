@@ -1,0 +1,41 @@
+<!-- dev_test_navbar.liquid -->
+
+<header>
+    <nav>
+        <ul>
+            {% for block in section.blocks %}
+                <li><a href="{{ block.settings.url }}">{{ block.settings.text }}</a></li>
+            {% endfor %}
+        </ul>
+    </nav>
+</header>
+
+{% schema %}
+{
+  "name": "Navbar",
+  "class": "shopify-header",
+  "blocks":[
+      {
+      "type": "list",
+      "name": "nav-item",
+      "settings": [
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Text"
+        },
+        {
+          "type": "url",
+          "id": "url",
+          "label": "URL"
+        }
+      ]
+    }
+    ],
+  "presets": [
+    {
+      "name": "Add Navbar"
+    }
+  ]
+}
+{% endschema %}
