@@ -50,6 +50,8 @@
    ```
    Finally, you push the updated main branch to your GitHub repository, thereby synchronizing your local changes with the remote repository.
 
+![shopify theme skeleton update from upstream](https://github.com/dear-digital/shopify-theme-skeleton/assets/78968174/d983a01f-0c4d-4a27-b942-5b2b910fe613)
+
 
 
 ## Future updates:
