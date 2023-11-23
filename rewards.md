@@ -17,6 +17,10 @@ Contributors are classified into Lx categories based on the points they accumula
 ### 3️⃣ L2 Category (1121+ Points) - velocity based multiplier for fairness
 - **💰 Payout**: (not decided yet) INR per point (250 INR * (not decided yet)).
 - **🎯 Redemption Threshold**: Payouts are redeemable after accumulating a total of (not decided yet).
+- **📈 Velocity**: Velocity is calculated based on the number of points accumulated in the last 30 days.
+- **Example**: _If a contributor has accumulated 100 points in the last 30 days, their velocity is 100 points per month._
+
+If the contributor accumulates 160+ points in the last 30 days, they are automatically eligible to apply any open positions in their relevant technologies.
 
 
 ---
@@ -36,7 +40,12 @@ Contributors are classified into Lx categories based on the points they accumula
 ## 📈 Contributor Level Requirements
 - **L0 Contributors**:
   - No prior experience required.
-  - Repeated failures to submit correct PRs may result in being placed on a low priority PR list. Compliance with contribution guidelines and verification of rule understanding is required to return to the normal priority list.
+  - PR reviews
+    - PRs must be reviewed by a maintainer before being merged.
+    - 1st iteration of PR review, free evaluation and suggestions.
+    - 2nd iteration of PR review, if unsuccessful can claim only 50% of the issue points for that particular issue.
+    - 3rd iteration of PR review, if unsuccessful will be marked as failed and will not be able to claim any points for that particular issue. After having 3 failed marks within a month will be marked as low priority for future PR reviews.
+  - Compliance with contribution guidelines and verification of rule understanding is required to return to the normal priority list.
 - **L1 Contributors**:
   - Requirement of over 160 points in associated technologies.
   - Conversion of appropriate points from associated technologies into 'shopify-theme' is necessary for attempting as an L1 contributor.
