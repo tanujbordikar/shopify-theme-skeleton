@@ -1,14 +1,14 @@
 <div class="video-text-section">
-  <div class="video-container">
+  <div class="video-text-section__video-container">
     <!-- Video iframe with play icon -->
-    <div class="video-overlay">
+    <div class="video-text-section__video-overlay">
       <iframe
         src="{{ section.settings.frameVideoUrl }}"
         frameborder="0"
         allowfullscreen
       ></iframe>
-      <div class="play-icon-container">
-        <svg class="play-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+      <div class="video-text-section__play-icon-container">
+        <svg class="video-text-section__play-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
           <path d="M3 22v-20l18 10-18 10z"/>
         </svg>
       </div>
@@ -16,19 +16,19 @@
     <!-- End Video iframe with play icon -->
 
     <!-- Modal for the Main video -->
-    <div class="video-modal" id="videoModal">
+    <div class="video-text-section__video-modal" id="videoModal">
       <iframe src="{{ section.settings.mainVideoUrl }}" frameborder="0" allowfullscreen></iframe>
-      <button class="close-modal" onclick="closeModal()">Close</button>
+      <button class="video-text-section__close-modal" onclick="closeModal()">Close</button>
     </div>
   </div>
 
-  <div class="text-content">
+  <div class="video-text-section__text-content">
     <!-- Right half content -->
-    <h2>{{ section.settings.heading1 }}</h2>
-    <h3>{{ section.settings.heading2 }}</h3>
-    <p>{{ section.settings.paragraph }}</p>
-    <div class="link-section">
-      <a href="{{ section.settings.linkUrl }}">{{ section.settings.linkUrlText }}</a>
+    <h2 class="video-text-section__heading">{{ section.settings.heading1 }}</h2>
+    <h3 class="video-text-section__sub-heading">{{ section.settings.heading2 }}</h3>
+    <p class="video-text-section__paragraph">{{ section.settings.paragraph }}</p>
+    <div class="video-text-section__link-section">
+      <a href="{{ section.settings.linkUrl }}" class="video-text-section__link">{{ section.settings.linkUrlText }}</a>
     </div>
   </div>
 </div>
@@ -47,8 +47,8 @@
       window.scrollTo(0, scrollY);
     }
 
-    document.querySelector('.play-icon-container').addEventListener('click', openModal);
-    document.querySelector('.close-modal').addEventListener('click', closeModal);
+    document.querySelector('.video-text-section__play-icon-container').addEventListener('click', openModal);
+    document.querySelector('.video-text-section__close-modal').addEventListener('click', closeModal);
   });
 </script>
 
