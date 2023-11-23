@@ -1,32 +1,50 @@
-<!-- dev_header.liquid -->
+{{ 'dev_header.css' | asset_url | stylesheet_tag }}
 
-<header>
-    <nav>
-        <ul>  
+<header class="header">
+    <div class="logo">
+        <img
+               src="{{ section.settings.logo | img_url: 'master' }}"
+               alt="{{ section.settings.logo_alt | default: 'Image Alt Text' }}"
+               width=30px;
+               height=auto;
+               loading="lazy"
+               >
+    </div>
+    <nav class="navbar">
+        <ul class="navbar__nav-list">  
             {% for link in section.settings.menu.links %}
-              <li> {{ link.title | link_to: link.url }} </li>
-              	{% if link.links.size > 0 %}
-                  <ul class="menu dropdown-child">
-                    {% for child_link in link.links %}
-                      <li class="menu-link">
-                        <a href="{{ child_link.url }}">{{ child_link.title }}</a>
-                        {% if child_link.links.size > 0 %}
-                          <ul class="menu dropdown-grandchild">
-                            {% for grandchild_link in child_link.links %}
-                              <li class="menu-link">
-                                <a href="{{ grandchild_link.url }}">{{ grandchild_link.title }}</a>
-                              </li>
+                <li class="navbar__nav-item"> 
+                    {{ link.title | link_to: link.url }} 
+                    {% if link.links.size > 0 %}
+                        <ul class="navbar__menu dropdown-child">
+                            {% for child_link in link.links %}
+                                <li class="navbar__menu-link">
+                                    <a href="{{ child_link.url }}">{{ child_link.title }}</a>
+                                    {% if child_link.links.size > 0 %}
+                                        <ul class="navbar__menu dropdown-grandchild">
+                                            {% for grandchild_link in child_link.links %}
+                                                <li class="navbar__sub-menu-link">
+                                                    <a href="{{ grandchild_link.url }}">{{ grandchild_link.title }}</a>
+                                                </li>
+                                            {% endfor %}
+                                        </ul>
+                                    {% endif %}
+                                </li>
                             {% endfor %}
-                          </ul>
-                        {% endif %}
-                      </li>
-                    {% endfor %}
-                  </ul>
-              {% endif %}
+                        </ul>
+                    {% endif %}
+                </li>
             {%- endfor %}
         </ul>
-        
     </nav>
+    <div class="actions">
+      {% if section.settings.search == true %}
+        <a href="searchCheckbox"><img src="https://cdn3.iconfinder.com/data/icons/feather-5/24/search-512.png" alt="Search Icon" width=20 height=auto loading=lazy /></a>        
+      {% endif %}
+      {% if section.settings.cart == true %}
+        <a href="searchCheckbox"><img src="https://www.freeiconspng.com/thumbs/cart-icon/basket-cart-icon-27.png" alt="Cart Icon" width=20 height=auto loading=lazy /></a>
+      {% endif %}
+    </div>
 </header>
 
 {% schema %}
@@ -35,9 +53,29 @@
   "class": "shopify-header",
   "settings": [
     {
+      "type": "image_picker",
+      "id": "logo",
+      "label": "Logo"
+    },
+    {
+      "type": "text",
+      "id": "logo_alt",
+      "label": "Logo Alt Text"
+    },
+    {
       "type": "link_list",
       "id": "menu",
       "label": "Menu"
+    },
+    {
+      "type": "checkbox",
+      "id": "search",
+      "label": "Enable Search Icon"
+    },
+    {
+      "type": "checkbox",
+      "id": "cart",
+      "label": "Enable Cart Icon"
     }
   ]
 }
