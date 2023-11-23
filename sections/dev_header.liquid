@@ -1,7 +1,10 @@
 {{ 'dev_header.css' | asset_url | stylesheet_tag }}
 
 <header class="header">
-    <div class="logo">
+    <button class="navbar-toggler" onclick="toggleNavbar()">
+        <span class="navbar-toggler-icon">&#9776;</span>
+    </button>
+    <div class="logo" id="logo">
         <img
                src="{{ section.settings.logo | img_url: 'master' }}"
                alt="{{ section.settings.logo_alt | default: 'Image Alt Text' }}"
@@ -10,11 +13,11 @@
                loading="lazy"
                >
     </div>
-    <nav class="navbar">
+    <nav class="navbar" id="navbar">
         <ul class="navbar__nav-list">  
             {% for link in section.settings.menu.links %}
                 <li class="navbar__nav-item"> 
-                    {{ link.title | link_to: link.url }} 
+                    <span class="navbar__main-menu"> {{ link.title | link_to: link.url }}  </span>
                     {% if link.links.size > 0 %}
                         <ul class="navbar__menu dropdown-child">
                             {% for child_link in link.links %}
@@ -39,13 +42,22 @@
     </nav>
     <div class="actions">
       {% if section.settings.search == true %}
-        <a href="searchCheckbox"><img src="https://cdn3.iconfinder.com/data/icons/feather-5/24/search-512.png" alt="Search Icon" width=20 height=auto loading=lazy /></a>        
+        <a href="#"><img src="{{ 'search-icon.png' | asset_url }}" alt="Search Icon" width=20 height=auto loading=lazy /></a>        
       {% endif %}
       {% if section.settings.cart == true %}
-        <a href="searchCheckbox"><img src="https://www.freeiconspng.com/thumbs/cart-icon/basket-cart-icon-27.png" alt="Cart Icon" width=20 height=auto loading=lazy /></a>
+        <a href="#"><img src="{{ 'cart-icon.png' | asset_url }}" alt="Cart Icon" width=20 height=auto loading=lazy /></a>
       {% endif %}
     </div>
 </header>
+
+<script>
+
+function toggleNavbar() {
+    var navbar = document.getElementById("navbar");
+    navbar.classList.toggle("responsive");
+}
+
+</script>
 
 {% schema %}
 {
