@@ -2,32 +2,31 @@
   Newsletter Section
 {% endcomment %}
 {{ 'newsletter.css' | asset_url | stylesheet_tag }}
-{% if section.settings.newsletter_enable %}
-  <section class="newsletter-section">
-    <div class="container">
-      <div class="newsletter-wrapper">
-        <div class="newsletter-content">
-          <h1 class="newsletter-content__title">{{ section.settings.newsletter_title }}</h1>
-          <p class="newsletter-content__subtitle">{{ section.settings.newsletter_subtitle }}</p>
-        </div>
-        
-        <div class="newsletter-form">
-          <form action="{{ 'https://example.com' | within: 'settings' }}" method="post" target="_blank" novalidate class="newsletter-form__form">
-            {{ content_for_header }}
-            <input type="hidden" name="form_type" value="customer" />
-            <input type="hidden" name="utf8" value="✓" />
-            <input type="email" value="" placeholder="Enter your email to subscribe" name="customer[email]" id="Email" class="input-group-field newsletter-form__input" required />
-            <input type="submit" class="btn newsletter-form__submit">
-          </form>
-        </div>
-        <div class="newsletter-condition">
-          <br/>
-          <h6 class="newsletter-content__condition">{{ section.settings.newsletter_condition }}</h6>
-        </div>
+
+<section class="newsletter-section">
+  <div class="container">
+    <div class="newsletter-wrapper">
+      <div class="newsletter-content">
+        <h1 class="newsletter-content__title">{{ section.settings.newsletter_title }}</h1>
+        <p class="newsletter-content__subtitle">{{ section.settings.newsletter_subtitle }}</p>
+      </div>
+      
+      <div class="newsletter-form">
+        <form action="{{ 'https://example.com' | within: 'settings' }}" method="post" target="_blank" novalidate class="newsletter-form__form">
+          {{ content_for_header }}
+          <input type="hidden" name="form_type" value="customer" />
+          <input type="hidden" name="utf8" value="✓" />
+          <input type="email" value="" placeholder="Enter your email to subscribe" name="customer[email]" id="Email" class="input-group-field newsletter-form__input" required />
+          <input type="submit" class="btn newsletter-form__submit">
+        </form>
+      </div>
+      <div class="newsletter-condition">
+        <br/>
+        <h6 class="newsletter-content__condition">{{ section.settings.newsletter_condition }}</h6>
       </div>
     </div>
-  </section>
-{% endif %}
+  </div>
+</section>
 
 {% schema %}
 {
