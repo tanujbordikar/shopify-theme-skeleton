@@ -10,9 +10,6 @@
       
       <div class="newsletter-form">
         <form action="{{ 'https://example.com' | within: 'settings' }}" method="post" target="_blank" novalidate class="newsletter-form__form">
-          {{ content_for_header }}
-          <input type="hidden" name="form_type" value="customer" />
-          <input type="hidden" name="utf8" value="✓" />
           <input type="email" value="" placeholder="Enter your email to subscribe" name="customer[email]" id="Email" class="input-group-field newsletter-form__input" required />
           <input type="submit" class="btn newsletter-form__submit">
         </form>
@@ -29,12 +26,6 @@
 {
   "name": "Newsletter Section",
   "settings": [
-    {
-      "type": "checkbox",
-      "label": "Enable Newsletter",
-      "id": "newsletter_enable",
-      "default": true
-    },
     {
       "type": "text",
       "label": "Newsletter Title",
