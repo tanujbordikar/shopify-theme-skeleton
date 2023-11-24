@@ -5,9 +5,13 @@
         <span class="navbar-toggler-icon">{% render 'icon-hamburger' %}</span>
     </button>
     <div class="logo" id="logo">
+      {% if section.settings.logo %}
         <a href="#"> 
-          {{ section.settings.logo | image_url: width: 50 | image_tag: width: 30 }}
+            {{ section.settings.logo | image_url: width: 50 | image_tag: width: 30, alt: "Alt Text" }}
+          {% else %}
+            {% comment %} <img src="https://upload.wikimedia.org/wikipedia/commons/c/c7/Ford-Motor-Company-Logo.png" alt="Default Logo" width="40"> {% endcomment %}
         </a>
+      {% endif %}
     </div>
     <nav class="navbar" id="navbar">
         <ul class="navbar__nav-list">  
