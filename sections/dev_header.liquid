@@ -7,9 +7,9 @@
     <div class="logo" id="logo">
       {% if section.settings.logo %}
         <a href="#"> 
-            {{ section.settings.logo | image_url: width: 50 | image_tag: width: 30, alt: "Alt Text" }}
+            {{ section.settings.logo | image_url: width: 50 | image_tag: width: 30 }}
           {% else %}
-            {% comment %} <img src="https://upload.wikimedia.org/wikipedia/commons/c/c7/Ford-Motor-Company-Logo.png" alt="Default Logo" width="40"> {% endcomment %}
+            <img src="https://upload.wikimedia.org/wikipedia/commons/c/c7/Ford-Motor-Company-Logo.png" alt="Default Logo" width="40">
         </a>
       {% endif %}
     </div>
