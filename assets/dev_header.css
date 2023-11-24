@@ -137,6 +137,11 @@
     align-items: center;
 }
 
+.icon-cart{
+    width: 30px;
+    color: red;
+}
+
 /* Responsive styles */
 @media screen and (max-width: 768px) {
     .navbar {

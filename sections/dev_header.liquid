@@ -5,13 +5,9 @@
         <span class="navbar-toggler-icon">&#9776;</span>
     </button>
     <div class="logo" id="logo">
-        <img
-               src="{{ section.settings.logo | img_url: 'master' }}"
-               alt="{{ section.settings.logo_alt | default: 'Image Alt Text' }}"
-               width=30px;
-               height=auto;
-               loading="lazy"
-               >
+        {{ section.settings.logo | image_url: width: 50 | image_tag: width: 30 }}
+
+        
     </div>
     <nav class="navbar" id="navbar">
         <ul class="navbar__nav-list">  
@@ -45,7 +41,14 @@
         <a href="#"><img src="{{ 'search-icon.png' | asset_url }}" alt="Search Icon" width=20 height=auto loading=lazy /></a>        
       {% endif %}
       {% if section.settings.cart == true %}
-        <a href="#"><img src="{{ 'cart-icon.png' | asset_url }}" alt="Cart Icon" width=20 height=auto loading=lazy /></a>
+        <a href="#"> 
+          {% render 'icon-cart' %}
+        </a>
+      {% endif %}
+      {% if section.settings.cart == true %}
+        <a href="#"> 
+            {% render 'icon' %}
+        </a>
       {% endif %}
     </div>
 </header>
