@@ -21,16 +21,16 @@
               autocorrect="off"
               autocapitalize="off"
               autocomplete="email"
-              placeholder="Email"
+              placeholder= {{ section.settings.newsletter_email_placeholder }}
               required
             >
             <button
               type="submit"
               class="newsletter-form__submit field__button btn"
               name="commit"
-              id="Subscribe"
+              id="newsletter_button"
             >
-              Subscribe
+              {{ section.settings.newsletter_button }}
             </button>
           </div>
         {% endform %}
@@ -60,6 +60,18 @@
       "label": "Newsletter Subtitle",
       "id": "newsletter_subtitle",
       "default": "Sign up for the newsletter and receive a 15% discount on your first order."
+    },
+    {
+      "type": "text",
+      "label": "Newsletter Email Placeholder",
+      "id": "newsletter_email_placeholder",
+      "default": "Email"
+    },
+    {
+      "type": "text",
+      "label": "Newsletter Button",
+      "id": "newsletter_button",
+      "default": "Subscribe"
     },
     {
       "type": "text",
