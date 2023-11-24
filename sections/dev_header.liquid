@@ -9,7 +9,7 @@
         <a href="#"> 
             {{ section.settings.logo | image_url: width: 50 | image_tag: width: 30 }}
           {% else %}
-            <img src="https://upload.wikimedia.org/wikipedia/commons/c/c7/Ford-Motor-Company-Logo.png" alt="Default Logo" width="40">
+            {{ section.settings.logo_alt }}
         </a>
       {% endif %}
     </div>
@@ -76,7 +76,8 @@ function toggleNavbar() {
     {
       "type": "text",
       "id": "logo_alt",
-      "label": "Logo Alt Text"
+      "label": "Logo Alt Text",
+      "default": "defaultLogo"
     },
     {
       "type": "link_list",
