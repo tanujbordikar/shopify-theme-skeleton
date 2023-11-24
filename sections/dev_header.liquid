@@ -5,11 +5,9 @@
         <span class="navbar-toggler-icon">{% render 'icon-hamburger' %}</span>
     </button>
     <div class="logo" id="logo">
-      {% if section.settings.logo %}
+      {% if section.settings.logo != blank %}
         <a href="#"> 
             {{ section.settings.logo | image_url: width: 50 | image_tag: width: 30 }}
-          {% else %}
-            {{ section.settings.logo_alt }}
         </a>
       {% endif %}
     </div>
@@ -76,8 +74,7 @@ function toggleNavbar() {
     {
       "type": "text",
       "id": "logo_alt",
-      "label": "Logo Alt Text",
-      "default": "defaultLogo"
+      "label": "Logo Alt Text"
     },
     {
       "type": "link_list",
