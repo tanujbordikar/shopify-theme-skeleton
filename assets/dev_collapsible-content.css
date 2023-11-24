@@ -1,0 +1,31 @@
+.collapsible-content {
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.collapsible-header {
+    background-color: #f1f1f1;
+    padding: 10px;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.collapsible-body {
+    padding: 10px;
+    display: none;
+}
+
+.collapsible-body.active {
+    display: block;
+}
+
+.collapsible-toggle {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 18px;
+}

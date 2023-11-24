@@ -1,0 +1,62 @@
+{{ 'dev_collapsible-content.css' | asset_url | stylesheet_tag }}
+
+<div class="collapsible-content">
+  <div class="collapsible-header">
+    <h2>{{ section.settings.title }}</h2>
+    <button class="collapsible-toggle" onclick="toggleCollapsible(this)">
+      <span class="toggle-icon">&#x25B6;</span>
+    </button>
+  </div>
+  <div class="collapsible-body">
+    {{ section.blocks }}
+  </div>
+</div>
+
+<script>
+  function toggleCollapsible(button) {
+    var body = button.parentElement.nextElementSibling;
+    body.classList.toggle("active");
+  }
+</script>
+
+{% schema %}
+{
+  "name": "Collapsible Content",
+  "class": "collapsible-content",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Collapsible Section Title",
+      "default": "Collapsible Section"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "richtext",
+      "name": "Content Block",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Block Title",
+          "default": "Block 1"
+        },
+        {
+          "type": "text",
+          "id": "content",
+          "label": "Block Content",
+          "default": "Content"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Collapsible Content Section",
+      "category": "Custom"
+    }
+  ]
+}
+
+{% endschema %}
