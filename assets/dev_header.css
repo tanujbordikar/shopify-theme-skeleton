@@ -139,7 +139,17 @@
 
 .icon-cart{
     width: 30px;
-    color: red;
+    color: inherit;
+}
+
+.icon-search {
+    width: 20px;
+    color: rgb(0, 0, 0);
+}
+
+.icon-hamburger{
+    width: 25px;
+    color: rgb(0, 0, 0);
 }
 
 /* Responsive styles */
