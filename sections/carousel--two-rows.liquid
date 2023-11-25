@@ -19,8 +19,11 @@
         <div class="carousel__cell">
           <img
             class="carousel__image"
-            src="{{ block.settings.image | img_url: '800x' }}"
+            src="{{ block.settings.image | image_url: width: 800, height: 800 }}"
             alt="{{ block.settings.image.alt | escape }}"
+            loading="eager"
+            width="800"  
+            height="800"
           >
         </div>
       {% endif %}
@@ -34,8 +37,11 @@
         <div class="carousel__cell">
           <img
             class="carousel__image"
-            src="{{ block.settings.image | img_url: '800x' }}"
+            src="{{ block.settings.image | image_url: width: 800, height: 800 }}"
             alt="{{ block.settings.image.alt | escape }}"
+            loading="eager"
+            width="800"  
+            height="800"
           >
         </div>
       {% endif %}
