@@ -1,33 +1,64 @@
+<section
+  class="custom-blog-section"
+  style="padding-top: {{ section.settings.padding_top }}px; padding-bottom: {{ section.settings.padding_bottom }}px;"
+>
+  {% if section.settings.heading != blank %}
+    <{{ section.settings.heading_size }} class="custom-blog-section__heading">
+      {{- section.settings.heading -}}
+    </{{ section.settings.heading_size }}>
+  {% endif %}
+
+  <div class="custom-blog-section__container">
+    {% for post in blogs[section.settings.blog].articles limit: section.settings.post_limit %}
+      <article class="custom-blog-post" style="background-color: {{ section.settings.color_scheme }};">
+        {% if section.settings.show_image and post.image %}
+          <img
+            src="{{ post.image.src | img_url: 'medium' }}"
+            alt="{{ post.image.alt }}"
+            class="custom-blog-post__image"
+            loading="eager"
+          >
+        {% endif %}
+        <div class="custom-blog-post__content">
+          <h3 class="custom-blog-post__title">{{ post.title }}</h3>
+          {% if section.settings.show_date %}
+            <p class="custom-blog-post__date">{{ post.published_at | date: '%B %d, %Y' }}</p>
+          {% endif %}
+          {% if section.settings.show_author %}
+            <p class="custom-blog-post__author">{{ post.author }}</p>
+          {% endif %}
+        </div>
+      </article>
+    {% endfor %}
+  </div>
+
+  {% if section.settings.show_view_all %}
+    <a
+      href="https://theme-skeleton-project.myshopify.com/blogs/{{ blogs[section.settings.blog] }}"
+      class="custom-blog-section__view-all"
+      >View All</a
+    >
+  {% endif %}
+</section>
+
 {% schema %}
 {
-  "name": "featured-blog",
+  "name": "custom-blog",
   "tag": "section",
-  "disabled_on": {
-    "groups": ["header", "footer"]
-  },
   "settings": [
     {
       "type": "inline_richtext",
       "id": "heading",
-      "default": "Blog posts",
+      "default": "Latest Blog Posts",
       "label": "Heading"
     },
     {
       "type": "select",
       "id": "heading_size",
       "options": [
-        {
-          "value": "h2",
-          "label": "H2"
-        },
-        {
-          "value": "h1",
-          "label": "H1"
-        },
-        {
-          "value": "h0",
-          "label": "H0"
-        }
+        { "value": "h2", "label": "H2" },
+        { "value": "h1", "label": "H1" },
+        { "value": "h0", "label": "H0" }
       ],
       "default": "h1",
       "label": "Heading Size"
@@ -35,7 +66,8 @@
     {
       "type": "blog",
       "id": "blog",
-      "label": "Blog"
+      "label": "Select Blog",
+      "info": "Choose the blog to display"
     },
     {
       "type": "range",
@@ -45,15 +77,6 @@
       "step": 1,
       "default": 3,
       "label": "Post Limit"
-    },
-    {
-      "type": "range",
-      "id": "columns_desktop",
-      "min": 1,
-      "max": 4,
-      "step": 1,
-      "default": 3,
-      "label": "Columns Desktop"
     },
     {
       "type": "color_scheme",
@@ -113,7 +136,7 @@
   ],
   "presets": [
     {
-      "name": "Blog Posts"
+      "name": "Custom Blog Posts"
     }
   ]
 }
