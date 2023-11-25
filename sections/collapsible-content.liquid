@@ -1,22 +1,45 @@
 {{ 'dev_collapsible-content.css' | asset_url | stylesheet_tag }}
 
 <div class="collapsible-content">
-  <div class="collapsible-header">
-    <h2>{{ section.settings.title }}</h2>
-    <button class="collapsible-toggle" onclick="toggleCollapsible(this)">
-      <span class="toggle-icon">&#x25B6;</span>
-    </button>
-  </div>
-  <div class="collapsible-body">
-    {{ section.blocks }}
-  </div>
+  <button onclick="clickButton"> Click Me </button>
+  <h2>{{ section.settings.title }}</h2>
+  {% for block in section.blocks %}
+    <div class="collapsible-item" id="collapse">
+      <div class="collapsible-header">
+        <button class="collapsible-toggle" onclick="collapseButton()">
+          <span class="toggle-icon">
+            {% render 'icon-caret' %}
+          </span>
+        </button>
+      </div>
+      <div class="collapsible-body">
+        <div>
+          <h3>{{ block.settings.block_title }}</h3>
+          <p>{{ block.settings.block_content }}</p>
+        </div>
+      </div>
+    </div>
+  {% endfor %}
 </div>
 
 <script>
-  function toggleCollapsible(button) {
-    var body = button.parentElement.nextElementSibling;
-    body.classList.toggle("active");
+
+  function clickButton(){
+    console.log("Clicked Button")
   }
+
+  function collapseButton() {
+    // var collapsible = button.parentElement.nextElementSibling;
+    // body.classList.toggle("active");
+
+    console.log("Clicked collapse")
+
+    var collapsible = document.getElementById("collapse");
+    collapsible.classList.toggle("active");
+
+    //var navbar = document.getElementById("navbar");
+  }
+
 </script>
 
 {% schema %}
@@ -33,18 +56,18 @@
   ],
   "blocks": [
     {
-      "type": "richtext",
+      "type": "block",
       "name": "Content Block",
       "settings": [
         {
           "type": "text",
-          "id": "title",
+          "id": "block_title",
           "label": "Block Title",
-          "default": "Block 1"
+          "default": "Title"
         },
         {
           "type": "text",
-          "id": "content",
+          "id": "block_content",
           "label": "Block Content",
           "default": "Content"
         }
@@ -58,5 +81,4 @@
     }
   ]
 }
-
 {% endschema %}

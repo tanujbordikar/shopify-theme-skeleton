@@ -107,6 +107,10 @@ img {
   padding: var(--spacing-normal);
 }
 
+.icon{
+  width: 30px;
+}
+
 /* Responsive breakpoints */
 @media (max-width: var(--breakpoint-sm)) {
   :root {

@@ -1,31 +1,46 @@
 .collapsible-content {
-    margin-bottom: 20px;
+    margin-top: 20px;
+}
+
+.collapsible-item {
     border: 1px solid #ddd;
+    margin-bottom: 10px;
     border-radius: 5px;
     overflow: hidden;
 }
 
 .collapsible-header {
     background-color: #f1f1f1;
-    padding: 10px;
-    cursor: pointer;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.collapsible-body {
-    padding: 10px;
-    display: none;
-}
-
-.collapsible-body.active {
-    display: block;
+    padding: 15px;
 }
 
 .collapsible-toggle {
     background: none;
     border: none;
     cursor: pointer;
-    font-size: 18px;
+}
+
+.icon-caret{
+    width: 20px;
+}
+
+.toggle-icon {
+    display: inline-block;
+}
+
+.collapsible-body {
+    padding: 15px;
+    display: none;
+}
+
+.active .collapsible-body{
+    display: block;
+}
+
+.collapsible-body h3 {
+    margin-top: 0;
+}
+
+.collapsible-body p {
+    margin-bottom: 0;
 }
