@@ -5,9 +5,11 @@
       <div class="testimonial">
         <img
           class="testimonial__image"
-          src="{{ testimonial.settings.testimonial_image | img_url: '300x300' }}"
+          src="{{ testimonial.settings.testimonial_image | image_url: width: 300, height: 300 }}"
           alt="{{ testimonial.settings.testimonial_name }}"
           loading="eager"
+          width="300"  
+          height="300"
         >
         <p class="testimonial__content">{{ testimonial.settings.testimonial_content }}</p>
         <p class="testimonial__name">{{ testimonial.settings.testimonial_name }}</p>
