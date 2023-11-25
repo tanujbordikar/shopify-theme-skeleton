@@ -23,12 +23,16 @@
 
 <script>
 
+document.addEventListener('DOMContentLoaded', function () {
+
   function collapseButton(index) {
     console.log("Clicked collapse for block " + index);
 
     var collapsible = document.getElementById("collapse" + index);
     collapsible.classList.toggle("active");
   }
+});
+
 
 </script>
 
