@@ -6,7 +6,9 @@
     <h2 class="carousel__heading">{{ section.settings.heading_text }}</h2>
     <p class="carousel__subheading">{{ section.settings.subheading_text }}</p>
     <div class="carousel__cta-container">
-        <a href="{{ section.settings.cta_url }}" class="carousel__cta-link" target="_blank">{{ section.settings.cta_text }}</a>
+      <a href="{{ section.settings.cta_url }}" class="carousel__cta-link" target="_blank">
+        {{- section.settings.cta_text -}}
+      </a>
     </div>
   </div>
 
@@ -15,7 +17,11 @@
     {% for block in section.blocks %}
       {% if block.type == 'upper-image' %}
         <div class="carousel__cell">
-          <img class="carousel__image" src="{{ block.settings.image | img_url: '800x' }}" alt="{{ block.settings.image.alt | escape }}">
+          <img
+            class="carousel__image"
+            src="{{ block.settings.image | img_url: '800x' }}"
+            alt="{{ block.settings.image.alt | escape }}"
+          >
         </div>
       {% endif %}
     {% endfor %}
@@ -26,7 +32,11 @@
     {% for block in section.blocks %}
       {% if block.type == 'lower-image' %}
         <div class="carousel__cell">
-          <img class="carousel__image" src="{{ block.settings.image | img_url: '800x' }}" alt="{{ block.settings.image.alt | escape }}">
+          <img
+            class="carousel__image"
+            src="{{ block.settings.image | img_url: '800x' }}"
+            alt="{{ block.settings.image.alt | escape }}"
+          >
         </div>
       {% endif %}
     {% endfor %}
@@ -72,7 +82,7 @@
           "label": "Image for Upper Row"
         }
       ],
-      "limit": 15 // Set the limit to 15 or any other number based on how many images you want to allow
+      "limit": 15
     },
     {
       "type": "lower-image",
@@ -84,10 +94,10 @@
           "label": "Image for Lower Row"
         }
       ],
-      "limit": 15 // Set the limit to 15 or any other number based on how many images you want to allow
+      "limit": 15
     }
   ],
-  "max_blocks": 30, // Increase the max_blocks to accommodate the total number of images for upper and lower rows combined
+  "max_blocks": 30,
   "presets": [
     {
       "name": "Two-Row Carousel",
