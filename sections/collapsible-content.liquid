@@ -1,20 +1,19 @@
 {{ 'dev_collapsible-content.css' | asset_url | stylesheet_tag }}
 
 <div class="collapsible-content">
-  <button onclick="clickButton"> Click Me </button>
   <h2>{{ section.settings.title }}</h2>
   {% for block in section.blocks %}
-    <div class="collapsible-item" id="collapse">
+    <div class="collapsible-item" id="collapse{{ forloop.index }}">
       <div class="collapsible-header">
-        <button class="collapsible-toggle" onclick="collapseButton()">
+        <button class="collapsible-toggle" onclick="collapseButton({{ forloop.index }})">
           <span class="toggle-icon">
             {% render 'icon-caret' %}
           </span>
         </button>
+        <h3>{{ block.settings.block_title }}</h3>
       </div>
       <div class="collapsible-body">
         <div>
-          <h3>{{ block.settings.block_title }}</h3>
           <p>{{ block.settings.block_content }}</p>
         </div>
       </div>
@@ -24,20 +23,11 @@
 
 <script>
 
-  function clickButton(){
-    console.log("Clicked Button")
-  }
+  function collapseButton(index) {
+    console.log("Clicked collapse for block " + index);
 
-  function collapseButton() {
-    // var collapsible = button.parentElement.nextElementSibling;
-    // body.classList.toggle("active");
-
-    console.log("Clicked collapse")
-
-    var collapsible = document.getElementById("collapse");
+    var collapsible = document.getElementById("collapse" + index);
     collapsible.classList.toggle("active");
-
-    //var navbar = document.getElementById("navbar");
   }
 
 </script>
