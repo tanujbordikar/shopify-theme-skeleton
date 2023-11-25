@@ -2,6 +2,7 @@
 
 <div class="collapsible-content">
   <h2>{{ section.settings.title }}</h2>
+  
   {% for block in section.blocks %}
     <div class="collapsible-item" id="collapse{{ forloop.index }}">
       <div class="collapsible-header">
@@ -23,12 +24,16 @@
 
 <script>
 
-  function collapseButton(index) {
+  document.addEventListener('DOMContentLoaded', function () {
+
+    function collapseButton(index) {
     console.log("Clicked collapse for block " + index);
 
     var collapsible = document.getElementById("collapse" + index);
     collapsible.classList.toggle("active");
   }
+
+  });
 
 </script>
 
