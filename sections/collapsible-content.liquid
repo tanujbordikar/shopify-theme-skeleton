@@ -2,22 +2,19 @@
 
 <div class="collapsible-content">
   <h2>{{ section.settings.title }}</h2>
-  
+
   {% for block in section.blocks %}
     <div class="collapsible-item" id="collapse{{ forloop.index }}">
-      <div class="collapsible-header">
-        <button class="collapsible-toggle" onclick="collapseButton({{ forloop.index }})">
-          <span class="toggle-icon">
-            {% render 'icon-caret' %}
-          </span>
-        </button>
-        <h3>{{ block.settings.block_title }}</h3>
-      </div>
-      <div class="collapsible-body">
-        <div>
-          <p>{{ block.settings.block_content }}</p>
-        </div>
-      </div>
+      <details>
+        <summary>
+          {{ block.settings.block_title }}
+        </summary>
+        <p>  
+          
+          {{ block.settings.block_content }}
+          
+        </p>
+      </details>  
     </div>
   {% endfor %}
 </div>

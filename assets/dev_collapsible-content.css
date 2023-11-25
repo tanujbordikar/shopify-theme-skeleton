@@ -9,6 +9,55 @@
     overflow: hidden;
 }
 
+summary {
+  display: block;
+  
+}
+
+summary::before {
+  margin-left: 1ch;
+  display: inline-block;
+  content: '＋';
+  transition: 0.2s;
+  cursor: pointer;
+  font-size: 3 em;
+}
+
+details[open] > summary::before {
+  transform: rotate(45deg);
+}
+
+details > p {
+    margin-left: 20px;
+}
+
+/* summary {
+  display: block;
+  font-weight: bold;
+}
+
+summary::-webkit-details-marker {
+  display: block
+}
+summary:after {
+  content: "+";
+  color: #000000;
+  float: left; 
+  font-size: 3em;
+  font-weight: bold;
+  margin: -5px 10px 0 0;
+  padding: 0;
+  text-align: center;
+  width: 20px;
+  cursor: pointer;
+}
+details[open] summary:after {
+  content: "-";
+  color: red;
+}
+ */
+
+
 .collapsible-header {
     background-color: #f1f1f1;
     padding: 15px;
