@@ -1,0 +1,46 @@
+/* testimonials.css */
+.testimonials__container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin: 20px;
+    text-align: center;
+    
+}
+
+/* Styling for testimonials in row format */
+.testimonials__container--row .testimonial--row {
+    flex-basis: calc(33.333% - 20px);
+    /* Three testimonials per row */
+    /* margin-bottom: 20px; */
+}
+
+/* Styling for testimonials in column format */
+.testimonials__container--column .testimonial--column {
+    flex-direction: column;
+    width: 100%;
+    /* margin-bottom: 20px; */
+}
+
+.testimonial__image {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+}
+
+.testimonial__content{
+    text-align: center;
+    margin-top: 10px;
+
+}
+
+.testimonial__name {
+    text-align: center;
+}
+
+/* Responsive design for smaller screens */
+@media (max-width: 768px) {
+    .testimonials__container--row .testimonial--row {
+        flex-basis: 100%;
+    }
+}

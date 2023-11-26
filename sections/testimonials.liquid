@@ -1,17 +1,43 @@
+{{ 'testimonials.css' | asset_url | stylesheet_tag }}
 <!-- sections/testimonials.liquid -->
 <div class="testimonials">
-  <div class="testimonials__container">
+  <!-- Container for testimonials in row format -->
+  <div class="testimonials__container testimonials__container--row">
     {% for testimonial in section.blocks %}
-      <div class="testimonial">
-        <img
-          class="testimonial__image"
-          src="{{ testimonial.settings.testimonial_image | img_url: '300x300' }}"
-          alt="{{ testimonial.settings.testimonial_name }}"
-          loading="eager"
-        >
-        <p class="testimonial__content">{{ testimonial.settings.testimonial_content }}</p>
-        <p class="testimonial__name">{{ testimonial.settings.testimonial_name }}</p>
-      </div>
+      {% if testimonial.type == 'testimonial_row' %}
+        <div class="testimonial testimonial--row">
+          <img
+            class="testimonial__image"
+            src="{{ testimonial.settings.testimonial_image | image_url: width: 300, height: 300 }}"
+            alt="{{ testimonial.settings.testimonial_name }}"
+            loading="eager"
+            width="300"
+            height="300"
+          >
+          <p class="testimonial__content">{{ testimonial.settings.testimonial_content }}</p>
+          <p class="testimonial__name">{{ testimonial.settings.testimonial_name }}</p>
+        </div>
+      {% endif %}
+    {% endfor %}
+  </div>
+
+  <!-- Container for testimonials in column format -->
+  <div class="testimonials__container testimonials__container--column">
+    {% for testimonial in section.blocks %}
+      {% if testimonial.type == 'testimonial_column' %}
+        <div class="testimonial testimonial--column">
+          <img
+            class="testimonial__image"
+            src="{{ testimonial.settings.testimonial_image | image_url: width: 300, height: 300 }}"
+            alt="{{ testimonial.settings.testimonial_name }}"
+            loading="eager"
+            width="300"
+            height="300"
+          >
+          <p class="testimonial__content">{{ testimonial.settings.testimonial_content }}</p>
+          <p class="testimonial__name">{{ testimonial.settings.testimonial_name }}</p>
+        </div>
+      {% endif %}
     {% endfor %}
   </div>
 </div>
@@ -21,8 +47,29 @@
   "name": "Testimonials",
   "blocks": [
     {
-      "type": "testimonials",
-      "name": "Testimonial",
+      "type": "testimonial_row",
+      "name": "Testimonial Row",
+      "settings": [
+        {
+          "type": "image_picker",
+          "label": "Image",
+          "id": "testimonial_image"
+        },
+        {
+          "type": "textarea",
+          "label": "Testimonial Content",
+          "id": "testimonial_content"
+        },
+        {
+          "type": "text",
+          "label": "Name",
+          "id": "testimonial_name"
+        }
+      ]
+    },
+    {
+      "type": "testimonial_column",
+      "name": "Testimonial Column",
       "settings": [
         {
           "type": "image_picker",
