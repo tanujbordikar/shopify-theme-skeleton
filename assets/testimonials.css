@@ -2,45 +2,36 @@
 .testimonials__container {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
-    margin: 20px;
+    justify-content: center; /* Center the items on the main axis */
     text-align: center;
-    
-}
-
-/* Styling for testimonials in row format */
-.testimonials__container--row .testimonial--row {
-    flex-basis: calc(33.333% - 20px);
-    /* Three testimonials per row */
-    /* margin-bottom: 20px; */
-}
-
-/* Styling for testimonials in column format */
-.testimonials__container--column .testimonial--column {
-    flex-direction: column;
-    width: 100%;
-    /* margin-bottom: 20px; */
-}
-
-.testimonial__image {
-    max-width: 100%;
-    height: auto;
-    border-radius: 10px;
-}
-
-.testimonial__content{
+    gap: 20px; /* Add space between items */
+    margin: 20px; /* Add space between items */
+  }
+  
+  .testimonial {
+    display: flex; /* Apply Flexbox to each testimonial */
+    flex-direction: column; /* Stack image and text vertically */
+    align-items: center; /* Center-align items on the cross axis */
+    width: calc(33.333% - 20px); /* Three testimonials per row, accounting for gap */
+  }
+  
+  .testimonial__image {
+    width: 100%; /* Full width of the parent container */
+    object-fit: cover; /* Cover the area without losing aspect ratio */
+    border-radius: 10px; /* Rounded corners for the image */
+  }
+  
+  .testimonial__content,
+  .testimonial__name {
+    margin-top: 10px; /* Space above the text */
     text-align: center;
-    margin-top: 10px;
-
-}
-
-.testimonial__name {
-    text-align: center;
-}
-
-/* Responsive design for smaller screens */
-@media (max-width: 768px) {
-    .testimonials__container--row .testimonial--row {
-        flex-basis: 100%;
+  }
+  
+  /* Responsive design for smaller screens */
+  @media (max-width: 768px) {
+    .testimonial {
+      width: 100%; /* Full width of the container on small screens */
+      margin: 20px;
     }
-}
+  }
+  
