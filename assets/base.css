@@ -92,38 +92,12 @@ a:hover {
 
 ul, ol {
   list-style: none;
-  margin-bottom: var(--spacing-normal);
+  margin-bottom: 0;
 }
 
 img {
   max-width: 100%;
   height: auto;
-}
-
-.container {
-  width: 80%;
-  margin: auto;
-  overflow: hidden;
-  padding: var(--spacing-normal);
-}
-
-/* Responsive breakpoints */
-@media (max-width: var(--breakpoint-sm)) {
-  :root {
-      /* Change font size for small screens */
-      --font-body-scale: 0.9;
-      --font-size-small: 1.4rem;
-      --font-size-normal: 1.8rem;
-      --font-size-large: 2.8rem;
-
-      /* Line heights */
-      --line-height-normal: 1.4;
-      --line-height-heading: 1.2;
-
-  }
-  .container {
-      width: 90%;
-  }
 }
 
 .hidden {
@@ -132,23 +106,6 @@ img {
 
 .rel {
   position: relative;
-}
-
-/* Utility classes for margin and padding */
-.mt-1 { margin-top: var(--spacing-small); }
-.mb-1 { margin-bottom: var(--spacing-small); }
-/* ... Similarly for padding, left, right, and other margins */
-
-.visually-hidden {
-  position: absolute !important;
-  overflow: hidden;
-  width: 1px;
-  height: 1px;
-  margin: -1px;
-  padding: 0;
-  border: 0;
-  clip: rect(0 0 0 0);
-  word-wrap: normal !important;
 }
 
 .block {
