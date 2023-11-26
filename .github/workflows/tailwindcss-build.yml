@@ -25,6 +25,8 @@ jobs:
 
     - name: Commit files
       run: |
+        git config --global user.email "mihir@deardigital.com"
+        git config --global user.name "mihir-bombay-studio"
         git add -f ./assets/output.css
         git commit -m "Automated Tailwind CSS build"
         git push
