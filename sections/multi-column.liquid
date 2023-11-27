@@ -3,7 +3,9 @@
 {{ 'multi-column.css' | asset_url | stylesheet_tag }}
 
 <div class="multi-column">
-  <h2>{{ section.settings.section_title }}</h2>
+  <h2 class="{% if section.settings.enable_tailwind_styling %} {{ section.settings.multi-column__section-title }}  {% endif %}">
+    {{ section.settings.section_title }}
+  </h2>
 
   <div class="multi-column__container{% if section.settings.multi_column_layout != true %} single-column {% else %} three-columns {% endif %}">
     {% for block in section.blocks %}
@@ -13,10 +15,11 @@
            {{ block.settings.image | image_url : width: 200 | image_tag }}
         </div>
        {% endif %}
-        <h3>
+
+        <h3 class="multi-column__item-title {% if section.settings.enable_tailwind_styling %} {{ section.settings.multi-column__item-title }} {% endif %}">
           {{ block.settings.column_title }}
         </h3>
-        <p>  
+        <p class="multi-column__item-content {% if section.settings.enable_tailwind_styling %} {{ section.settings.multi-column__item-content }} {% endif %}">  
           {{ block.settings.column_content }}
     </p>
 
@@ -53,6 +56,34 @@
       "label": "Section Title",
       "id": "section_title",
       "default": "Multi-Column Section"
+    },
+    {
+      "type": "header",
+      "content": "Tailwind Styling Classes"
+    },
+    {
+      "type": "checkbox",
+      "label": "Enable Tailwind Styling",
+      "id": "enable_tailwind_styling",
+      "default": false
+    },
+    {
+      "type": "text",
+      "id": "multi-column__section-title",
+      "label": "Style Section Header",
+      "info": "Add classes like bg-red-100 font-semibold inline"
+    },
+    {
+      "type": "text",
+      "id": "multi-column__item-title",
+      "label": "Style Column Title",
+      "info": "Add classes like text-center"
+    },
+    {
+      "type": "text",
+      "id": "multi-column__item-content",
+      "label": "Style Column Content",
+      "info": "Add classes like bg-blue-100 "
     }
   ],
   "blocks": [
