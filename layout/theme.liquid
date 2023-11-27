@@ -25,7 +25,7 @@
     {% render 'meta-tags' %}
     {% if settings.tailwind_enabled %}
       {% if request.design_mode %}
-        <script src="https://cdn.tailwindcss.com" defer="defer"></script>
+        <script src="{{ 'tailwind.min.js' | asset_url }}" defer="defer"></script>
         <script>
           document.addEventListener('DOMContentLoaded', function() {
             {{ settings.tailwind_config }}
