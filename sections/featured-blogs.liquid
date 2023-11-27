@@ -1,73 +1,97 @@
-<section
-  class="custom-blog-section"
-  style="padding-top: {{ section.settings.padding_top }}px; padding-bottom: {{ section.settings.padding_bottom }}px;"
->
-  {% if section.settings.heading != blank %}
-    <{{ section.settings.heading_size }} class="custom-blog-section__heading">
-      {{- section.settings.heading -}}
-    </{{ section.settings.heading_size }}>
-  {% endif %}
+{% assign blog_handle = section.settings.blog %}
+{% assign blog = blogs[blog_handle] %}
 
-  <div class="custom-blog-section__container">
-    {% for post in blogs[section.settings.blog].articles limit: section.settings.post_limit %}
-      <article class="custom-blog-post" style="background-color: {{ section.settings.color_scheme }};">
-        {% if section.settings.show_image and post.image %}
-          <img
-            src="{{ post.image.src | img_url: 'medium' }}"
-            alt="{{ post.image.alt }}"
-            class="custom-blog-post__image"
-            loading="eager"
-          >
+<div class="featured-blog">
+  <{{ section.settings.heading_size }} class="featured-blog-heading">
+    {{ section.settings.heading }}
+  </{{ section.settings.heading_size }}>
+
+  <div class="blog-posts" style="columns: {{ section.settings.columns_desktop }};">
+    {% for article in blog.articles limit: section.settings.post_limit %}
+      <article class="blog-post {{ section.settings.color_scheme }}">
+        {% if section.settings.show_image and article.image %}
+          {{ article.image | img_url: 'master' | image_tag: article.title }}
         {% endif %}
-        <div class="custom-blog-post__content">
-          <h3 class="custom-blog-post__title">{{ post.title }}</h3>
-          {% if section.settings.show_date %}
-            <p class="custom-blog-post__date">{{ post.published_at | date: '%B %d, %Y' }}</p>
-          {% endif %}
-          {% if section.settings.show_author %}
-            <p class="custom-blog-post__author">{{ post.author }}</p>
-          {% endif %}
-        </div>
+
+        <{{ section.settings.article_heading_size }}>{{ article.title }}</{{ section.settings.article_heading_size }}>
+
+        {% if section.settings.show_date %}
+          <p class="post-date">{{ article.published_at | date: section.settings.date_format }}</p>
+        {% endif %}
+
+        {% if section.settings.show_author %}
+          <p class="post-author">{{ article.author.name }}</p>
+        {% endif %}
+
+        <p>{{ article.content | strip_html | truncatewords: section.settings.truncate_words }}</p>
+        <a href="{{ article.url }}">{{ section.settings.read_more_text }}</a>
       </article>
     {% endfor %}
   </div>
 
   {% if section.settings.show_view_all %}
-    <a
-      href="https://theme-skeleton-project.myshopify.com/blogs/{{ blogs[section.settings.blog] }}"
-      class="custom-blog-section__view-all"
-      >View All</a
-    >
+    <a href="{{ blog.url }}" class="view-all">{{ section.settings.view_all_text }}</a>
   {% endif %}
-</section>
+</div>
 
 {% schema %}
 {
-  "name": "custom-blog",
-  "tag": "section",
+  "name": "Featured Blog",
   "settings": [
     {
       "type": "inline_richtext",
       "id": "heading",
-      "default": "Latest Blog Posts",
+      "default": "Blog posts",
       "label": "Heading"
     },
     {
       "type": "select",
       "id": "heading_size",
       "options": [
-        { "value": "h2", "label": "H2" },
-        { "value": "h1", "label": "H1" },
-        { "value": "h0", "label": "H0" }
+        { "value": "h1", "label": "Heading 1" },
+        { "value": "h2", "label": "Heading 2" },
+        { "value": "h3", "label": "Heading 3" },
+        { "value": "h4", "label": "Heading 4" }
       ],
       "default": "h1",
       "label": "Heading Size"
     },
     {
+      "type": "select",
+      "id": "article_heading_size",
+      "options": [
+        { "value": "h1", "label": "H1" },
+        { "value": "h2", "label": "H2" },
+        { "value": "h3", "label": "H3" },
+        { "value": "h4", "label": "H4" }
+      ],
+      "default": "h2",
+      "label": "Article Title Size"
+    },
+    {
       "type": "blog",
       "id": "blog",
-      "label": "Select Blog",
-      "info": "Choose the blog to display"
+      "label": "Select Blog"
+    },
+    {
+      "type": "select",
+      "id": "date_format",
+      "options": [
+        { "value": "%B %d, %Y", "label": "Month Day, Year" },
+        { "value": "%Y-%m-%d", "label": "Year-Month-Day" },
+        { "value": "%d %B, %Y", "label": "Day Month Year" }
+      ],
+      "default": "%B %d, %Y",
+      "label": "Date Format"
+    },
+    {
+      "type": "range",
+      "id": "truncate_words",
+      "min": 5,
+      "max": 50,
+      "step": 1,
+      "default": 20,
+      "label": "Truncate Words"
     },
     {
       "type": "range",
@@ -79,10 +103,18 @@
       "label": "Post Limit"
     },
     {
+      "type": "range",
+      "id": "columns_desktop",
+      "min": 1,
+      "max": 4,
+      "step": 1,
+      "default": 3,
+      "label": "Columns (Desktop)"
+    },
+    {
       "type": "color_scheme",
       "id": "color_scheme",
-      "label": "Colors",
-      "info": "Cards Info",
+      "label": "Color Scheme",
       "default": "scheme-1"
     },
     {
@@ -107,36 +139,24 @@
       "type": "checkbox",
       "id": "show_view_all",
       "default": true,
-      "label": "View All"
+      "label": "Show View All Link"
     },
     {
-      "type": "header",
-      "content": "Padding"
+      "type": "text",
+      "id": "view_all_text",
+      "default": "View All",
+      "label": "View All Link Text"
     },
     {
-      "type": "range",
-      "id": "padding_top",
-      "min": 0,
-      "max": 100,
-      "step": 4,
-      "unit": "px",
-      "label": "Padding Top",
-      "default": 36
-    },
-    {
-      "type": "range",
-      "id": "padding_bottom",
-      "min": 0,
-      "max": 100,
-      "step": 4,
-      "unit": "px",
-      "label": "Padding Bottom",
-      "default": 36
+      "type": "text",
+      "id": "read_more_text",
+      "default": "Read More",
+      "label": "Read More Link Text"
     }
   ],
   "presets": [
     {
-      "name": "Custom Blog Posts"
+      "name": "Featured Blog Section"
     }
   ]
 }
