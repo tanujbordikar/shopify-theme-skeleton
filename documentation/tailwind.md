@@ -33,5 +33,13 @@ A GitHub Action workflow, `tailwindcss-build.yml`, automates the build process o
 - Installs dependencies and builds Tailwind CSS into `output.css`.
 - Commits the generated `output.css` file to the repository.
 
+## Shopify CLI
+
+When working locally, you can sync the changes made from the theme editor to your local theme files using the Shopify CLI. Use the `--theme-editor-sync` flag to sync the changes made in the theme editor to your local theme files.
+
+```bash
+shopify theme dev --live-reload=hot-reload --theme-editor-sync -e env1
+```
+
 ## Conclusion
 This setup allows for a flexible and efficient way to incorporate Tailwind CSS into a Shopify theme, providing both dynamic customization in design mode and optimized production builds. The integration of Tailwind enhances the design capabilities and efficiency in developing and maintaining the theme's appearance.
