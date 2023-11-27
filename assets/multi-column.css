@@ -1,0 +1,37 @@
+/* multi-column.css */
+
+.multi-column {
+    width: 90%;
+    margin: 0 auto;
+
+    & h2 {
+        font-size: 30px;
+    }
+}
+
+.multi-column__container {
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-between;
+  gap: 20px; /* Adjust the gap between columns as needed */
+
+  &.single-column {
+    flex-direction: column;
+  }
+
+  &.two-columns {
+    flex-wrap: wrap;
+  }
+
+  &.three-columns {
+    flex-wrap: wrap;
+  }
+
+  & h2 {
+    font-size: 20px;
+  }
+}
+
+.multi-column__item {
+  /* Add styling for each column item */
+}

@@ -1,0 +1,91 @@
+<!-- dev_multi-column.liquid -->
+
+{{ 'multi-column.css' | asset_url | stylesheet_tag }}
+
+<div class="multi-column">
+  <h2>{{ section.settings.section_title }}</h2>
+
+  <div class="multi-column__container{% if section.settings.column_count == 1 %} single-column{% elsif section.settings.column_count == 2 %} two-columns{% else %} three-columns{% endif %}">
+    {% for block in section.blocks %}
+      <div class="multi-column__item">
+        <h2>
+          {{ block.settings.column_title }}
+        </h2>
+        <p>  
+          {{ block.settings.column_content }}
+        </p>
+       {% if block.settings.link_label != blank %}
+        <button>
+            <a href="{{ block.settings.linkUrl }}"> 
+                {{ block.settings.link_label }}
+            </a>
+        </button>
+       {% endif %}
+      </div>
+
+      {% if forloop.index == 3 %}
+        </div>
+        <div class="multi-column__container{% if section.settings.column_count == 1 %} single-column{% elsif section.settings.column_count == 2 %} two-columns{% else %} three-columns{% endif %}">
+      {% endif %}
+    {% endfor %}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Multi-Column Section",
+  "class": "multi-column-section",
+  "settings": [
+    {
+      "type": "range",
+      "label": "Number of Columns",
+      "id": "column_count",
+      "min": 1,
+      "max": 3,
+      "default": 2
+    },
+    {
+      "type": "text",
+      "label": "Section Title",
+      "id": "section_title",
+      "default": "Multi-Column Section"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "column",
+      "name": "Column",
+      "settings": [
+        {
+            "type": "text",
+            "id": "column_title",
+            "label": "Column Title",
+            "default": "Title"
+        },
+        {
+            "type": "text",
+            "id": "column_content",
+            "label": "Column Content",
+            "default": "Content"
+        },
+        {
+            "type": "text",
+            "id": "link_label",
+            "label": "Link Label"
+        },
+        {
+            "type": "url",
+            "label": "Link URL",
+            "id": "linkUrl"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Multi-Column Section",
+      "category": "Custom"
+    }
+  ]
+}
+{% endschema %}
