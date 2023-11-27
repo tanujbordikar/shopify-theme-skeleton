@@ -25,7 +25,7 @@
 
 .multi-column__item {
 
-    width: 250px;
+    width: 30%;
     padding: 15px 15px;
     background-color: #ebe7e7;
     border-radius: 20px;
@@ -73,9 +73,9 @@
 @media screen and (max-width: 768px) {
 
     .multi-column {
-        width: 80%;
-        margin: 0 auto;
-
+        margin-top: 20px;
+        width: 90%;
+        
         & h2 {
             font-size: 24px;
         }
