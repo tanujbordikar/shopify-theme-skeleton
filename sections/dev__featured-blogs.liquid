@@ -1,0 +1,163 @@
+{% assign blog_handle = section.settings.blog %}
+{% assign blog = blogs[blog_handle] %}
+
+<div class="featured-blog">
+  <{{ section.settings.heading_size }} class="featured-blog-heading">
+    {{ section.settings.heading }}
+  </{{ section.settings.heading_size }}>
+
+  <div class="blog-posts" style="columns: {{ section.settings.columns_desktop }};">
+    {% for article in blog.articles limit: section.settings.post_limit %}
+      <article class="blog-post {{ section.settings.color_scheme }}">
+        {% if section.settings.show_image and article.image %}
+          {{ article.image | img_url: 'master' | image_tag: article.title }}
+        {% endif %}
+
+        <{{ section.settings.article_heading_size }}>{{ article.title }}</{{ section.settings.article_heading_size }}>
+
+        {% if section.settings.show_date %}
+          <p class="post-date">{{ article.published_at | date: section.settings.date_format }}</p>
+        {% endif %}
+
+        {% if section.settings.show_author %}
+          <p class="post-author">{{ article.author.name }}</p>
+        {% endif %}
+
+        <p>{{ article.content | strip_html | truncatewords: section.settings.truncate_words }}</p>
+        <a href="{{ article.url }}">{{ section.settings.read_more_text }}</a>
+      </article>
+    {% endfor %}
+  </div>
+
+  {% if section.settings.show_view_all %}
+    <a href="{{ blog.url }}" class="view-all">{{ section.settings.view_all_text }}</a>
+  {% endif %}
+</div>
+
+{% schema %}
+{
+  "name": "Featured Blog",
+  "settings": [
+    {
+      "type": "inline_richtext",
+      "id": "heading",
+      "default": "Blog posts",
+      "label": "Heading"
+    },
+    {
+      "type": "select",
+      "id": "heading_size",
+      "options": [
+        { "value": "h1", "label": "Heading 1" },
+        { "value": "h2", "label": "Heading 2" },
+        { "value": "h3", "label": "Heading 3" },
+        { "value": "h4", "label": "Heading 4" }
+      ],
+      "default": "h1",
+      "label": "Heading Size"
+    },
+    {
+      "type": "select",
+      "id": "article_heading_size",
+      "options": [
+        { "value": "h1", "label": "H1" },
+        { "value": "h2", "label": "H2" },
+        { "value": "h3", "label": "H3" },
+        { "value": "h4", "label": "H4" }
+      ],
+      "default": "h2",
+      "label": "Article Title Size"
+    },
+    {
+      "type": "blog",
+      "id": "blog",
+      "label": "Select Blog"
+    },
+    {
+      "type": "select",
+      "id": "date_format",
+      "options": [
+        { "value": "%B %d, %Y", "label": "Month Day, Year" },
+        { "value": "%Y-%m-%d", "label": "Year-Month-Day" },
+        { "value": "%d %B, %Y", "label": "Day Month Year" }
+      ],
+      "default": "%B %d, %Y",
+      "label": "Date Format"
+    },
+    {
+      "type": "range",
+      "id": "truncate_words",
+      "min": 5,
+      "max": 50,
+      "step": 1,
+      "default": 20,
+      "label": "Truncate Words"
+    },
+    {
+      "type": "range",
+      "id": "post_limit",
+      "min": 2,
+      "max": 4,
+      "step": 1,
+      "default": 3,
+      "label": "Post Limit"
+    },
+    {
+      "type": "range",
+      "id": "columns_desktop",
+      "min": 1,
+      "max": 4,
+      "step": 1,
+      "default": 3,
+      "label": "Columns (Desktop)"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color Scheme",
+      "default": "scheme-1"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_image",
+      "default": true,
+      "label": "Show Image"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_date",
+      "default": true,
+      "label": "Show Date"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_author",
+      "default": false,
+      "label": "Show Author"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_view_all",
+      "default": true,
+      "label": "Show View All Link"
+    },
+    {
+      "type": "text",
+      "id": "view_all_text",
+      "default": "View All",
+      "label": "View All Link Text"
+    },
+    {
+      "type": "text",
+      "id": "read_more_text",
+      "default": "Read More",
+      "label": "Read More Link Text"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Featured Blog Section"
+    }
+  ]
+}
+{% endschema %}
