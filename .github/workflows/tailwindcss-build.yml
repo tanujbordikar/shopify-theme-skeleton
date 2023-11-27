@@ -25,10 +25,15 @@ jobs:
 
     - name: Commit files
       run: |
-        git config --global user.email "mihir@deardigital.com"
-        git config --global user.name "mihir-bombay-studio"
-        git add -f ./assets/output.css
-        git commit -m "Automated Tailwind CSS build"
-        git push
+        git config user.email "mihir@deardigital.com"
+        git config user.name "mihir-bombay-studio"
+        if git diff --quiet; then
+          echo "No changes to commit"
+          exit 0
+        else
+          git add -f ./assets/output.css
+          git commit -m "Automated Tailwind CSS build"
+          git push
+        fi        
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
