@@ -5,27 +5,33 @@
 <div class="multi-column">
   <h2>{{ section.settings.section_title }}</h2>
 
-  <div class="multi-column__container{% if section.settings.column_count == 1 %} single-column{% elsif section.settings.column_count == 2 %} two-columns{% else %} three-columns{% endif %}">
+  <div class="multi-column__container{% if section.settings.multi_column_layout != true %} single-column {% else %} three-columns {% endif %}">
     {% for block in section.blocks %}
       <div class="multi-column__item">
-        <h2>
+        {% if block.settings.image %}
+        <div class="multi-column__item-img">
+           {{ block.settings.image | image_url : width: 200 | image_tag }}
+        </div>
+       {% endif %}
+        <h3>
           {{ block.settings.column_title }}
-        </h2>
+        </h3>
         <p>  
           {{ block.settings.column_content }}
-        </p>
+    </p>
+
        {% if block.settings.link_label != blank %}
-        <button>
             <a href="{{ block.settings.linkUrl }}"> 
                 {{ block.settings.link_label }}
             </a>
-        </button>
        {% endif %}
       </div>
 
-      {% if forloop.index == 3 %}
+     {% assign column_counter = column_counter | plus: 1 %}
+      {% if column_counter == 3 %}
+        {% assign column_counter = 0 %}
         </div>
-        <div class="multi-column__container{% if section.settings.column_count == 1 %} single-column{% elsif section.settings.column_count == 2 %} two-columns{% else %} three-columns{% endif %}">
+        <div class="multi-column__container{% if section.settings.multi_column_layout != true %} single-column {% else %} three-columns {% endif %}">
       {% endif %}
     {% endfor %}
   </div>
@@ -33,16 +39,14 @@
 
 {% schema %}
 {
-  "name": "Multi-Column Section",
-  "class": "multi-column-section",
+  "name": "Multi-Column",
+  "class": "multi-column",
   "settings": [
     {
-      "type": "range",
-      "label": "Number of Columns",
-      "id": "column_count",
-      "min": 1,
-      "max": 3,
-      "default": 2
+      "type": "checkbox",
+      "label": "Multi-Column Layout",
+      "id": "multi_column_layout",
+      "default": true
     },
     {
       "type": "text",
@@ -57,33 +61,38 @@
       "name": "Column",
       "settings": [
         {
-            "type": "text",
-            "id": "column_title",
-            "label": "Column Title",
-            "default": "Title"
+          "type": "text",
+          "id": "column_title",
+          "label": "Column Title",
+          "default": "Title"
         },
         {
-            "type": "text",
-            "id": "column_content",
-            "label": "Column Content",
-            "default": "Content"
+          "type": "textarea",
+          "id": "column_content",
+          "label": "Column Content",
+          "default": "Content"
         },
         {
-            "type": "text",
-            "id": "link_label",
-            "label": "Link Label"
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
         },
         {
-            "type": "url",
-            "label": "Link URL",
-            "id": "linkUrl"
+          "type": "text",
+          "id": "link_label",
+          "label": "Link Label"
+        },
+        {
+          "type": "url",
+          "label": "Link URL",
+          "id": "linkUrl"
         }
       ]
     }
   ],
   "presets": [
     {
-      "name": "Multi-Column Section",
+      "name": "Multi-Column",
       "category": "Custom"
     }
   ]
