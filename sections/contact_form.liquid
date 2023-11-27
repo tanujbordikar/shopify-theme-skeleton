@@ -1,17 +1,17 @@
 {{ 'contact_form.css' | asset_url | stylesheet_tag }}
 
 <div class="contact-section">
-    <div class="container">
-      <div class="contact-wrapper">
-        <div class="contact-content">
-          <h1 class="contact-content__title">{{ section.settings.contact_title }}</h1>
-        </div>
-        
-        <div class="contact-form">
-          {%- form 'contact', id: 'ContactForm', class: 'contact-form__form' -%}
-            <div>
-              <div class="contact__fields">
-                <div class="field">
+  <div class="container">
+    <div class="contact-wrapper">
+      <div class="contact-content">
+        <h1 class="contact-content__title">{{ section.settings.contact_title }}</h1>
+      </div>
+
+      <div class="contact-form">
+        {%- form 'contact', id: 'ContactForm', class: 'contact-form__form' -%}
+          <div>
+            <div class="contact__fields">
+              <div class="field">
                 <input
                   class="field__input contact-form__input"
                   autocomplete="name"
@@ -36,7 +36,7 @@
                 >
               </div>
             </div>
-            
+
             <div class="field">
               <input
                 type="tel"
@@ -63,36 +63,33 @@
             </div>
           </div>
         {%- endform -%}
-        
-      </div>
       </div>
     </div>
   </div>
-  
-  
+</div>
+
 {% schema %}
-  {
-    "name": "Contact Page",
-    "settings": [
-      {
-        "type": "text",
-        "label": "Contact Title",
-        "id": "contact_title",
-        "default": "Contact Us"
-      },
-      {
-        "type": "text",
-        "label": "Send Button Text",
-        "id": "send_button_text",
-        "default": "Send Message"
-      }
-    ],
-    "presets": [
-      {
-        "category": "custom",
-        "name": "Contact Page"
-      }
-    ]
-  }
+{
+  "name": "Contact Page",
+  "settings": [
+    {
+      "type": "text",
+      "label": "Contact Title",
+      "id": "contact_title",
+      "default": "Contact Us"
+    },
+    {
+      "type": "text",
+      "label": "Send Button Text",
+      "id": "send_button_text",
+      "default": "Send Message"
+    }
+  ],
+  "presets": [
+    {
+      "category": "custom",
+      "name": "Contact Page"
+    }
+  ]
+}
 {% endschema %}
-  
