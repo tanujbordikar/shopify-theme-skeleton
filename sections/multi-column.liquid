@@ -14,20 +14,20 @@
         <div class="multi-column__item-img">
            {{ block.settings.image | image_url : width: 200 | image_tag }}
         </div>
-       {% endif %}
+        {% endif %}
 
         <h3 class="multi-column__item-title {% if section.settings.enable_tailwind_styling %} {{ section.settings.multi-column__item-title }} {% endif %}">
           {{ block.settings.column_title }}
         </h3>
         <p class="multi-column__item-content {% if section.settings.enable_tailwind_styling %} {{ section.settings.multi-column__item-content }} {% endif %}">  
           {{ block.settings.column_content }}
-    </p>
+        </p>
 
-       {% if block.settings.link_label != blank %}
-            <a href="{{ block.settings.linkUrl }}"> 
-                {{ block.settings.link_label }}
-            </a>
-       {% endif %}
+        {% if block.settings.link_label != blank %}
+              <a href="{{ block.settings.linkUrl }}"> 
+                  {{ block.settings.link_label }}
+              </a>
+        {% endif %}
       </div>
 
      {% assign column_counter = column_counter | plus: 1 %}
