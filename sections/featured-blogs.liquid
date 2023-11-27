@@ -2,7 +2,7 @@
 {% assign blog = blogs[blog_handle] %}
 
 <div class="featured-blog">
-  <{{ section.settings.heading_size }} class="featured-blog-heading">
+  <{{ section.settings.heading_size }} class="featured-blog__heading">
     {{ section.settings.heading }}
   </{{ section.settings.heading_size }}>
 
@@ -10,27 +10,37 @@
     {% for article in blog.articles limit: section.settings.post_limit %}
       <article class="blog-post {{ section.settings.color_scheme }}">
         {% if section.settings.show_image and article.image %}
-          {{ article.image | img_url: 'master' | image_tag: article.title }}
+          {{
+            article.image
+            | img_url: 'master'
+            | image_tag: article.title
+            | prepend: '<div class="blog-post__image">'
+            | append: '</div>'
+          }}
         {% endif %}
 
-        <{{ section.settings.article_heading_size }}>{{ article.title }}</{{ section.settings.article_heading_size }}>
+        <{{ section.settings.article_heading_size }} class="blog-post__title">
+          {{- article.title -}}
+        </{{ section.settings.article_heading_size }}>
 
         {% if section.settings.show_date %}
-          <p class="post-date">{{ article.published_at | date: section.settings.date_format }}</p>
+          <p class="blog-post__date">{{ article.published_at | date: section.settings.date_format }}</p>
         {% endif %}
 
         {% if section.settings.show_author %}
-          <p class="post-author">{{ article.author.name }}</p>
+          <p class="blog-post__author">{{ article.author.name }}</p>
         {% endif %}
 
-        <p>{{ article.content | strip_html | truncatewords: section.settings.truncate_words }}</p>
-        <a href="{{ article.url }}">{{ section.settings.read_more_text }}</a>
+        <p class="blog-post__content">
+          {{ article.content | strip_html | truncatewords: section.settings.truncate_words }}
+        </p>
+        <a href="{{ article.url }}" class="blog-post__read-more">{{ section.settings.read_more_text }}</a>
       </article>
     {% endfor %}
   </div>
 
   {% if section.settings.show_view_all %}
-    <a href="{{ blog.url }}" class="view-all">{{ section.settings.view_all_text }}</a>
+    <a href="{{ blog.url }}" class="featured-blog__view-all">{{ section.settings.view_all_text }}</a>
   {% endif %}
 </div>
 
