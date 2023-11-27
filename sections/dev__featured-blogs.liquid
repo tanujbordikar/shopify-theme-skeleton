@@ -10,7 +10,7 @@
     {% for article in blog.articles limit: section.settings.post_limit %}
       <article class="blog-post {{ section.settings.color_scheme }}">
         {% if section.settings.show_image and article.image %}
-          {{ article.image | img_url: 'master' | image_tag: article.title }}
+          {{ article.image | image_url: 'master' | image_tag: article.title }}
         {% endif %}
 
         <{{ section.settings.article_heading_size }}>{{ article.title }}</{{ section.settings.article_heading_size }}>
@@ -48,10 +48,22 @@
       "type": "select",
       "id": "heading_size",
       "options": [
-        { "value": "h1", "label": "Heading 1" },
-        { "value": "h2", "label": "Heading 2" },
-        { "value": "h3", "label": "Heading 3" },
-        { "value": "h4", "label": "Heading 4" }
+        {
+          "value": "h1",
+          "label": "Heading 1"
+        },
+        {
+          "value": "h2",
+          "label": "Heading 2"
+        },
+        {
+          "value": "h3",
+          "label": "Heading 3"
+        },
+        {
+          "value": "h4",
+          "label": "Heading 4"
+        }
       ],
       "default": "h1",
       "label": "Heading Size"
@@ -60,10 +72,22 @@
       "type": "select",
       "id": "article_heading_size",
       "options": [
-        { "value": "h1", "label": "H1" },
-        { "value": "h2", "label": "H2" },
-        { "value": "h3", "label": "H3" },
-        { "value": "h4", "label": "H4" }
+        {
+          "value": "h1",
+          "label": "H1"
+        },
+        {
+          "value": "h2",
+          "label": "H2"
+        },
+        {
+          "value": "h3",
+          "label": "H3"
+        },
+        {
+          "value": "h4",
+          "label": "H4"
+        }
       ],
       "default": "h2",
       "label": "Article Title Size"
@@ -77,9 +101,18 @@
       "type": "select",
       "id": "date_format",
       "options": [
-        { "value": "%B %d, %Y", "label": "Month Day, Year" },
-        { "value": "%Y-%m-%d", "label": "Year-Month-Day" },
-        { "value": "%d %B, %Y", "label": "Day Month Year" }
+        {
+          "value": "%B %d, %Y",
+          "label": "Month Day, Year"
+        },
+        {
+          "value": "%Y-%m-%d",
+          "label": "Year-Month-Day"
+        },
+        {
+          "value": "%d %B, %Y",
+          "label": "Day Month Year"
+        }
       ],
       "default": "%B %d, %Y",
       "label": "Date Format"
@@ -161,3 +194,4 @@
   ]
 }
 {% endschema %}
+
