@@ -1,6 +1,18 @@
 <!-- dev_multi-column.liquid -->
 
-{{ 'dev_multi-column.css' | asset_url | stylesheet_tag }}
+{% comment %} {{ 'dev_multi-column.css' | asset_url | stylesheet_tag }} {% endcomment %}
+
+<style>
+  
+  .multi-column__item {
+
+    & .multi-column__item-img img{
+        width: 100%;
+        height: 100%;
+        object-fit: cover; 
+    }
+}
+</style>
 
 <div class="multi-column {{ section.settings.multi-column }}">
   <h2 class="{{ section.settings.multi-column__section-title }}">
