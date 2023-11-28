@@ -2,29 +2,29 @@
 
 {{ 'dev_multi-column.css' | asset_url | stylesheet_tag }}
 
-<div class="multi-column">
-  <h2 class="{% if section.settings.enable_tailwind_styling %} {{ section.settings.multi-column__section-title }}  {% endif %}">
+<div class="multi-column {{ section.settings.multi-column }}">
+  <h2 class="{{ section.settings.multi-column__section-title }}">
     {{ section.settings.section_title }}
   </h2>
 
-  <div class="multi-column__container{% if section.settings.multi_column_layout != true %} single-column {% else %} three-columns {% endif %}">
+  <div class="multi-column__container {{ section.settings.multi-column__container }} {% if section.settings.multi_column_layout != true %} 'flex-col' {% else %} 'flex-wrap' {% endif %}">
     {% for block in section.blocks %}
-      <div class="multi-column__item">
+      <div class="multi-column__item {{ section.settings.multi-column__item }}">
         {% if block.settings.image %}
-        <div class="multi-column__item-img">
+        <div class="multi-column__item-img {{ section.settings.multi-column__item-img }}">
            {{ block.settings.image | image_url : width: 200 | image_tag }}
         </div>
         {% endif %}
 
-        <h3 class="multi-column__item-title {% if section.settings.enable_tailwind_styling %} {{ section.settings.multi-column__item-title }} {% endif %}">
+        <h3 class="multi-column__item-title {{ section.settings.multi-column__item-title }}">
           {{ block.settings.column_title }}
         </h3>
-        <p class="multi-column__item-content {% if section.settings.enable_tailwind_styling %} {{ section.settings.multi-column__item-content }} {% endif %}">  
+        <p class="multi-column__item-content {{ section.settings.multi-column__item-content }}">  
           {{ block.settings.column_content }}
         </p>
 
         {% if block.settings.link_label != blank %}
-              <a href="{{ block.settings.linkUrl }}"> 
+              <a href="{{ block.settings.linkUrl }}" class="multi-column__item-link {{ section.settings.multi-column__item-link }}"> 
                   {{ block.settings.link_label }}
               </a>
         {% endif %}
@@ -34,7 +34,7 @@
       {% if column_counter == 3 %}
         {% assign column_counter = 0 %}
         </div>
-        <div class="multi-column__container{% if section.settings.multi_column_layout != true %} single-column {% else %} three-columns {% endif %}">
+        <div class="multi-column__container {{ section.settings.multi-column__container }} {% if section.settings.multi_column_layout != true %} 'flex-col' {% else %} 'flex-wrap' {% endif %}">
       {% endif %}
     {% endfor %}
   </div>
@@ -62,28 +62,57 @@
       "content": "Tailwind Styling Classes"
     },
     {
-      "type": "checkbox",
-      "label": "Enable Tailwind Styling",
-      "id": "enable_tailwind_styling",
-      "default": false
+      "type": "text",
+      "id": "multi-column",
+      "label": "Style Section",
+      "default": "w-[90%] mt-20 md:mx-auto",
+      "placeholder": "bg-red-100"
     },
     {
       "type": "text",
       "id": "multi-column__section-title",
       "label": "Style Section Header",
-      "info": "Add classes like bg-red-100 font-semibold inline"
+      "default": "text-2xl md:text-3xl",
+      "placeholder": "bg-red-100"
+    },
+    {
+      "type": "text",
+      "id": "multi-column__container",
+      "label": "Style Multi-Column Container",
+      "default": "mt-20 flex flex-col gap-20 md:flex-row"
+    },
+    {
+      "type": "text",
+      "id": "multi-column__item",
+      "label": "Style Multi-Column Item",
+      "default": "w-full md:w-1/3 px-2.5 py-2.5 md:px-3.5 md:py-3.5 bg-ebe7e7 rounded-[15px] md:rounded-[20px]"
+    },
+    {
+      "type": "text",
+      "id": "multi-column__item-img",
+      "label": "Style Column Item Image",
+      "default": "w-full h-[150px] md:h-[200px] overflow-hidden rounded-[10px] object-cover"
     },
     {
       "type": "text",
       "id": "multi-column__item-title",
       "label": "Style Column Title",
-      "info": "Add classes like text-center"
+      "info": "Add classes like text-center",
+      "default": "text-lg md:text-xl mt-2.5 font-medium break-normal"
     },
     {
       "type": "text",
       "id": "multi-column__item-content",
       "label": "Style Column Content",
-      "info": "Add classes like bg-blue-100 "
+      "info": "Add classes like bg-blue-100",
+      "default": "text-sm md:text-base font-light break-normal"
+    },
+    {
+      "type": "text",
+      "id": "multi-column__item-link",
+      "label": "Style Column Link",
+      "info": "Add classes like bg-blue-100",
+      "default": "text-sm md:text-base font-normal text-blue-900 hover:underline cursor-pointer"
     }
   ],
   "blocks": [
