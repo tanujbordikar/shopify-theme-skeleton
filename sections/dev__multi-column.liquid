@@ -1,9 +1,7 @@
 <!-- dev_multi-column.liquid -->
 
-{% comment %} {{ 'dev_multi-column.css' | asset_url | stylesheet_tag }} {% endcomment %}
+{%- style -%}
 
-<style>
-  
   .multi-column__item {
 
     & .multi-column__item-img img{
@@ -12,14 +10,14 @@
         object-fit: cover; 
     }
 }
-</style>
+{%- endstyle -%}
 
 <div class="multi-column {{ section.settings.multi-column }}">
   <h2 class="{{ section.settings.multi-column__section-title }}">
     {{ section.settings.section_title }}
   </h2>
 
-  <div class="multi-column__container {{ section.settings.multi-column__container }} {% if section.settings.multi_column_layout != true %} 'flex-col' {% else %} 'flex-wrap' {% endif %}">
+  <div class="multi-column__container {{ section.settings.multi-column__container }} {% if section.settings.multi_column_layout != true %} 'md:flex-col' {% else %} 'md:flex-row' {% endif %}">
     {% for block in section.blocks %}
       <div class="multi-column__item {{ section.settings.multi-column__item }}">
         {% if block.settings.image %}
