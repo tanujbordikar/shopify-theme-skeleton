@@ -16,7 +16,6 @@
   }
   
   .testimonial__image {
-    width: 50%; /* Full width of the parent container */
     object-fit: cover; /* Cover the area without losing aspect ratio */
     border-radius: 10px; /* Rounded corners for the image */
   }

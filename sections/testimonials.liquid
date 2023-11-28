@@ -6,14 +6,13 @@
     {% for testimonial in section.blocks %}
       {% if testimonial.type == 'testimonial_row' %}
         <div class="testimonial testimonial--row">
-          <img
-            class="testimonial__image"
-            src="{{ testimonial.settings.testimonial_image | image_url: width: 200, height: 200 }}"
-            alt="{{ testimonial.settings.testimonial_name }}"
-            loading="eager"
-            width="200"
-            height="200"
-          >
+          <div class="testimonial__image">
+            {{
+              testimonial.settings.testimonial_image
+              | image_url: width: 200, height: 200
+              | image_tag: class: 'testimonial__image'
+            }}
+          </div>
           <p class="testimonial__content">{{ testimonial.settings.testimonial_content }}</p>
           <p class="testimonial__name">{{ testimonial.settings.testimonial_name }}</p>
         </div>
@@ -26,14 +25,13 @@
     {% for testimonial in section.blocks %}
       {% if testimonial.type == 'testimonial_column' %}
         <div class="testimonial testimonial--column">
-          <img
-            class="testimonial__image"
-            src="{{ testimonial.settings.testimonial_image | image_url: width: 200, height: 200 }}"
-            alt="{{ testimonial.settings.testimonial_name }}"
-            loading="eager"
-            width="200"
-            height="200"
-          >
+          <div class="testimonial__image">
+            {{
+              testimonial.settings.testimonial_image
+              | image_url: width: 200, height: 200
+              | image_tag: class: 'testimonial__image'
+            }}
+          </div>
           <p class="testimonial__content">{{ testimonial.settings.testimonial_content }}</p>
           <p class="testimonial__name">{{ testimonial.settings.testimonial_name }}</p>
         </div>
