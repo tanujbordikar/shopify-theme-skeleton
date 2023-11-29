@@ -3,8 +3,9 @@
     {{ section.settings.section_title }}
   </h2>
 </div>
+<div class="flex flex-wrap justify-center gap-4 px-4">
 {% for block in section.blocks %}
-  <div class="px-4">
+  <div class="w-full md:w-1/4">
     <div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 ">
       <a href="#">
         {{
@@ -16,17 +17,17 @@
       <div class="p-5">
         <a href="#">
           <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
-            Noteworthy technology acquisitions 2021
+            {{ block.settings.card_details }}
           </h5>
         </a>
         <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">
-          Here are the biggest enterprise technology acquisitions of 2021 so far, in reverse chronological order.
+          {{ block.settings.card_subdetails }}
         </p>
         <a
-          href="#"
+          href="{{ block.settings.card_link }}"
           class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
         >
-          Read more
+          {{ block.settings.card_button_text }}
           <svg
             class="rtl:rotate-180 w-3.5 h-3.5 ms-2"
             aria-hidden="true"
@@ -41,6 +42,7 @@
     </div>
   </div>
 {% endfor %}
+</div>
 
 {% schema %}
 {
