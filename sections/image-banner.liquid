@@ -1,257 +1,94 @@
-{% liquid
-  ##########################################################################
-  # Label: Mobile image
-  # Returns: an image object or nil (if no selection has been made)
-  # Image Properties: https: //shopify.dev/api/liquid/objects#image
-  # Image Filters: https: //shopify.dev/api/liquid/filters#image_tag, https: //shopify.dev/api/liquid/filters#image_url
-  ##########################################################################
-  assign mobile_image = section.settings.mobile_image
-  if mobile_image != blank
-    echo mobile_image | image_url: width: mobile_image.width | image_tag: class: 'add_your_class_here', loading: 'lazy'
-  endif
+<!-- image-banner.liquid -->
+{{ 'image-banner.css' | asset_url | stylesheet_tag }}
 
-  ##########################################################################
-  # Label: Desktop image
-  # Returns: an image object or nil (if no selection has been made)
-  # Image Properties: https: //shopify.dev/api/liquid/objects#image
-  # Image Filters: https: //shopify.dev/api/liquid/filters#image_tag, https: //shopify.dev/api/liquid/filters#image_url
-  ##########################################################################
-  assign desktop_image = section.settings.desktop_image
-  if desktop_image != blank
-    echo desktop_image | image_url: width: desktop_image.width | image_tag: class: 'add_your_class_here', loading: 'lazy'
-  endif
+<div class="image-banner"  style="background-color: {{ section.settings.background_color }};">
+  {% if section.settings.mobile_image %}
+    <div class="image-banner__image-wrapper ">
+      {{ section.settings.mobile_image | image_url: width: 700 | image_tag: class: 'image-banner__image' }}
+    </div>
+  {% endif %}
 
-  ##########################################################################
-  # Label: Badge
-  # Returns: an image object or nil (if no selection has been made)
-  # Image Properties: https: //shopify.dev/api/liquid/objects#image
-  # Image Filters: https: //shopify.dev/api/liquid/filters#image_tag, https: //shopify.dev/api/liquid/filters#image_url
-  ##########################################################################
-  assign badge = section.settings.badge
-  if badge != blank
-    echo badge | image_url: width: badge.width | image_tag: class: 'add_your_class_here', loading: 'lazy'
-  endif
-
-  ##########################################################################
-  # Label: Badge position
-  # Returns a string. i.e., the value of the selected option
-  # Filters: https: //shopify.dev/api/liquid/objects#string
-  ##########################################################################
-  echo section.settings.badge_position
-
-  for block in section.blocks
-    case block.type
-      when 'desktop_title'
-        ##########################################################################
-        # Label: Title
-        # Returns: a string or an empty object (if nothing has been entered)
-        # Filters: https: //shopify.dev/api/liquid/objects#string
-        ##########################################################################
-        echo block.settings.title
-
-        ##########################################################################
-        # Label: Title color
-        # Returns: a color object or blank (if no selection has been made)
-        # Color Properties: https: //shopify.dev/api/liquid/objects#color
-        ##########################################################################
-        echo block.settings.title_color
-
-      when 'mobile_title'
-        ##########################################################################
-        # Label: Title
-        # Returns: a string or an empty object (if nothing has been entered)
-        # Filters: https: //shopify.dev/api/liquid/objects#string
-        ##########################################################################
-        echo block.settings.title
-
-        ##########################################################################
-        # Label: Title color
-        # Returns: a color object or blank (if no selection has been made)
-        # Color Properties: https: //shopify.dev/api/liquid/objects#color
-        ##########################################################################
-        echo block.settings.title_color
-
-      when 'description'
-        ##########################################################################
-        # Label: Description
-        # Returns: a string or an empty object (if nothing has been entered)
-        # Filters: https: //shopify.dev/api/liquid/objects#string
-        ##########################################################################
-        echo block.settings.description
-
-        ##########################################################################
-        # Label: Color
-        # Returns: a color object or blank (if no selection has been made)
-        # Color Properties: https: //shopify.dev/api/liquid/objects#color
-        ##########################################################################
-        echo block.settings.color
-
-      when 'button'
-        ##########################################################################
-        # Label: Text
-        # Returns: a string or an empty object (if nothing has been entered)
-        # Filters: https: //shopify.dev/api/liquid/objects#string
-        ##########################################################################
-        echo block.settings.text
-
-        ##########################################################################
-        # Label: URL
-        # Returns: a string (the entered URL) or nil / false (if nothing has been entered)
-        ##########################################################################
-        echo block.settings.url
-
-        ##########################################################################
-        # Label: Color
-        # Returns: a color object or blank (if no selection has been made)
-        # Color Properties: https: //shopify.dev/api/liquid/objects#color
-        ##########################################################################
-        echo block.settings.color
-
-        ##########################################################################
-        # Label: Border color
-        # Returns: a color object or blank (if no selection has been made)
-        # Color Properties: https: //shopify.dev/api/liquid/objects#color
-        ##########################################################################
-        echo block.settings.border_color
-
-        ##########################################################################
-        # Label: Background color
-        # Returns: a color object or blank (if no selection has been made)
-        # Color Properties: https: //shopify.dev/api/liquid/objects#color
-        ##########################################################################
-        echo block.settings.background_color
-    endcase
-  endfor
-%}
+  <div class="image-banner__text-wrapper">
+    <h2 class="image-banner__title" style="color: {{ section.settings.color }};">{{ section.settings.title | escape }}</h2>
+    <p class="image-banner__description">{{ section.settings.description }}</p>
+    {% if section.blocks.size > 0 %}
+      <div class="image-banner__buttons">
+        {% for block in section.blocks %}
+          <a
+            href="{{ block.settings.url }}"
+            class="image-banner__button"
+            style="background-color: {{ block.settings.background_color }}; color: {{ block.settings.color }}"
+          >
+            {{- block.settings.text -}}
+          </a>
+        {% endfor %}
+      </div>
+    {% endif %}
+  </div>
+</div>
 
 {% schema %}
 {
-  "name": "image-banner",
-  "class": "shopify-image-banner",
+  "name": "Image Banner",
   "settings": [
     {
       "type": "image_picker",
       "id": "mobile_image",
-      "label": "Mobile image"
+      "label": "Image"
     },
     {
-      "type": "image_picker",
-      "id": "desktop_image",
-      "label": "Desktop image"
+      "type": "text",
+      "id": "title",
+      "label": "Title"
     },
     {
-      "type": "image_picker",
-      "id": "badge",
-      "label": "Badge"
+      "type": "richtext",
+      "id": "description",
+      "label": "Description"
     },
     {
-      "type": "select",
-      "id": "badge_position",
-      "label": "Badge position",
-      "options": [
-        {
-          "value": "left",
-          "label": "left"
-        },
-        {
-          "value": "right",
-          "label": "right"
-        }
-      ],
-      "default": "left"
+      "type": "color",
+      "id": "background_color",
+      "label": " Background Color"
+    },
+    {
+      "type": "color",
+      "id": "color",
+      "label": "Text Color"
     }
   ],
   "blocks": [
     {
-      "name": "Desktop title",
-      "type": "desktop_title",
-      "settings": [
-        {
-          "type": "text",
-          "id": "title",
-          "label": "Title"
-        },
-        {
-          "type": "color",
-          "id": "title_color",
-          "label": "Title color"
-        }
-      ]
-    },
-    {
-      "name": "Mobile title",
-      "type": "mobile_title",
-      "settings": [
-        {
-          "type": "text",
-          "id": "title",
-          "label": "Title"
-        },
-        {
-          "type": "color",
-          "id": "title_color",
-          "label": "Title color"
-        }
-      ]
-    },
-    {
-      "name": "Description",
-      "type": "description",
-      "settings": [
-        {
-          "type": "richtext",
-          "id": "description",
-          "label": "Description"
-        },
-        {
-          "type": "color",
-          "id": "color",
-          "label": "Color"
-        }
-      ]
-    },
-    {
-      "name": "Button",
       "type": "button",
+      "name": "Button",
       "settings": [
         {
           "type": "text",
           "id": "text",
-          "label": "Text"
+          "label": "Button Text"
         },
         {
           "type": "url",
           "id": "url",
-          "label": "URL"
-        },
-        {
-          "type": "color",
-          "id": "color",
-          "label": "Color"
-        },
-        {
-          "type": "color",
-          "id": "border_color",
-          "label": "Border color"
+          "label": "Button Link"
         },
         {
           "type": "color",
           "id": "background_color",
-          "label": "Background color"
+          "label": "Button Background Color"
+        },
+        {
+          "type": "color",
+          "id": "color",
+          "label": "Button Text Color"
         }
       ]
     }
   ],
   "presets": [
     {
-      "name": "image-banner"
+      "name": "Image Banner"
     }
   ]
 }
 {% endschema %}
-
-{% stylesheet %}
-{% endstylesheet %}
-
-{% javascript %}
-{% endjavascript %}
