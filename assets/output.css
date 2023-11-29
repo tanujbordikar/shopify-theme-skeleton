@@ -588,6 +588,10 @@ video {
   position: sticky;
 }
 
+.isolate {
+  isolation: isolate;
+}
+
 .mx-auto {
   margin-left: auto;
   margin-right: auto;
@@ -785,10 +789,6 @@ video {
 
 .font-semibold {
   font-weight: 600;
-}
-
-.capitalize {
-  text-transform: capitalize;
 }
 
 .text-blue-900 {
