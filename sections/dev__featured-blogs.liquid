@@ -10,17 +10,7 @@
     {% for article in blog.articles limit: section.settings.post_limit %}
       <article class="blog-post {{ section.settings.color_scheme }}">
         {% if section.settings.show_image and article.image %}
-<<<<<<< HEAD
-          {{
-            article.image
-            | img_url: 'master'
-            | image_tag: article.title
-            | prepend: '<div class="blog-post__image">'
-            | append: '</div>'
-          }}
-=======
           {{ article.image | image_url: 'master' | image_tag: article.title }}
->>>>>>> 491a3b6889775d2d79fb0510d06763e8e79af02b
         {% endif %}
 
         <{{ section.settings.article_heading_size }} class="blog-post__title">
@@ -208,4 +198,3 @@
   ]
 }
 {% endschema %}
-
