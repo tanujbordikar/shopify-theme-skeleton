@@ -3,7 +3,6 @@
 {%- style -%}
 
   .modal-dark-overlay {
-    /* display: none; */
     position: fixed;
     top: 0;
     left: 0;
@@ -14,7 +13,6 @@
   }
 
   .modal-container{
-   /*  display: none; */
     position:fixed;
     top: 0;
     left: 0;
@@ -24,11 +22,11 @@
 
   .modal-container > .modal {
     position:relative;
-    width:30%;
+    width:40%;
     height:auto;
     background: #fff;
     margin:0 auto;
-    padding: 20px 40px 1px 40px;
+    padding: 20px 40px 10px 40px;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
     top:25%;
@@ -39,22 +37,38 @@
     right:20px;
     cursor: pointer;
   }
+
+  .icon-cross{
+    width:20px;
+  }
+  
+  @media screen and (max-width: 768px) {
+    .modal-container > .modal {
+      width:80%;
+      padding: 20px 10px 10px 20px;
+    }
+
+    .icon-cross{
+      width:18px;
+    }
+  }
 {%- endstyle -%}
 
 <div class="modal-dark-overlay"></div>
 
 <div class="modal-container">
     <div class="modal">
-        <button id="closeModal"> X </button>
-        <h2>This is a Modal</h2>
-        <p>Okay 1</p>
+        <button id="closeModal"> {% render 'icon-cross' %} </button>
+        <h2 class="text-sm md:text-xl font-semibold mb-2 md:mb-4">Welcome to Our Store!</h2>
+        <p class="mb-2 md:mb-6 text-xs md:text-base">We're delighted to have you here. Enjoy your shopping experience and feel free to explore our wide range of products.</p>
+        <button id="acknowledgeButton" class="bg-blue-500 text-white px-2 py-1 md:px-4 md:py-1 rounded-full text-xs md:text-base">Okay</button>
     </div>
 </div>
 
 
 <script>
   
-  const toggleModal = (show) => {
+const toggleModal = (show) => {
   const overlay = document.querySelector(".modal-dark-overlay");
   const modalContainer = document.querySelector(".modal-container");
   const modal = document.querySelector(".modal");
@@ -66,7 +80,7 @@
     overlay.style.display = "none";
     modalContainer.style.display = "none";
     modal.style.display = "none";
-  }
+  } 
 };
 
 document.addEventListener('DOMContentLoaded', function () {
@@ -75,6 +89,10 @@ document.addEventListener('DOMContentLoaded', function () {
 
 // Close Modal
 document.querySelector("#closeModal").onclick = function(){
+  toggleModal(false);
+};
+
+document.querySelector("#acknowledgeButton").onclick = function(){
   toggleModal(false);
 };
 
