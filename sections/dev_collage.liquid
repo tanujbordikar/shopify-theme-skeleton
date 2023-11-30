@@ -39,7 +39,7 @@
                   <h3 class="collection__title">{{ block.settings.collection.title }}</h3>
                   <p class="collection__description">{{ block.settings.collection.description }}</p>
                   <!-- Display collection items or details as needed -->
-                  <a href="{{ block.settings.collection.url }}" class="btn btn-secondary">Explore Collection</a>
+                  <a href="{{ block.settings.collection.url }}" class="btn btn-secondary">{{ block.settings.collection_text | default: block.settings.collection.title }}</a>
                 </div>
               </div>
             {% when 'video' %}
@@ -173,6 +173,12 @@
           "type": "collection",
           "id": "collection",
           "label": "Collection"
+        },
+        {
+          "type": "text",
+          "id": "collection_text",
+          "label": "Collection Display Text",
+          "info": "Defaults to collection name if empty"
         }
       ]
     },
