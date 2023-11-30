@@ -18,11 +18,11 @@
 <div class="modal-dark-overlay fixed top-0 left-0 w-full h-full bg-black bg-opacity-70 overflow-auto"></div>
 
 <div class="modal-container fixed top-0 left-0 w-full h-full">
-    <div class="modal relative w-[80%] md:w-[40%] mx-auto bg-white px-[20px] pt-[18px] pb-[12px] md:px-[40px] md:py-[20px] rounded-[10px] shadow-lg top-[25%]">
+    <div class="modal relative mx-auto {{ section.settings.style_modal }}">
         <button id="closeModal" class="close absolute right-[20px] cursor-pointer"> {% render 'icon-cross' %} </button>
-        <h2 class="text-sm md:text-xl font-semibold mb-2 md:mb-4">Welcome to Our Store! 8</h2>
-        <p class="mb-2 md:mb-6 text-xs md:text-base">We're delighted to have you here. Enjoy your shopping experience and feel free to explore our wide range of products.</p>
-        <button id="acknowledgeButton" class="bg-purple-900 text-white px-2 py-1 md:px-4 md:py-1 rounded-full text-xs md:text-base hover:bg-purple-600 hover:text-slate-200">Okay</button>
+        <h2 class="{{ section.settings.style_modal_header }}">{{ section.settings.modal_header }}</h2>
+        <p class="{{ section.settings.style_modal_content }}"> {{ section.settings.modal_content }} </p>
+        <button id="acknowledgeButton" class="{{ section.settings.style_modal_button }}">{{ section.settings.modal_button }}</button>
     </div>
 </div>
 
@@ -75,9 +75,21 @@ window.onclick = function(e){
   "settings": [
     {
       "type": "text",
-      "label": "Section Title",
-      "id": "section_title",
-      "default": "Multi-Column Section"
+      "label": "Modal Heading",
+      "id": "modal_header",
+      "default": "Welcome to Our Store!"
+    },
+    {
+      "type": "textarea",
+      "label": "Modal Content",
+      "id": "modal_content",
+      "default": "We're delighted to have you here. Enjoy your shopping experience and feel free to explore our wide range of products."
+    },
+    {
+      "type": "text",
+      "label": "Modal Button",
+      "id": "modal_button",
+      "default": "Okay"
     },
     {
       "type": "header",
@@ -85,51 +97,27 @@ window.onclick = function(e){
     },
     {
       "type": "text",
-      "id": "multi-column",
-      "label": "Style Section",
-      "default": "w-[90%] mt-5 md:mt-10 mx-auto"
+      "label": "Style Modal",
+      "id": "style_modal",
+      "default": "w-[80%] md:w-[40%] bg-white px-[20px] pt-[18px] pb-[12px] md:px-[40px] md:py-[20px] rounded-[10px] shadow-lg top-[25%]"
     },
     {
       "type": "text",
-      "id": "multi-column__section-title",
-      "label": "Style Section Header",
-      "default": "md:pb-4 text-2xl md:text-3xl font-semibold"
+      "label": "Style Modal Heading",
+      "id": "style_modal_header",
+      "default": "text-sm md:text-xl font-semibold mb-2 md:mb-4 break-normal"
     },
     {
       "type": "text",
-      "id": "multi-column__container",
-      "label": "Style Multi-Column Container",
-      "default": "mt-7 md:mt-5 flex flex-col gap-5 md:gap-10 md:flex-row"
+      "label": "Style Modal Content",
+      "id": "style_modal_content",
+      "default": "mb-2 md:mb-6 text-xs md:text-base break-normal"
     },
     {
       "type": "text",
-      "id": "multi-column__item",
-      "label": "Style Multi-Column Item",
-      "default": "w-full md:w-[30%] px-2.5 py-2.5 md:px-3.5 md:py-3.5 rounded-[15px] md:rounded-[20px] bg-[#ebe7e7]"
-    },
-    {
-      "type": "text",
-      "id": "multi-column__item-img",
-      "label": "Style Column Item Image",
-      "default": "w-full h-[150px] md:h-[200px] overflow-hidden rounded-[10px]"
-    },
-    {
-      "type": "text",
-      "id": "multi-column__item-title",
-      "label": "Style Column Title",
-      "default": "text-lg md:text-xl mt-2.5 font-medium break-normal"
-    },
-    {
-      "type": "text",
-      "id": "multi-column__item-content",
-      "label": "Style Column Content",
-      "default": "text-sm md:text-base font-light break-normal"
-    },
-    {
-      "type": "text",
-      "id": "multi-column__item-link",
-      "label": "Style Column Link",
-      "default": "text-sm md:text-base font-normal cursor-pointer text-blue-900 hover:text-blue-600 hover:underline"
+      "id": "style_modal_button",
+      "label": "Style Modal Button",
+      "default": "bg-purple-900 text-white px-2 py-1 md:px-4 md:py-1 rounded-full text-xs md:text-base hover:bg-purple-600 hover:text-slate-200"
     }
   ],
   "presets": [
