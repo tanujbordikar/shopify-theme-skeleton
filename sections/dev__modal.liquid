@@ -3,20 +3,18 @@
 {%- style -%}
 
   .modal-dark-overlay {
-    display: none;
+    /* display: none; */
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
     background: rgba(0, 0, 0, 0.7);
-    /* justify-content: center;
-    align-items: center; */
     overflow:auto;
   }
 
   .modal-container{
-    display: none;
+   /*  display: none; */
     position:fixed;
     top: 0;
     left: 0;
@@ -24,7 +22,7 @@
     height: 100%;
   }
 
-  .modal {
+  .modal-container > .modal {
     position:relative;
     width:30%;
     height:auto;
@@ -49,38 +47,44 @@
     <div class="modal">
         <button id="closeModal"> X </button>
         <h2>This is a Modal</h2>
-        <p>Some text in the Modal..</p>
+        <p>Okay 1</p>
     </div>
 </div>
 
 
 <script>
   
-  const showOverlay = () => document.querySelector(".modal-dark-overlay").style.display = "block";
-  const showModal = () => document.querySelector(".modal-container").style.display = "block";
+  const toggleModal = (show) => {
+  const overlay = document.querySelector(".modal-dark-overlay");
+  const modalContainer = document.querySelector(".modal-container");
+  const modal = document.querySelector(".modal");
 
-  const hideOverlay = () => document.querySelector(".modal-dark-overlay").style.display = "none";
-  const hideModal = () => document.querySelector(".modal-container").style.display = "none";
-
-  document.addEventListener('DOMContentLoaded', function () {
-    showOverlay();
-    showModal();
-  });
-    
-  // Close Modal
-  document.querySelector("#closeModal").onclick = function(){
-    hideOverlay();
-    hideModal();
-
+  if (show) {
+    overlay.style.display = "block";
+    modalContainer.style.display = "block";
+  } else {
+    overlay.style.display = "none";
+    modalContainer.style.display = "none";
+    modal.style.display = "none";
   }
+};
 
-  // Close Modal when clicked outside the modal
-  window.onclick = function(e){
-    if(e.target === document.querySelector('.modal-container')){
-      hideOverlay();
-      hideModal();
-    }
+document.addEventListener('DOMContentLoaded', function () {
+  toggleModal(true); // Show modal on page load
+});
+
+// Close Modal
+document.querySelector("#closeModal").onclick = function(){
+  toggleModal(false);
+};
+
+// Close Modal when clicked outside the modal
+window.onclick = function(e){
+  if(e.target === document.querySelector('.modal-container')){
+    toggleModal(false);
   }
+};
+
 
 </script>
 
