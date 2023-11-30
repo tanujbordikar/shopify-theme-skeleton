@@ -3,10 +3,10 @@
 {%- style -%}
 
 .modal-container h2{
-        background:red;
-        display:block;
+       /*  background:red;
+        display:block; */
     }
-  .overlay {
+  .modal-dark-overlay {
     display: none;
     position: fixed;
     top: 0;
@@ -14,47 +14,80 @@
     width: 100%;
     height: 100%;
     background: rgba(0, 0, 0, 0.7);
-    justify-content: center;
-    align-items: center;
+    /* justify-content: center;
+    align-items: center; */
+    overflow:auto;
+  }
+
+  .modal-container{
+    display: none;
+    position:fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
   }
 
   .modal {
-    
+    position:relative;
+    width:30%;
+    height:auto;
     background: #fff;
-    padding: 20px;
+    margin:0 auto;
+    padding: 20px 40px 1px 40px;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    top:25%;
+  }
+
+  #closeModal{
+    position:absolute;
+    right:20px;
   }
 {%- endstyle -%}
 
-<html>
-    <div class="modal-container">
-        <h2>This is a Modal Deadpool</h2>
-        
-        <h2 class="{{ section.settings.multi-column__section-title }}">
-            {{ section.settings.section_title }}
-        </h2>
-    <button id="openModal">Open Modal</button>
+<button id="openModal" class="px-2 py-1 bg-red-300 color-red-100 rounded-[10px]">Open Modal</button>
 
+<div class="modal-dark-overlay"></div>
 
-    <div id="myModal" class="overlay">
-        <div class="modal">
-            <h2>This is a Modal</h2>
-            <p>Some text in the Modal..</p>
-            <button id="closeModal">Close Modal</button>
-        </div>
+<div class="modal-container">
+    <div class="modal">
+        <button id="closeModal">X</button>
+        <h2>This is a Modal</h2>
+        <p>Some text in the Modal..</p>
     </div>
 </div>
-</html>
+
 
 <script>
 
-  document.getElementById('openModal').onclick = function() {
-    document.getElementById('myModal').style.display = 'flex';
+  const showOverlay = () => document.querySelector(".modal-dark-overlay").style.display = "block";
+  const showModal = () => document.querySelector(".modal-container").style.display = "block";
+
+  const hideOverlay = () => document.querySelector(".modal-dark-overlay").style.display = "none";
+  const hideModal = () => document.querySelector(".modal-container").style.display = "none";
+
+  // Open Modal
+  document.querySelector("#openModal").onclick = function(){
+    showOverlay();
+    showModal();
+
   }
 
-  document.getElementById('closeModal').onclick = function() {
-    document.getElementById('myModal').style.display = 'none';
+   // Close Modal
+  document.querySelector("#closeModal").onclick = function(){
+    hideOverlay();
+    hideModal();
+
+  }
+
+  // Close Modal when clicked outside the modal
+  window.onclick = function(e){
+  if(e.target === document.querySelector('.modal-container')){
+    hideOverlay();
+    hideModal();
+  }
+
   }
 
 </script>
