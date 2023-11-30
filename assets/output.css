@@ -588,6 +588,10 @@ video {
   position: sticky;
 }
 
+.isolate {
+  isolation: isolate;
+}
+
 .mx-auto {
   margin-left: auto;
   margin-right: auto;
