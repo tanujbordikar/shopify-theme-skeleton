@@ -7,19 +7,23 @@
   {% for block in section.blocks %}
     <div class="w-full md:w-1/4">
       <div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 ">
-        <a href="#">
-          {{
-            block.settings.card_image
-            | image_url: width: 400, height: 200
-            | image_tag: class: 'card_image rounded-t-lg'
-          }}
-        </a>
-        <div class="p-5">
-          <a href="#">
-            <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
-              {{ block.settings.card_details }}
-            </h5>
+        {% if block.settings.card_link != blank and block.settings.card_button_text != blank %}
+          <a href="{{ block.settings.card_link }}">
+            {{
+              block.settings.card_image
+              | image_url: width: 400, height: 200
+              | image_tag: class: 'card_image rounded-t-lg'
+            }}
           </a>
+        {% endif %}
+        <div class="p-5">
+          {% if block.settings.card_link != blank and block.settings.card_button_text != blank %}
+            <a href="{{ block.settings.card_link }}">
+              <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+                {{ block.settings.card_details }}
+              </h5>
+            </a>
+          {% endif %}
           <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">
             {{ block.settings.card_subdetails }}
           </p>
