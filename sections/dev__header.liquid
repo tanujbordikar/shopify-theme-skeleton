@@ -1,6 +1,6 @@
 {{ 'dev__header.css' | asset_url | stylesheet_tag }}
 
-<header class="header">
+<header class="header" style="background-color: {{ section.settings.background_color }};">
   <button class="navbar-toggler" onclick="toggleNavbar()">
     <span class="navbar-toggler-icon">{% render 'icon-hamburger' %}</span>
   </button>
@@ -114,6 +114,11 @@
       "type": "checkbox",
       "id": "cart",
       "label": "Enable Cart Icon"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": " Background Color"
     }
   ]
 }
