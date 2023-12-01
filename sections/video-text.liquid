@@ -1,14 +1,20 @@
-<div class="video-text-section">
-  <div class="video-text-section__video-container">
+<!-- sections/video-text-section.liquid -->
+<div class="video-text-section {{ section.settings.section_styles }}">
+  <div class="video-text-section__video-container {{ section.settings.video_container_styles }}">
     <!-- Video iframe with play icon -->
-    <div class="video-text-section__video-overlay">
+    <div class="video-text-section__video-overlay {{ section.settings.video_overlay_styles }}">
       <iframe
-        src="{{ section.settings.frameVideoUrl }}"
+        src="{{ section.settings.frame_video_url }}"
         frameborder="0"
         allowfullscreen
+        class="video-text-section__video-frame {{ section.settings.video_frame_styles }}"
       ></iframe>
-      <div class="video-text-section__play-icon-container">
-        <svg class="video-text-section__play-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+      <div class="video-text-section__play-icon-container {{ section.settings.play_icon_container_styles }}">
+        <svg
+          class="video-text-section__play-icon {{ section.settings.play_icon_styles }}"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 24 24"
+        >
           <path d="M3 22v-20l18 10-18 10z"/>
         </svg>
       </div>
@@ -16,19 +22,32 @@
     <!-- End Video iframe with play icon -->
 
     <!-- Modal for the Main video -->
-    <div class="video-text-section__video-modal" id="videoModal">
-      <iframe src="{{ section.settings.mainVideoUrl }}" frameborder="0" allowfullscreen></iframe>
-      <button class="video-text-section__close-modal" onclick="closeModal()">Close</button>
+    <div class="video-text-section__video-modal {{ section.settings.modal_styles }}" id="video-modal">
+      <iframe
+        src="{{ section.settings.main_video_url }}"
+        frameborder="0"
+        allowfullscreen
+        class="video-text-section__modal-frame {{ section.settings.modal_frame_styles }}"
+      ></iframe>
+      <button class="video-text-section__close-modal {{ section.settings.close_button_styles }}" onclick="closeModal()">
+        Close
+      </button>
     </div>
   </div>
 
-  <div class="video-text-section__text-content">
+  <div class="video-text-section__text-content {{ section.settings.text_content_styles }}">
     <!-- Right half content -->
-    <h2 class="video-text-section__heading">{{ section.settings.heading1 }}</h2>
-    <h3 class="video-text-section__sub-heading">{{ section.settings.heading2 }}</h3>
-    <p class="video-text-section__paragraph">{{ section.settings.paragraph }}</p>
-    <div class="video-text-section__link-section">
-      <a href="{{ section.settings.linkUrl }}" class="video-text-section__link">{{ section.settings.linkUrlText }}</a>
+    <h2 class="video-text-section__heading {{ section.settings.heading_styles }}">{{ section.settings.heading }}</h2>
+    <h3 class="video-text-section__sub-heading {{ section.settings.sub_heading_styles }}">
+      {{ section.settings.sub_heading }}
+    </h3>
+    <p class="video-text-section__paragraph {{ section.settings.paragraph_styles }}">
+      {{ section.settings.paragraph }}
+    </p>
+    <div class="video-text-section__link-section {{ section.settings.link_section_styles }}">
+      <a href="{{ section.settings.link_url }}" class="video-text-section__link {{ section.settings.link_styles }}">
+        {{- section.settings.link_url_text -}}
+      </a>
     </div>
   </div>
 </div>
@@ -37,7 +56,7 @@
   document.addEventListener('DOMContentLoaded', function () {
     function openModal() {
       const scrollY = window.scrollY;
-      document.getElementById('videoModal').style.display = 'flex';
+      document.getElementById('video-modal').style.display = 'flex';
       document.body.classList.add('modal-open');
     }
 
@@ -57,43 +76,124 @@
   "name": "Video-Text Section",
   "settings": [
     {
+      "type": "url",
+      "label": "Frame Video URL",
+      "id": "frame_video_url"
+    },
+    {
+      "type": "url",
+      "label": "Main Video URL",
+      "id": "main_video_url"
+    },
+    {
       "type": "text",
-      "label": "Heading 1",
-      "id": "heading1",
+      "label": "Heading",
+      "id": "heading",
       "default": "GEZOND LEVEN"
     },
     {
       "type": "text",
-      "label": "Heading 2",
-      "id": "heading2",
+      "label": "Sub Heading",
+      "id": "sub_heading",
       "default": "HET GEHEIM ZIT IN JE ROUTINE"
     },
     {
       "type": "textarea",
-      "label": "Paragraph Text",
+      "label": "Paragraph",
       "id": "paragraph",
       "default": "Elke dag supplementen slikken is best een uitdaging. Maar als het lekkere Yummygums zijn, houd je dat gemakkelijk vol. Plezier in je routine motiveert om goed voor jezelf te blijven zorgen."
     },
     {
       "type": "url",
       "label": "Link URL",
-      "id": "linkUrl"
+      "id": "link_url"
     },
     {
       "type": "text",
       "label": "Link URL Text",
-      "id": "linkUrlText",
+      "id": "link_url_text",
       "default": "Gummies Met Een Missie"
     },
+
     {
-      "type": "url",
-      "label": "Frame Video URL",
-      "id": "frameVideoUrl"
+      "type": "header",
+      "content": "Apply Tailwind CSS Classes",
+      "info": "Note: Insert classes with space between them."
     },
     {
-      "type": "url",
-      "label": "Main Video URL",
-      "id": "mainVideoUrl"
+      "type": "textarea",
+      "label": "Heading Styles",
+      "id": "heading_styles"
+    },
+    {
+      "type": "textarea",
+      "label": "Sub Heading Styles",
+      "id": "sub_heading_styles"
+    },
+    {
+      "type": "textarea",
+      "label": "Paragraph Styles",
+      "id": "paragraph_styles"
+    },
+    {
+      "type": "textarea",
+      "label": "Section Styles",
+      "id": "section_styles"
+    },
+    {
+      "type": "textarea",
+      "label": "Video Container Styles",
+      "id": "video_container_styles"
+    },
+    {
+      "type": "textarea",
+      "label": "Video Overlay Styles",
+      "id": "video_overlay_styles"
+    },
+    {
+      "type": "textarea",
+      "label": "Video Frame Styles",
+      "id": "video_frame_styles"
+    },
+    {
+      "type": "textarea",
+      "label": "Play Icon Container Styles",
+      "id": "play_icon_container_styles"
+    },
+    {
+      "type": "textarea",
+      "label": "Play Icon Styles",
+      "id": "play_icon_styles"
+    },
+    {
+      "type": "textarea",
+      "label": "Modal Styles",
+      "id": "modal_styles"
+    },
+    {
+      "type": "textarea",
+      "label": "Modal Frame Styles",
+      "id": "modal_frame_styles"
+    },
+    {
+      "type": "textarea",
+      "label": "Close Button Styles",
+      "id": "close_button_styles"
+    },
+    {
+      "type": "textarea",
+      "label": "Text Content Styles",
+      "id": "text_content_styles"
+    },
+    {
+      "type": "textarea",
+      "label": "Link Section Styles",
+      "id": "link_section_styles"
+    },
+    {
+      "type": "textarea",
+      "label": "Link Styles",
+      "id": "link_styles"
     }
   ],
   "presets": [
