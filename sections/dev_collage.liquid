@@ -15,14 +15,15 @@
             {% when 'image' %}
               <div class="collage-card">
                 <div class="media media--transparent ratio">
-                  {{ block.settings.image | img_url: 'master' | img_tag: 'collage-image' }}
+                  {{ block.settings.image | image_url: width: 800 | image_tag: width: 500 }}
                 </div>
               </div>
             {% when 'product' %}
               <div class="collage-card product-card">
                 {% if block.settings.second_image %}
-                  {{ block.settings.second_image | img_url: 'master' | img_tag: 'second-image' }}
+                  {{ block.settings.product | image_url: width: 800 | image_tag: width: 500 }}
                 {% else %}
+
                   <div class="product">
                     <h3 class="product__title">{{ block.settings.product.title }}</h3>
                     <p class="product__description">{{ block.settings.product.description }}</p>
@@ -36,6 +37,9 @@
             {% when 'collection' %}
               <div class="collage-card collection-card">
                 <div class="collection">
+                  {% if block.settings.collection %}
+                  {{ block.settings.collection | image_url: width: 800 | image_tag: width: 500 }}
+                  {% endif %}
                   <h3 class="collection__title">{{ block.settings.collection.title }}</h3>
                   <p class="collection__description">{{ block.settings.collection.description }}</p>
                   <!-- Display collection items or details as needed -->
@@ -45,7 +49,7 @@
             {% when 'video' %}
               <div class="collage-card video-card">
                 <div class="media media--transparent ratio">
-                  {{ block.settings.cover_image | img_url: 'master' | img_tag: 'video-cover' }}
+                  {{ block.settings.cover_image | image_url: width: 800 | image_tag: width: 500 }}
                 </div>
                 <a href="{{ block.settings.video_url }}" class="collage-card__link"></a>
               </div>
@@ -72,9 +76,18 @@
       "type": "select",
       "id": "heading_size",
       "options": [
-        { "value": "h2", "label": "H2" },
-        { "value": "h1", "label": "H1" },
-        { "value": "h0", "label": "H0" }
+        {
+          "value": "h2",
+          "label": "H2"
+        },
+        {
+          "value": "h1",
+          "label": "H1"
+        },
+        {
+          "value": "h0",
+          "label": "H0"
+        }
       ],
       "default": "h1",
       "label": "Heading Size"
@@ -83,8 +96,14 @@
       "type": "select",
       "id": "desktop_layout",
       "options": [
-        { "value": "left", "label": "Left" },
-        { "value": "right", "label": "Right" }
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        }
       ],
       "default": "left",
       "label": "Desktop Layout"
@@ -93,8 +112,14 @@
       "type": "select",
       "id": "mobile_layout",
       "options": [
-        { "value": "collage", "label": "Collage" },
-        { "value": "column", "label": "Column" }
+        {
+          "value": "collage",
+          "label": "Collage"
+        },
+        {
+          "value": "column",
+          "label": "Column"
+        }
       ],
       "default": "column",
       "label": "Mobile Layout"
@@ -103,8 +128,14 @@
       "type": "select",
       "id": "card_styles",
       "options": [
-        { "value": "none", "label": "None" },
-        { "value": "product-card-wrapper", "label": "Product Card Wrapper" }
+        {
+          "value": "none",
+          "label": "None"
+        },
+        {
+          "value": "product-card-wrapper",
+          "label": "Product Card Wrapper"
+        }
       ],
       "default": "product-card-wrapper",
       "label": "Card Styles"
@@ -194,7 +225,10 @@
         {
           "type": "video_url",
           "id": "video_url",
-          "accept": ["youtube", "vimeo"],
+          "accept": [
+            "youtube",
+            "vimeo"
+          ],
           "default": "https://www.youtube.com/watch?v=_9VUPq3SxOc",
           "label": "Video URL",
           "info": "Enter the video URL"
