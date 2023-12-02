@@ -1,40 +1,45 @@
-<div class="section-container px-4 py-4 ">
-  <h2 class="section-container__title text-center text-3xl font-bold text-gray-900">
+<!-- sections/cards.liquid -->
+
+<div class="card-section__container {{ section.settings.card_section_container_styles }}">
+  <h2 class="card-section__title {{ section.settings.card_section_title_styles }}">
     {{ section.settings.section_title }}
   </h2>
 </div>
-<div class="flex flex-wrap justify-center gap-4 px-4">
+<div class="card-container {{ section.settings.card_container_styles }}">
   {% for block in section.blocks %}
-    <div class="w-full md:w-1/4">
-      <div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 ">
+    <div class="card-wrapper {{ section.settings.card_wrapper_styles }}">
+      <div class="card {{ section.settings.card_styles }}">
         {% if block.settings.card_link != blank and block.settings.card_image != blank %}
-          <a href="{{ block.settings.card_link }}">
+          <a href="{{ block.settings.card_link }}" class="card__link">
+            {%- assign image_width = section.settings.image_width -%}
+            {%- assign image_height = section.settings.image_height -%}
+            {%- assign card_image_styles = section.settings.card_image_styles -%}
             {{
               block.settings.card_image
-              | image_url: width: 400, height: 200
-              | image_tag: class: 'card_image rounded-t-lg'
-            }}
+              | image_url: width: image_width, height: image_height
+              | image_tag: class: card_image_styles
+            -}}
           </a>
         {% endif %}
-        <div class="p-5">
+        <div class="card__content {{ section.settings.card_content_styles }}">
           {% if block.settings.card_link != blank and block.settings.card_details != blank %}
-            <a href="{{ block.settings.card_link }}">
-              <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+            <a href="{{ block.settings.card_link }}" class="card__link">
+              <h5 class="card__details {{ section.settings.card_details_styles }}">
                 {{ block.settings.card_details }}
               </h5>
             </a>
           {% endif %}
-          <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">
+          <p class="card__subdetails {{ section.settings.card_subdetails_styles }}">
             {{ block.settings.card_subdetails }}
           </p>
           {% if block.settings.card_link != blank and block.settings.card_button_text != blank %}
             <a
               href="{{ block.settings.card_link }}"
-              class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+              class="card__button {{ section.settings.card_button_styles }}"
             >
               {{ block.settings.card_button_text }}
               <svg
-                class="rtl:rotate-180 w-3.5 h-3.5 ms-2"
+                class="card__button-icon {{ section.settings.card_button_icon_styles }}"
                 aria-hidden="true"
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
@@ -59,6 +64,84 @@
       "id": "section_title",
       "label": "Section Title",
       "default": "Our Special Offers"
+    },
+    {
+      "type": "number",
+      "id": "image_width",
+      "label": "Image Width",
+      "default": 400
+    },
+    {
+      "type": "number",
+      "id": "image_height",
+      "label": "Image Height",
+      "default": 200
+    },
+    {
+      "type": "textarea",
+      "label": "Card Section Container Styles",
+      "id": "card_section_container_styles",
+      "default": "px-4 py-4"
+    },
+    {
+      "type": "textarea",
+      "label": "Card Section Title Styles",
+      "id": "card_section_title_styles",
+      "default": "text-center text-3xl font-bold text-gray-900"
+    },
+    {
+      "type": "textarea",
+      "label": "Card Container Styles",
+      "id": "card_container_styles",
+      "default": "flex flex-wrap justify-center gap-4 px-4"
+    },
+    {
+      "type": "textarea",
+      "label": "Card Wrapper Styles",
+      "id": "card_wrapper_styles",
+      "default": "w-full md:w-1/4"
+    },
+    {
+      "type": "textarea",
+      "label": "Card Styles",
+      "id": "card_styles",
+      "default": "max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700"
+    },
+    {
+      "type": "textarea",
+      "id": "card_image_styles",
+      "label": "Card Image Styles",
+      "default": "rounded-t-lg"
+    },
+    {
+      "type": "textarea",
+      "label": "Card Content Styles",
+      "id": "card_content_styles",
+      "default": "p-5"
+    },
+    {
+      "type": "textarea",
+      "label": "Card Details Styles",
+      "id": "card_details_styles",
+      "default": "mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white"
+    },
+    {
+      "type": "textarea",
+      "label": "Card Subdetails Styles",
+      "id": "card_subdetails_styles",
+      "default": "mb-3 font-normal text-gray-700 dark:text-gray-400"
+    },
+    {
+      "type": "textarea",
+      "label": "Card Button Styles",
+      "id": "card_button_styles",
+      "default": "inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+    },
+    {
+      "type": "textarea",
+      "label": "Card Button Icon Styles",
+      "id": "card_button_icon_styles",
+      "default": "rtl:rotate-180 w-3.5 h-3.5 ms-2"
     }
   ],
   "blocks": [
