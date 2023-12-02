@@ -1,0 +1,134 @@
+<!-- image-banner.liquid -->
+
+<div class="image-banner {{ section.settings.image-banner }}" >
+  {% if section.settings.mobile_image %}
+    <div class="image-banner__image-wrapper flex-basis-1/2">
+      {{ section.settings.mobile_image | image_url: width: 700 | image_tag: class: 'image-banner__image w-full h-auto object-cover' }}
+    </div>
+  {% endif %}
+
+  <div class="image-banner__text-wrapper {{ section.settings.image-banner__text-wrapper }}">
+    <h2 class="image-banner__title {{ section.settings.image-banner__title }}" style="color: {{ section.settings.color }};">{{ section.settings.title | escape }}</h2>
+    <p class="image-banner__description {{ section.settings.image-banner__description }}">{{ section.settings.description }}</p>
+    {% if section.blocks.size > 0 %}
+      <div class="image-banner__buttons {{ section.settings.image-banner__buttons }}">
+        {% for block in section.blocks %}
+          <a
+            href="{{ block.settings.url }}"
+            class="image-banner__button {{ section.settings.image-banner__button }}"
+            style="background-color: {{ block.settings.background_color }}; color: {{ block.settings.color }}"
+          >
+            {{- block.settings.text -}}
+          </a>
+        {% endfor %}
+      </div>
+    {% endif %}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Image Banner",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "mobile_image",
+      "label": "Image"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Title"
+    },
+    {
+      "type": "text",
+      "id": "description",
+      "label": "Description",
+      "default": "Description"
+    },
+    {
+      "type": "header",
+      "content": "Styling"
+    },
+    {
+      "type": "text",
+      "id": "image-banner",
+      "label": "Style Section",
+      "default": "flex-col w-[75%] mt-5 md:mt-10 md:flex-row mx-auto flex items-center justify-between"
+    },
+    {
+      "type": "text",
+      "id": "image-banner__text-wrapper",
+      "label": "Text Wrapper Style Section",
+      "default": "flex-basis-1/2 p-4 md:flex-basis-full"
+    },
+    {
+      "type": "text",
+      "id": "image-banner__title",
+      "label": "Text Title Style Section",
+      "default": "text-2xl font-bold md:flex-basis-full"
+    },
+    {
+      "type": "text",
+      "id": "image-banner__description",
+      "label": "Text Description Style Section",
+      "default": "mb-4"
+    },
+    {
+      "type": "text",
+      "id": "image-banner__buttons",
+      "label": "Text Buttons Style Section",
+      "default": "flex flex-wrap gap-4 mb-4"
+    },
+    {
+      "type": "text",
+      "id": "image-banner__button",
+      "label": "Text Single Button Style Section",
+      "default": "px-6 py-2 border border-solid rounded text-white no-underline inline-block"
+    },
+    {
+      "type": "color",
+      "id": "color",
+      "label": "Text Color"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "button",
+      "name": "Button",
+      "limit": 3,
+      "settings": [
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Button Text",
+          "default": "Shop"
+        },
+        {
+          "type": "url",
+          "id": "url",
+          "label": "Button Link"
+        },
+        {
+          "type": "color",
+          "id": "background_color",
+          "label": "Button Background Color",
+          "default": "#000"
+        },
+        {
+          "type": "color",
+          "id": "color",
+          "label": "Button Text Color",
+          "default": "#fff"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Image Banner Display"
+    }
+  ]
+}
+{% endschema %}
