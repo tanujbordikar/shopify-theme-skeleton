@@ -20,7 +20,7 @@ body {
 
 .logos {
   overflow: hidden;
-  padding: 60px 0;
+  padding: 20px 0;
   background: white;
   white-space: nowrap;
   position: relative;
@@ -80,28 +80,6 @@ body {
 }
 </style>
 
-{% comment %} <div class="logo-carousel">
-  {% for logo in section.blocks %}
-    <div class="logo-carousel__wrapper">
-      <img
-        src="{{ logo.settings.logo | img_url: '300x' }}"
-        alt="{{ logo.settings.alt_text | escape }}"
-        loading="eager"
-      >
-    </div>
-  {% endfor %}
-
-  {% for logo in section.blocks %}
-    <div class="logo-carousel__wrapper">
-      <img
-        src="{{ logo.settings.logo | img_url: '300x' }}"
-        alt="{{ logo.settings.alt_text | escape }}"
-        loading="eager"
-      >
-    </div>
-  {% endfor %}
-
-</div> {% endcomment %}
 
 <div class=logos>
   {% for block in section.blocks %}
@@ -109,6 +87,7 @@ body {
            {{ block.settings.logo | image_url : width: 50 | image_tag }}
   </div>
   {% endfor %}
+
   {% for block in section.blocks %}
   <div class="logos-slide">
            {{ block.settings.logo | image_url : width: 50 | image_tag }}
