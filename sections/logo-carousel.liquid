@@ -1,4 +1,45 @@
-<div class="logo-carousel">
+<style>
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  @keyframes slide {
+    from {
+      transform: translateX(0);
+    }
+
+    to {
+      transform: translateX(-100%);
+    }
+  }
+</style>
+
+<div class="logo-carousel overflow-hidden py-8 bg-white whitespace-nowrap relative">
+  <div class="logo-carousel:before absolute top-0 left-0 w-[250px] h-full content '' z-2 bg-gradient-to-r from-transparent to-white"></div>
+  <div class="logo-carousel:after absolute top-0 right-0 w-96 h-full content '' z-2 bg-gradient-to-l from-transparent to-white"></div>
+
+  <div class="logo-carousel:hover .logo-carousel__wrapper animation-play-state:paused">
+    <div class="logo-carousel__wrapper inline-block animation:35s slide infinite linear">
+      {% for logo in section.blocks %}
+        <img
+          src="{{ logo.settings.logo | img_url: '300x' }}"
+          alt="{{ logo.settings.alt_text | escape }}"
+          loading="lazy"
+          class="h-12 mx-8"
+        >
+      {% endfor %}
+      {% for logo in section.blocks %}
+        <img
+          src="{{ logo.settings.logo | img_url: '300x' }}"
+          alt="{{ logo.settings.alt_text | escape }}"
+          loading="lazy"
+          class="h-12 mx-8"
+        >
+      {% endfor %}
+    </div>
+  </div>
 </div>
 
 {% schema %}
