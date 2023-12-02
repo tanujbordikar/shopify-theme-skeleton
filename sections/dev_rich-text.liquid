@@ -1,7 +1,7 @@
 <!-- Section: Rich-Text -->
-<div class="rich-text{% unless section.settings.full_width %} rich-text--container{% endunless %}">
+<div class="rich-text ">
   <div
-    class="rich-text__content color-scheme-{{ section.settings.color_scheme }} rich-text__content--padding bg-gray-100"
+    class="rich-text__content color-scheme-{{ section.settings.color_scheme }} rich-text__content--padding bg-gray-100 {{ section.settings.background_color }}"
     style="padding-top: {{ section.settings.padding_top }}px; padding-bottom: {{ section.settings.padding_bottom }}px;"
   >
     <div class="rich-text__wrapper rich-text__wrapper--{{ section.settings.desktop_content_position }}{% if section.settings.full_width %} rich-text__wrapper--full-width{% endif %}">
@@ -60,6 +60,12 @@
       "unit": "px",
       "label": "Padding Bottom",
       "default": 40
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background Color",
+      "info": "Choose a background color for the section."
     }
   ],
   "blocks": [
@@ -79,10 +85,10 @@
           "content": "Tailwind Styling Classes"
         },
         {
-          "type": "text",
+          "type": "textarea",
           "id": "tailwindheader",
           "label": "Style Header Container",
-          "default": "mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white px-3 py-2"
+          "default": "text-2xl font-bold text-gray-900 px-3 py-2"
         }
       ]
     },
@@ -102,10 +108,10 @@
           "content": "Tailwind Styling Classes"
         },
         {
-          "type": "text",
+          "type": "textarea",
           "id": "tailwindtext",
           "label": "Style Text Container",
-          "default": "mb-3 font-normal text-gray-700 dark:text-gray-400 px-3 py-2"
+          "default": "text-xl text-gray-700 px-3 py-2"
         }
       ]
     },
@@ -130,10 +136,10 @@
           "content": "Tailwind Styling Classes"
         },
         {
-          "type": "text",
+          "type": "textarea",
           "id": "tailwindbutton",
           "label": "Style Button Container",
-          "default": "items-center px-3 py-2 text-sm font-medium text-center text-white bg-gray-700 rounded-lg hover:bg-gray-800 focus:ring-4 focus:outline-none focus:ring-blue-300"
+          "default": "inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-gray-700 rounded-lg hover:bg-gray-900"
         }
       ]
     }
