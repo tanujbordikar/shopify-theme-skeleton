@@ -9,15 +9,15 @@
         {%- for block in section.blocks -%}
           {%- case block.type -%}
             {%- when 'heading' -%}
-              <div class="rich-text__heading rte inline-richtext">
+              <div class="rich-text__heading rte inline-richtext {{ block.settings.tailwindheader }}">
                 {{ block.settings.heading }}
               </div>
             {%- when 'text' -%}
-              <div class="rich-text__text rte">
+              <div class="rich-text__text {{ block.settings.tailwindtext }}">
                 {{ block.settings.text }}
               </div>
             {%- when 'button' -%}
-              <div class="rich-text__buttons">
+              <div class="rich-text__buttons  {{ block.settings.tailwindbutton }}">
                 {%- if block.settings.button_label != blank -%}
                   <a href="{{ block.settings.button_link }}">
                     {{- block.settings.button_label | escape -}}
@@ -73,6 +73,16 @@
           "id": "heading",
           "default": "Talk about your brand",
           "label": "Heading"
+        },
+        {
+          "type": "header",
+          "content": "Tailwind Styling Classes"
+        },
+        {
+          "type": "text",
+          "id": "tailwindheader",
+          "label": "Style Header Container",
+          "default": "mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white px-3 py-2"
         }
       ]
     },
@@ -86,6 +96,16 @@
           "id": "text",
           "default": "<p>Share information about your brand with your customers</p>",
           "label": "Text"
+        },
+        {
+          "type": "header",
+          "content": "Tailwind Styling Classes"
+        },
+        {
+          "type": "text",
+          "id": "tailwindtext",
+          "label": "Style Text Container",
+          "default": "mb-3 font-normal text-gray-700 dark:text-gray-400 px-3 py-2"
         }
       ]
     },
@@ -104,6 +124,16 @@
           "type": "url",
           "id": "button_link",
           "label": "Button Link"
+        },
+        {
+          "type": "header",
+          "content": "Tailwind Styling Classes"
+        },
+        {
+          "type": "text",
+          "id": "tailwindbutton",
+          "label": "Style Button Container",
+          "default": "items-center px-3 py-2 text-sm font-medium text-center text-white bg-gray-700 rounded-lg hover:bg-gray-800 focus:ring-4 focus:outline-none focus:ring-blue-300"
         }
       ]
     }
