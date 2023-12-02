@@ -45,27 +45,39 @@
   animation: 5s slide infinite linear;
 }
 
-{% comment %} .logos-slide img {
-  height: 50px;
-  width:auto;
+.logos-slide img {
   margin: 0 40px;
-} {% endcomment %}
+} 
+
+ @media screen and (max-width: 768px) {
+    .logos:before,
+    .logos:after {
+      width: 200px;
+    }
+
+    .logos-slide img {
+      height: 40px;
+      width:auto;
+      margin: 0 20px;
+    }
+  }
 
 </style>
 
 <div class="logos overflow-hidden py-[10px] bg-white whitespace-nowrap relative" >
+  {% capture sizes %}(max-width: {{ section.settings.logo_width | times: 2 }}px) 50vw, {{ section.settings.logo_width }}px{% endcapture %}
+  {% capture widths %}{{ section.settings.logo_width }}, {{ section.settings.logo_width | times: 1.5 | round }}, {{ section.settings.logo_width | times: 2 }}{% endcapture %}
+
   {% for block in section.blocks %}
   <div class="logos-slide inline-block">
         {%- assign logo_alt = block.settings.logo_alt | default: shop.name | escape -%}
-        {% capture sizes %}(max-width: {{ block.settings.logo_width | times: 2 }}px) 50vw, {{ block.settings.logo_width }}px{% endcapture %}
-        {% capture widths %}{{ block.settings.logo_width }}, {{ block.settings.logo_width | times: 1.5 | round }}, {{ block.settings.logo_width | times: 2 }}{% endcapture %}
         {{
           block.settings.logo
           | image_url: width: 100
           | image_tag:
             widths: widths,
             height: auto,
-            width: block.settings.logo_width,
+            width: section.settings.logo_width,
             alt: logo_alt,
             sizes: sizes,
             preload: true
@@ -74,23 +86,21 @@
   {% endfor %}
 
   {% for block in section.blocks %}
-  <div class="logos-slide inline-block">
-        {%- assign logo_alt = block.settings.logo_alt | default: shop.name | escape -%}
-        {% capture sizes %}(max-width: {{ block.settings.logo_width | times: 2 }}px) 50vw, {{ block.settings.logo_width }}px{% endcapture %}
-        {% capture widths %}{{ block.settings.logo_width }}, {{ block.settings.logo_width | times: 1.5 | round }}, {{ block.settings.logo_width | times: 2 }}{% endcapture %}
-        {{
-          block.settings.logo
-          | image_url: width: 100
-          | image_tag:
-            widths: widths,
-            height: auto,
-            width: block.settings.logo_width,
-            alt: logo_alt,
-            sizes: sizes,
-            preload: true
-        }}
-  </div>
-  {% endfor %}
+    <div class="logos-slide inline-block">
+          {%- assign logo_alt = block.settings.logo_alt | default: shop.name | escape -%}
+          {{
+            block.settings.logo
+            | image_url: width: 100
+            | image_tag:
+              widths: widths,
+              height: auto,
+              width: section.settings.logo_width,
+              alt: logo_alt,
+              sizes: sizes,
+              preload: true
+          }}
+    </div>
+    {% endfor %}
 
  
 </div>
@@ -122,6 +132,18 @@
 {
   "name": "Logo Carousel",
   "class": "shopify-brand-carousel",
+  "settings": [
+    {
+      "type": "range",
+      "id": "logo_width",
+      "min": 0,
+      "max": 100,
+      "step": 10,
+      "default": 50,
+      "unit": "px",
+      "label": "Set Logo width"
+    }
+  ],
   "blocks": [
     {
       "type": "image",
@@ -132,16 +154,6 @@
           "id": "logo",
           "label": "Logo",
           "info": "Select the logo image"
-        },
-        {
-          "type": "range",
-          "id": "logo_width",
-          "min": 0,
-          "max": 100,
-          "step": 10,
-          "default": 50,
-          "unit": "px",
-          "label": "Set Logo width"
         },
         {
           "type": "text",
