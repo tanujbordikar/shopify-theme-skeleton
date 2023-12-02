@@ -1,19 +1,20 @@
-{{ 'contact_form.css' | asset_url | stylesheet_tag }}
-
-<div class="contact-section">
-  <div class="container">
-    <div class="contact-wrapper">
-      <div class="contact-content">
-        <h1 class="contact-content__title">{{ section.settings.contact_title }}</h1>
+<!-- sections/contact-form.liquid -->
+<div class="contact-section {{ section.settings.contact_section_styles }}">
+  <div class="container {{ section.settings.container_styles }}">
+    <div class="contact-wrapper {{ section.settings.contact_wrapper_styles }}">
+      <div class="contact-content {{ section.settings.contact_content_styles }}">
+        <h1 class="contact-content__title {{ section.settings.contact_title_styles }} w-">
+          {{ section.settings.contact_title }}
+        </h1>
       </div>
 
       <div class="contact-form">
-        {%- form 'contact', id: 'ContactForm', class: 'contact-form__form' -%}
-          <div>
+        {%- form 'contact', id: 'ContactForm', class: 'contact-form__form {{ section.settings.contact_form_styles }}' -%}
+          <div class="contact-form__wrapper {{ section.settings.contact_form_wrapper_styles }}">
             <div class="contact__fields">
-              <div class="field">
+              <div class="field {{ section.settings.name_field_styles }}">
                 <input
-                  class="field__input contact-form__input"
+                  class="field__input contact-form__input {{ section.settings.input_styles }}"
                   autocomplete="name"
                   type="text"
                   id="ContactForm-name"
@@ -21,12 +22,12 @@
                   placeholder="Name"
                 >
               </div>
-              <div class="field field--with-error">
+              <div class="field field--with-error {{ section.settings.email_field_styles }}">
                 <input
                   autocomplete="email"
                   type="email"
                   id="ContactForm-email"
-                  class="field__input contact-form__input"
+                  class="field__input contact-form__input {{ section.settings.input_styles }}"
                   name="contact[email]"
                   spellcheck="false"
                   autocapitalize="off"
@@ -37,28 +38,28 @@
               </div>
             </div>
 
-            <div class="field">
+            <div class="field {{ section.settings.phone_field_styles }}">
               <input
                 type="tel"
                 id="ContactForm-phone"
-                class="field__input contact-form__input"
+                class="field__input contact-form__input {{ section.settings.input_styles }}"
                 autocomplete="tel"
                 pattern="[0-9\-]*"
                 value="{% if form.phone %}{{ form.phone }}{% elsif customer %}{{ customer.phone }}{% endif %}"
                 placeholder="Phone Number"
               >
             </div>
-            <div class="field">
+            <div class="field {{ section.settings.comment_field_styles }}">
               <textarea
                 rows="5"
                 id="ContactForm-body"
-                class="text-area field__input contact-form__textarea"
+                class="text-area field__input contact-form__textarea {{ section.settings.textarea_styles }}"
                 placeholder="Comment"
               >
                 {{- form.body -}}
               </textarea>
             </div>
-            <div class="contact-form__submit">
+            <div class="contact-form__submit {{ section.settings.submit_button_styles }}">
               {{ section.settings.send_button_text }}
             </div>
           </div>
@@ -83,6 +84,89 @@
       "label": "Send Button Text",
       "id": "send_button_text",
       "default": "Send Message"
+    },
+    {
+      "type": "header",
+      "content": "Apply Tailwind CSS Classes",
+      "info": "Note: Insert classes with space between them."
+    },
+    {
+      "type": "textarea",
+      "label": "Contact Section Styles",
+      "id": "contact_section_styles",
+      "default": "bg-[#f7f7f7] py-[40px] text-center"
+    },
+    {
+      "type": "textarea",
+      "label": "Container Styles",
+      "id": "container_styles"
+    },
+    {
+      "type": "textarea",
+      "label": "Contact Wrapper Styles",
+      "id": "contact_wrapper_styles",
+      "default": "flex flex-col items-center"
+    },
+    {
+      "type": "textarea",
+      "label": "Contact Content Styles",
+      "id": "contact_content_styles"
+    },
+    {
+      "type": "textarea",
+      "label": "Contact Title Styles",
+      "id": "contact_title_styles",
+      "default": "text-[2em] color-[#333]"
+    },
+    {
+      "type": "textarea",
+      "label": "Contact Form Styles",
+      "id": "contact_form_styles",
+      "default": "flex flex-col items-center"
+    },
+    {
+      "type": "textarea",
+      "label": "Contact Form Wrapper Styles",
+      "id": "contact_form_wrapper_styles",
+      "default": "flex flex-col items-center"
+    },
+    {
+      "type": "textarea",
+      "label": "Name Field Styles",
+      "id": "name_field_styles"
+    },
+    {
+      "type": "textarea",
+      "label": "Email Field Styles",
+      "id": "email_field_styles"
+    },
+    {
+      "type": "textarea",
+      "label": "Phone Field Styles",
+      "id": "phone_field_styles"
+    },
+    {
+      "type": "textarea",
+      "label": "Input Styles",
+      "id": "input_styles",
+      "default": "w-64 p-[10px] my-[8px] border border-[#ccc] rounded-lg md:w-96"
+    },
+    {
+      "type": "textarea",
+      "label": "Comment Field Styles",
+      "id": "comment_field_styles"
+    },
+    {
+      "type": "textarea",
+      "label": "Textarea Styles",
+      "id": "textarea_styles",
+      "default": "w-64 p-[10px] my-[8px] border border-[#ccc] rounded-lg md:w-96"
+    },
+    {
+      "type": "textarea",
+      "label": "Submit Button Styles",
+      "id": "submit_button_styles",
+      "default": "w-fit bg-[#4C148A] text-white py-[10px] px-[20px] rounded-lg text-[1.2em] mt-[10px]"
     }
   ],
   "presets": [
