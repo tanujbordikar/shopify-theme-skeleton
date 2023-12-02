@@ -64,69 +64,48 @@
 
 </style>
 
-<div class="logos overflow-hidden py-[10px] bg-white whitespace-nowrap relative" >
+<div class="logos overflow-hidden whitespace-nowrap relative {{ section.settings.style--logos }}" >
   {% capture sizes %}(max-width: {{ section.settings.logo_width | times: 2 }}px) 50vw, {{ section.settings.logo_width }}px{% endcapture %}
   {% capture widths %}{{ section.settings.logo_width }}, {{ section.settings.logo_width | times: 1.5 | round }}, {{ section.settings.logo_width | times: 2 }}{% endcapture %}
 
   {% for block in section.blocks %}
-  <div class="logos-slide inline-block">
-        {%- assign logo_alt = block.settings.logo_alt | default: shop.name | escape -%}
-        {{
-          block.settings.logo
-          | image_url: width: 100
-          | image_tag:
-            widths: widths,
-            height: auto,
-            width: section.settings.logo_width,
-            alt: logo_alt,
-            sizes: sizes,
-            preload: true
-        }}
-  </div>
+    {% if block.settings.logo != blank %}
+      <div class="logos-slide {{ section.settings.style--logo-slide }}">
+            {%- assign logo_alt = block.settings.logo_alt | default: shop.name | escape -%}
+            {{
+              
+              block.settings.logo
+              
+              | image_url: width: 100
+              | image_tag:
+                widths: widths,
+                height: auto,
+                width: section.settings.logo_width,
+                alt: logo_alt,
+                sizes: sizes
+            }}
+      </div>
+    {% endif %}
   {% endfor %}
 
   {% for block in section.blocks %}
-    <div class="logos-slide inline-block">
-          {%- assign logo_alt = block.settings.logo_alt | default: shop.name | escape -%}
-          {{
-            block.settings.logo
-            | image_url: width: 100
-            | image_tag:
-              widths: widths,
-              height: auto,
-              width: section.settings.logo_width,
-              alt: logo_alt,
-              sizes: sizes,
-              preload: true
-          }}
-    </div>
-    {% endfor %}
-
- 
+    {% if block.settings.logo != blank %}
+      <div class="logos-slide {{ section.settings.style--logo-slide }}">
+            {%- assign logo_alt = block.settings.logo_alt | default: shop.name | escape -%}
+            {{
+              block.settings.logo
+              | image_url: width: 100
+              | image_tag:
+                widths: widths,
+                height: auto,
+                width: section.settings.logo_width,
+                alt: logo_alt,
+                sizes: sizes
+            }}
+      </div>
+      {% endif %}
+  {% endfor %}
 </div>
-
-
-
-
-
-{% comment %} <div class="overflow-hidden bg-white whitespace-nowrap relative logos">
-<style>
-  @media screen and (max-width: 768px) {
-    .logos:before,
-    .logos:after {
-      width: 200px;
-    }
-
-    .logos-slide img {
-      height: 40px;
-      margin: 0 20px;
-    }
-  }
-</style>
- {% endcomment %}
-
-
-
 
 {% schema %}
 {
@@ -142,6 +121,22 @@
       "default": 50,
       "unit": "px",
       "label": "Set Logo width"
+    },
+    {
+      "type": "header",
+      "content": "Tailwind Styling Classes"
+    },
+    {
+      "type": "text",
+      "id": "style--logos",
+      "label": "Style Logo Container",
+      "default": "py-[10px] bg-white"
+    },
+    {
+      "type": "text",
+      "id": "style--logo-slide",
+      "label": "Style Logo Slide",
+      "default": "inline-block md:mx-3"
     }
   ],
   "blocks": [
@@ -159,7 +154,7 @@
           "type": "text",
           "id": "logo_alt",
           "label": "Alt Text",
-          "placeholder": "Alt text for accessibility"
+          "placeholder": "Alt text"
         }
       ]
     }
