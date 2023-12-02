@@ -1,50 +1,124 @@
 <style>
-  * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
-  @keyframes slide {
-    from {
-      transform: translateX(0);
+body {
+  background: #f2f2f2;
+}
+
+@keyframes slide {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-100%);
+  }
+}
+
+.logos {
+  overflow: hidden;
+  padding: 60px 0;
+  background: white;
+  white-space: nowrap;
+  position: relative;
+}
+
+.logos:before,
+.logos:after {
+  position: absolute;
+  top: 0;
+  width: 250px;
+  height: 100%;
+  content: "";
+  z-index: 2;
+}
+
+.logos:before {
+  left: 0;
+  background: linear-gradient(to left, rgba(255, 255, 255, 0), white);
+}
+
+.logos:after {
+  right: 0;
+  background: linear-gradient(to right, rgba(255, 255, 255, 0), white);
+}
+
+.logos:hover .logos-slide {
+  animation-play-state: paused;
+}
+
+.logos-slide {
+  display:inline-block;
+  animation: 6s slide infinite linear;
+}
+
+.logos-slide img {
+  height: 50px;
+  margin: 0 40px;
+}
+
+/* Responsive Styles */
+@media screen and (max-width: 768px) {
+
+    .logo-carousel:before,
+    .logo-carousel:after {
+        position: absolute;
+        top: 0;
+        width: 200px;
+        height: 100%;
+        content: "";
+        z-index: 2;
     }
 
-    to {
-      transform: translateX(-100%);
+    .logo-carousel__wrapper img {
+        height: 40px;
+        margin: 0 20px;
     }
-  }
+}
 </style>
 
-<div class="logo-carousel overflow-hidden py-8 bg-white whitespace-nowrap relative">
-  <div class="logo-carousel:before absolute top-0 left-0 w-[250px] h-full content '' z-2 bg-gradient-to-r from-transparent to-white"></div>
-  <div class="logo-carousel:after absolute top-0 right-0 w-96 h-full content '' z-2 bg-gradient-to-l from-transparent to-white"></div>
-
-  <div class="logo-carousel:hover .logo-carousel__wrapper animation-play-state:paused">
-    <div class="logo-carousel__wrapper inline-block animation:35s slide infinite linear">
-      {% for logo in section.blocks %}
-        <img
-          src="{{ logo.settings.logo | img_url: '300x' }}"
-          alt="{{ logo.settings.alt_text | escape }}"
-          loading="lazy"
-          class="h-12 mx-8"
-        >
-      {% endfor %}
-      {% for logo in section.blocks %}
-        <img
-          src="{{ logo.settings.logo | img_url: '300x' }}"
-          alt="{{ logo.settings.alt_text | escape }}"
-          loading="lazy"
-          class="h-12 mx-8"
-        >
-      {% endfor %}
+{% comment %} <div class="logo-carousel">
+  {% for logo in section.blocks %}
+    <div class="logo-carousel__wrapper">
+      <img
+        src="{{ logo.settings.logo | img_url: '300x' }}"
+        alt="{{ logo.settings.alt_text | escape }}"
+        loading="eager"
+      >
     </div>
+  {% endfor %}
+
+  {% for logo in section.blocks %}
+    <div class="logo-carousel__wrapper">
+      <img
+        src="{{ logo.settings.logo | img_url: '300x' }}"
+        alt="{{ logo.settings.alt_text | escape }}"
+        loading="eager"
+      >
+    </div>
+  {% endfor %}
+
+</div> {% endcomment %}
+
+<div class=logos>
+  {% for block in section.blocks %}
+  <div class="logos-slide">
+           {{ block.settings.logo | image_url : width: 50 | image_tag }}
   </div>
+  {% endfor %}
+  {% for block in section.blocks %}
+  <div class="logos-slide">
+           {{ block.settings.logo | image_url : width: 50 | image_tag }}
+  </div>
+  {% endfor %}
 </div>
 
 {% schema %}
 {
-  "name": "logo-carousel",
+  "name": "Logo Carousel",
   "class": "shopify-brand-carousel",
   "blocks": [
     {
@@ -68,7 +142,7 @@
   ],
   "presets": [
     {
-      "name": "brand-carousel"
+      "name": "Logo Carousel"
     }
   ]
 }
