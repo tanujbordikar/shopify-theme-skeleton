@@ -1,24 +1,22 @@
 <!-- sections/newsletter.liquid -->
 
-<div
-  class="{{ section.settings.section_container_styles }}"
->
-  <div class="{{ section.settings.inner_container_styles }}">
-    <div class="{{ section.settings.centering_styles }}">
-      <h2 class="{{ section.settings.title_styles }}">
+<div class="newsletter-section {{ section.settings.section_container_styles }}">
+  <div class="newsletter-inner-container {{ section.settings.inner_container_styles }}">
+    <div class="newsletter-centering {{ section.settings.centering_styles }}">
+      <h2 class="newsletter-title {{ section.settings.title_styles }}">
         {{ section.settings.newsletter_title }}
       </h2>
-      <p class="{{ section.settings.subtitle_styles }}">
+      <p class="newsletter-subtitle {{ section.settings.subtitle_styles }}">
         {{ section.settings.newsletter_subtitle }}
       </p>
       {% form 'customer' %}
-        <div class="{{ section.settings.input_container_styles }}">
-          <div class="{{ section.settings.input_wrapper_styles }}">
-            <div class="{{ section.settings.icon_container_styles }}">
+        <div class="newsletter-input-container {{ section.settings.input_container_styles }}">
+          <div class="newsletter-input-wrapper {{ section.settings.input_wrapper_styles }}">
+            <div class="newsletter-icon-container {{ section.settings.icon_container_styles }}">
               {% render 'icon-mail' %}
             </div>
             <input
-              class="{{ section.settings.input_styles }}"
+              class="newsletter-input {{ section.settings.input_styles }}"
               placeholder="{{ section.settings.newsletter_input_placeholder }}"
               type="email"
               name="contact[email]"
@@ -26,17 +24,17 @@
               required
             >
           </div>
-          <div class="{{ section.settings.button_container_styles }}">
+          <div class="newsletter-button-container {{ section.settings.button_container_styles }}">
             <button
               type="submit"
               name="commit"
-              class="{{ section.settings.button_styles }}"
+              class="newsletter-button {{ section.settings.button_styles }}"
             >
               {{ section.settings.newsletter_button_text }}
             </button>
           </div>
         </div>
-        <div class="{{ section.settings.privacy_policy_styles }}">
+        <div class="newsletter-privacy-policy {{ section.settings.privacy_policy_styles }}">
           {{ section.settings.newsletter_privacy_policy }}
         </div>
       {% endform %}
