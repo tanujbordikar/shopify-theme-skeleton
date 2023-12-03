@@ -8,7 +8,7 @@
   {% endif %}
 
   <div class="image-banner__text-wrapper {{ section.settings.image-banner__text-wrapper }}">
-    <h2 class="image-banner__title {{ section.settings.image-banner__title }}" style="color: {{ section.settings.color }};">{{ section.settings.title | escape }}</h2>
+    <h2 class="image-banner__title {{ section.settings.image-banner__title }}">{{ section.settings.title | escape }}</h2>
     <p class="image-banner__description {{ section.settings.image-banner__description }}">{{ section.settings.description }}</p>
     {% if section.blocks.size > 0 %}
       <div class="image-banner__buttons {{ section.settings.image-banner__buttons }}">
@@ -16,7 +16,6 @@
           <a
             href="{{ block.settings.url }}"
             class="image-banner__button {{ section.settings.image-banner__button }}"
-            style="background-color: {{ block.settings.background_color }}; color: {{ block.settings.color }}"
           >
             {{- block.settings.text -}}
           </a>
@@ -67,7 +66,7 @@
       "type": "text",
       "id": "image-banner__title",
       "label": "Text Title Style Section",
-      "default": "text-2xl font-bold md:flex-basis-full"
+      "default": "text-red-300 text-2xl font-bold md:flex-basis-full"
     },
     {
       "type": "text",
@@ -85,12 +84,7 @@
       "type": "text",
       "id": "image-banner__button",
       "label": "Text Single Button Style Section",
-      "default": "px-6 py-2 border border-solid rounded text-white no-underline inline-block"
-    },
-    {
-      "type": "color",
-      "id": "color",
-      "label": "Text Color"
+      "default": "px-6 py-2 border border-solid rounded text-white no-underline inline-block bg-black color-white"
     }
   ],
   "blocks": [
@@ -109,18 +103,6 @@
           "type": "url",
           "id": "url",
           "label": "Button Link"
-        },
-        {
-          "type": "color",
-          "id": "background_color",
-          "label": "Button Background Color",
-          "default": "#000"
-        },
-        {
-          "type": "color",
-          "id": "color",
-          "label": "Button Text Color",
-          "default": "#fff"
         }
       ]
     }
