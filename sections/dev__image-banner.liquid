@@ -1,7 +1,7 @@
 <!-- image-banner.liquid -->
-{{ 'image-banner.css' | asset_url | stylesheet_tag }}
+{{ 'dev__image-banner.css' | asset_url | stylesheet_tag }}
 
-<div class="image-banner"  style="background-color: {{ section.settings.background_color }};">
+<div class="image-banner" style="background-color: {{ section.settings.background_color }};">
   {% if section.settings.mobile_image %}
     <div class="image-banner__image-wrapper ">
       {{ section.settings.mobile_image | image_url: width: 700 | image_tag: class: 'image-banner__image' }}
@@ -9,7 +9,9 @@
   {% endif %}
 
   <div class="image-banner__text-wrapper">
-    <h2 class="image-banner__title" style="color: {{ section.settings.color }};">{{ section.settings.title | escape }}</h2>
+    <h2 class="image-banner__title" style="color: {{ section.settings.color }};">
+      {{ section.settings.title | escape }}
+    </h2>
     <p class="image-banner__description">{{ section.settings.description }}</p>
     {% if section.blocks.size > 0 %}
       <div class="image-banner__buttons">
@@ -29,7 +31,7 @@
 
 {% schema %}
 {
-  "name": "Image Banner",
+  "name": "Image Banner Display",
   "settings": [
     {
       "type": "image_picker",
@@ -87,7 +89,7 @@
   ],
   "presets": [
     {
-      "name": "Image Banner"
+      "name": "Image Banner Display"
     }
   ]
 }
