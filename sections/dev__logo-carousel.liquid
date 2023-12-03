@@ -18,11 +18,11 @@
   animation: 5s slide infinite linear;
 }
 
-.logos-slide img {
+{% comment %} .logos-slide img {
   margin: 0 40px;
 } 
-
- @media screen and (max-width: 768px) {
+ {% endcomment %}
+{% comment %}  @media screen and (max-width: 768px) {
 
     .logos-slide img {
       height: 40px;
@@ -31,7 +31,7 @@
       z-index:1;
     }
   }
-
+ {% endcomment %}
 </style>
 
 <div class="logos {{ section.settings.style--logos }} {{ section.settings.style--logo-before-properties }} {{ section.settings.style--logo-after-properties }}  ">
@@ -40,23 +40,24 @@
  {% comment %}  {% capture sizes %}(max-width: {{ section.settings.logo_width | times: 2 }}px) 50vw, {{ section.settings.logo_width }}px{% endcapture %}
   {% capture widths %}{{ section.settings.logo_width }}, {{ section.settings.logo_width | times: 1.5 | round }}, {{ section.settings.logo_width | times: 2 }}{% endcapture %}  {% endcomment %}
 
-  {% assign sizes = "(max-width: " | append: section.settings.logo_width | times: 2 | append: "px) 50vw, " | append: section.settings.logo_width | append: "px" %}
-  {% assign widths = section.settings.logo_width | append: ", " | append: section.settings.logo_width | times: 1.5 | round | append: ", " | append: section.settings.logo_width | times: 2 %}
+  {% comment %} {% assign sizes = "(max-width: " | append: section.settings.logo_width | times: 2 | append: "px) 50vw, " | append: section.settings.logo_width | append: "px" %}
+  {% assign widths = section.settings.logo_width | append: ", " | append: section.settings.logo_width | times: 1.5 | round | append: ", " | append: section.settings.logo_width | times: 2 %} {% endcomment %}
 
+  {% assign logo_image_classes = "logos__image " | append: section.settings.logos__image %}
 
   {% for block in section.blocks %}
     {% if block.settings.logo != blank %}
-      <div class="logos-slide {{ section.settings.style--logo-slide }}">
-            {%- assign logo_alt = block.settings.logo_alt | default: shop.name | escape -%}
+      <div class="logos__slide {{ section.settings.style--logo-slide }}">
+            
             {{
               block.settings.logo
-              
-              | image_url: width: 100
+              | image_url: width: 200
               | image_tag:
-                widths: widths,
                 width: section.settings.logo_width,
-                alt: logo_alt,
-                sizes: sizes
+                widths: section.settings.logo_widths,
+                alt: block.settings.logo_alt,
+                sizes: section.settings.logo_sizes,
+                class: logo_image_classes
             }}
       </div>
     {% endif %}
@@ -94,6 +95,24 @@
       "default": 50,
       "unit": "px",
       "label": "Set Logo width"
+    },
+    {
+      "type": "text",
+      "label": "Logo Widths",
+      "id": "logo_widths",
+      "default": "200, 300, 400"
+    },
+    {
+      "type": "text",
+      "label": "Logo Sizes",
+      "id": "logo_sizes",
+      "default": "(max-width: 300px) 50vw, 50px"
+    },
+    {
+      "type": "text",
+      "label": "Style Logo Image",
+      "id": "logos__image",
+      "default": "h-[40px] w-[auto] mx-[20px] my-[0] md:mx-[40px] md:my-[0]"
     },
     {
       "type": "header",
