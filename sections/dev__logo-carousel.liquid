@@ -1,6 +1,6 @@
 <style> 
 
-{% comment %} @keyframes slide {
+@keyframes slide {
   from {
     transform: translateX(0);
   }
@@ -8,16 +8,7 @@
   to {
     transform: translateX(-100%);
   }
-} {% endcomment %}
-
-{% comment %} .logos:hover .logos-slide {
-  animation-play-state: paused;
 }
- {% endcomment %}
-{% comment %} .logos-slide {
-  
-  animation: 5s slide infinite linear;
-} {% endcomment %}
 
 </style>
 
@@ -26,7 +17,7 @@
 
   {% for block in section.blocks %}
     {% if block.settings.logo != blank %}
-      <div class="logos-slide {{ section.settings.style--logo-slide }} animate-slide group-hover:pause group-hover:cursor-pointer">
+      <div class="logos-slide {{ section.settings.style--logo-slide }} animate-[slide_1s_linear_infinite] group-hover:pause group-hover:cursor-pointer">
           {%- assign logos__image_classes = "logos__image " | append: section.settings.logos__image -%}
             {{
               block.settings.logo
@@ -42,7 +33,7 @@
 
   {% for block in section.blocks %}
     {% if block.settings.logo != blank %}
-      <div class="logos-slide {{ section.settings.style--logo-slide }} animate-slide group-hover:pause group-hover:cursor-pointer">
+      <div class="logos-slide {{ section.settings.style--logo-slide }} animate-[slide_1s_linear_infinite] group-hover:pause group-hover:cursor-pointer">
           {%- assign logos__image_classes = "logos__image " | append: section.settings.logos__image -%}
             {{
               block.settings.logo
