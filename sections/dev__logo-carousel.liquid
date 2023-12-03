@@ -1,4 +1,4 @@
-<style>
+<style> 
 
 @keyframes slide {
   from {
@@ -15,6 +15,7 @@
 }
 
 .logos-slide {
+  
   animation: 5s slide infinite linear;
 }
 
@@ -35,29 +36,19 @@
 </style>
 
 <div class="logos {{ section.settings.style--logos }} {{ section.settings.style--logo-before-properties }} {{ section.settings.style--logo-after-properties }}  ">
-  
 
- {% comment %}  {% capture sizes %}(max-width: {{ section.settings.logo_width | times: 2 }}px) 50vw, {{ section.settings.logo_width }}px{% endcapture %}
-  {% capture widths %}{{ section.settings.logo_width }}, {{ section.settings.logo_width | times: 1.5 | round }}, {{ section.settings.logo_width | times: 2 }}{% endcapture %}  {% endcomment %}
-
-  {% comment %} {% assign sizes = "(max-width: " | append: section.settings.logo_width | times: 2 | append: "px) 50vw, " | append: section.settings.logo_width | append: "px" %}
-  {% assign widths = section.settings.logo_width | append: ", " | append: section.settings.logo_width | times: 1.5 | round | append: ", " | append: section.settings.logo_width | times: 2 %} {% endcomment %}
-
-  {% assign logo_image_classes = "logos__image " | append: section.settings.logos__image %}
 
   {% for block in section.blocks %}
     {% if block.settings.logo != blank %}
-      <div class="logos__slide {{ section.settings.style--logo-slide }}">
-            
+      <div class="logos-slide {{ section.settings.style--logo-slide }}">
+          {%- assign logos__image_classes = "logos__image " | append: section.settings.logos__image -%}
             {{
               block.settings.logo
-              | image_url: width: 200
+        
+              | image_url: width: 100
               | image_tag:
-                width: section.settings.logo_width,
-                widths: section.settings.logo_widths,
-                alt: block.settings.logo_alt,
-                sizes: section.settings.logo_sizes,
-                class: logo_image_classes
+                alt: section.settings.logo_alt,
+                class: logos__image_classes
             }}
       </div>
     {% endif %}
@@ -65,17 +56,15 @@
 
   {% for block in section.blocks %}
     {% if block.settings.logo != blank %}
-      <div class="logos__slide {{ section.settings.style--logo-slide }}">
-            
+      <div class="logos-slide {{ section.settings.style--logo-slide }}">
+          {%- assign logos__image_classes = "logos__image " | append: section.settings.logos__image -%}
             {{
               block.settings.logo
-              | image_url: width: 200
+              
+              | image_url: width: 100
               | image_tag:
-                width: section.settings.logo_width,
-                widths: section.settings.logo_widths,
-                alt: block.settings.logo_alt,
-                sizes: section.settings.logo_sizes,
-                class: logo_image_classes
+                alt: section.settings.logo_alt,
+                class: logos__image_classes
             }}
       </div>
     {% endif %}
@@ -88,36 +77,14 @@
   "class": "shopify-brand-carousel",
   "settings": [
     {
-      "type": "range",
-      "id": "logo_width",
-      "min": 0,
-      "max": 100,
-      "step": 10,
-      "default": 50,
-      "unit": "px",
-      "label": "Set Logo width"
-    },
-    {
       "type": "header",
       "content": "Tailwind Styling Classes"
     },
     {
       "type": "text",
-      "label": "Logo Widths",
-      "id": "logo_widths",
-      "default": "200, 300, 400"
-    },
-    {
-      "type": "text",
-      "label": "Logo Sizes",
-      "id": "logo_sizes",
-      "default": "(max-width: 300px) 50vw, 50px"
-    },
-    {
-      "type": "text",
       "label": "Style Logo Image",
       "id": "logos__image",
-      "default": "h-[40px] w-[auto] mx-[20px] my-[0] md:mx-[40px] md:my-[0]"
+      "default": "h-[40px] w-auto mx-[20px] my-[0] md:mx-[40px] md:my-[0] md:h-[60px] w-auto"
     },
     {
       "type": "text",
