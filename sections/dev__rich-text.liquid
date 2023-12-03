@@ -1,34 +1,27 @@
 <!-- Section: Rich-Text -->
-<div class="rich-text ">
-  <div
-    class="rich-text__content color-scheme-{{ section.settings.color_scheme }} rich-text__content--padding bg-gray-100"
-    style="padding-top: {{ section.settings.padding_top }}px; padding-bottom: {{ section.settings.padding_bottom }}px;background-color: {{ section.settings.background_color }};"
-  >
-    <div class="rich-text__wrapper rich-text__wrapper--{{ section.settings.desktop_content_position }}{% if section.settings.full_width %} rich-text__wrapper--full-width{% endif %}">
-      <div class="rich-text__blocks text-center">
-        {%- for block in section.blocks -%}
-          {%- case block.type -%}
-            {%- when 'heading' -%}
-              <div class="rich-text__heading rte inline-richtext {{ block.settings.tailwindheader }}">
-                {{ block.settings.heading }}
-              </div>
-            {%- when 'text' -%}
-              <div class="rich-text__text {{ block.settings.tailwindtext }}">
-                {{ block.settings.text }}
-              </div>
-            {%- when 'button' -%}
-              <div class="rich-text__buttons  {{ block.settings.tailwindbutton }}">
-                {%- if block.settings.button_label != blank -%}
-                  <a href="{{ block.settings.button_link }}">
-                    {{- block.settings.button_label | escape -}}
-                  </a>
-                {%- endif -%}
-              </div>
-          {%- endcase -%}
-        {%- endfor -%}
-      </div>
+<div class="rich-text {{ section.settings.rich-text_div }}">
+    <div class="rich-text__blocks">
+      {%- for block in section.blocks -%}
+        {%- case block.type -%}
+          {%- when 'heading' -%}
+            <div class="rich-text__heading {{ block.settings.tailwindheader }}">
+              {{ block.settings.heading }}
+            </div>
+          {%- when 'text' -%}
+            <div class="rich-text__text {{ block.settings.tailwindtext }}">
+              {{ block.settings.text }}
+            </div>
+          {%- when 'button' -%}
+            <div class="rich-text__buttons  {{ block.settings.tailwindbutton }}">
+              {%- if block.settings.button_label != blank -%}
+                <a href="{{ block.settings.button_link }}">
+                  {{- block.settings.button_label | escape -}}
+                </a>
+              {%- endif -%}
+            </div>
+        {%- endcase -%}
+      {%- endfor -%}
     </div>
-  </div>
 </div>
 
 {% schema %}
@@ -39,33 +32,13 @@
   "settings": [
     {
       "type": "header",
-      "content": "Padding"
+      "content": "Tailwing Styling"
     },
     {
-      "type": "range",
-      "id": "padding_top",
-      "min": 0,
-      "max": 100,
-      "step": 4,
-      "unit": "px",
-      "label": "Padding Top",
-      "default": 40
-    },
-    {
-      "type": "range",
-      "id": "padding_bottom",
-      "min": 0,
-      "max": 100,
-      "step": 4,
-      "unit": "px",
-      "label": "Padding Bottom",
-      "default": 40
-    },
-    {
-      "type": "color",
-      "id": "background_color",
-      "label": "Background Color",
-      "info": "Choose a background color for the section."
+      "type": "textarea",
+      "id": "rich-text_div",
+      "label": "Style Header Container",
+      "default": "px-5 py-5 bg-gray-100 text-center"
     }
   ],
   "blocks": [
