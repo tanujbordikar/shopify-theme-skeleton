@@ -1,9 +1,11 @@
 <!-- image-banner.liquid -->
 
 <div class="image-banner {{ section.settings.image-banner }}" >
+  {%- assign image_url_width = section.settings.image_url_width -%}
+  {%- assign image_tag_width = section.settings.image_tag_width -%}
   {% if section.settings.mobile_image %}
-    <div class="image-banner__image-wrapper flex-basis-1/2">
-      {{ section.settings.mobile_image | image_url: width: 700 | image_tag: class: 'image-banner__image w-full h-auto object-cover' }}
+    <div class="image-banner__image-wrapper">
+      {{ section.settings.mobile_image | image_url: width: image_url_width | image_tag: width: image_tag_width }}
     </div>
   {% endif %}
 
@@ -45,6 +47,18 @@
       "id": "description",
       "label": "Description",
       "default": "Description"
+    },
+    {
+      "type": "text",
+      "id": "image_url_width",
+      "label": "Image URL width",
+      "default": "700"
+    },
+    {
+      "type": "text",
+      "id": "image_tag_width",
+      "label": "Image Tag width",
+      "default": "800"
     },
     {
       "type": "header",
