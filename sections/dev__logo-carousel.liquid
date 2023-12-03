@@ -65,19 +65,20 @@
 
   {% for block in section.blocks %}
     {% if block.settings.logo != blank %}
-      <div class="logos-slide {{ section.settings.style--logo-slide }}">
-            {%- assign logo_alt = block.settings.logo_alt | default: shop.name | escape -%}
+      <div class="logos__slide {{ section.settings.style--logo-slide }}">
+            
             {{
               block.settings.logo
-              | image_url: width: 100
+              | image_url: width: 200
               | image_tag:
-                widths: widths,
                 width: section.settings.logo_width,
-                alt: logo_alt,
-                sizes: sizes
+                widths: section.settings.logo_widths,
+                alt: block.settings.logo_alt,
+                sizes: section.settings.logo_sizes,
+                class: logo_image_classes
             }}
       </div>
-      {% endif %}
+    {% endif %}
   {% endfor %}
 </div>
 
@@ -97,6 +98,10 @@
       "label": "Set Logo width"
     },
     {
+      "type": "header",
+      "content": "Tailwind Styling Classes"
+    },
+    {
       "type": "text",
       "label": "Logo Widths",
       "id": "logo_widths",
@@ -113,10 +118,6 @@
       "label": "Style Logo Image",
       "id": "logos__image",
       "default": "h-[40px] w-[auto] mx-[20px] my-[0] md:mx-[40px] md:my-[0]"
-    },
-    {
-      "type": "header",
-      "content": "Tailwind Styling Classes"
     },
     {
       "type": "text",
