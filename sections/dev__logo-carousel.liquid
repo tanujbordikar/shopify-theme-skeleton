@@ -1,11 +1,5 @@
 <style>
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
 @keyframes slide {
   from {
     transform: translateX(0);
@@ -16,32 +10,11 @@
   }
 }
 
-.logos:before,
-.logos:after {
-  position: absolute;
-  top: 0;
-  width: 250px;
-  height: 100%;
-  content: "";
-  z-index: 2;
-}
-
-.logos:before {
-  left: 0;
-  background: linear-gradient(to left, rgba(255, 255, 255, 0), white);
-}
-
-.logos:after {
-  right: 0;
-  background: linear-gradient(to right, rgba(255, 255, 255, 0), white);
-}
-
 .logos:hover .logos-slide {
   animation-play-state: paused;
 }
 
 .logos-slide {
-  display: inline-block;
   animation: 5s slide infinite linear;
 }
 
@@ -50,36 +23,37 @@
 } 
 
  @media screen and (max-width: 768px) {
-    .logos:before,
-    .logos:after {
-      width: 200px;
-    }
 
     .logos-slide img {
       height: 40px;
       width:auto;
       margin: 0 20px;
+      z-index:1;
     }
   }
 
 </style>
 
-<div class="logos overflow-hidden whitespace-nowrap relative {{ section.settings.style--logos }}" >
-  {% capture sizes %}(max-width: {{ section.settings.logo_width | times: 2 }}px) 50vw, {{ section.settings.logo_width }}px{% endcapture %}
-  {% capture widths %}{{ section.settings.logo_width }}, {{ section.settings.logo_width | times: 1.5 | round }}, {{ section.settings.logo_width | times: 2 }}{% endcapture %}
+<div class="logos {{ section.settings.style--logos }} {{ section.settings.style--logo-before-properties }} {{ section.settings.style--logo-after-properties }}  ">
+  
+
+ {% comment %}  {% capture sizes %}(max-width: {{ section.settings.logo_width | times: 2 }}px) 50vw, {{ section.settings.logo_width }}px{% endcapture %}
+  {% capture widths %}{{ section.settings.logo_width }}, {{ section.settings.logo_width | times: 1.5 | round }}, {{ section.settings.logo_width | times: 2 }}{% endcapture %}  {% endcomment %}
+
+  {% assign sizes = "(max-width: " | append: section.settings.logo_width | times: 2 | append: "px) 50vw, " | append: section.settings.logo_width | append: "px" %}
+  {% assign widths = section.settings.logo_width | append: ", " | append: section.settings.logo_width | times: 1.5 | round | append: ", " | append: section.settings.logo_width | times: 2 %}
+
 
   {% for block in section.blocks %}
     {% if block.settings.logo != blank %}
       <div class="logos-slide {{ section.settings.style--logo-slide }}">
             {%- assign logo_alt = block.settings.logo_alt | default: shop.name | escape -%}
             {{
-              
               block.settings.logo
               
               | image_url: width: 100
               | image_tag:
                 widths: widths,
-                height: auto,
                 width: section.settings.logo_width,
                 alt: logo_alt,
                 sizes: sizes
@@ -97,7 +71,6 @@
               | image_url: width: 100
               | image_tag:
                 widths: widths,
-                height: auto,
                 width: section.settings.logo_width,
                 alt: logo_alt,
                 sizes: sizes
@@ -130,7 +103,19 @@
       "type": "text",
       "id": "style--logos",
       "label": "Style Logo Container",
-      "default": "py-[10px] bg-white"
+      "default": "py-[10px] bg-white overflow-hidden whitespace-nowrap relative"
+    },
+    {
+      "type": "textarea",
+      "id": "style--logo-before-properties",
+      "label": "Style Logo's Before Properties",
+      "default": "before:absolute before:top-0 before:w-[200px] md:before:w-[250px] before:h-full before:content-[''] before:z-10 before:left-0 before:bg-gradient-to-l from-transparent to-white"
+    },
+    {
+      "type": "textarea",
+      "id": "style--logo-after-properties",
+      "label": "Style Logo's After Properties",
+      "default": "after:absolute after:top-0 after:w-[200px] md:after:w-[250px] after:h-full after:content-[''] after:z-10  after:right-0 after:bg-gradient-to-r from-transparent to-white"
     },
     {
       "type": "text",
