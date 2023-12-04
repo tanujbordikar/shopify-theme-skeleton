@@ -1,29 +1,30 @@
-<div class="cards__main {{ section.settings.cards__main }}">
-  <div class="card__main__div {{ section.settings.cards__main }} ">
-    <h2 class="card__main__title {{ section.settings.card__main__title }} "></h2>
+<div class="card__main {{ section.settings.card__main }}">
+  <div class="card__main__div {{ section.settings.card__main__div }} ">
+    <h2 class="card__main__title {{ section.settings.card__main__title }} ">{{ section.settings.section_title }}</h2>
     <p class="card__main__subtitle {{ section.settings.card__main__subtitle }} ">
+      {{ section.settings.section_subtitle }}
     </p>
   </div>
-  <div class="cards__block_div {{ section.settings.card__main__block_div }}">
+  <div class="card__block_div {{ section.settings.card__main__block_div }}">
     {% for block in section.blocks %}
-      <div class="card__main__block_div items-center bg-gray-50 rounded-lg shadow sm:flex dark:bg-gray-800 dark:border-gray-700">
-        {% if block.settings.card_link != blank%}
-        <a href="{{ block.settings.card_link }}" class="card__link">
-          {%- assign image_width = section.settings.image_width -%}
-          {%- assign image_height = section.settings.image_height -%}
-          {%- assign card_image_styles = section.settings.card_image_styles -%}
-          {{-
-            block.settings.card_image
-            | image_url: width: image_width, height: image_height
-            | image_tag: class: card_image_styles
-          -}}
-        </a>
-      {% endif %}
+      <div class="card__block_maindiv {{ block.settings.card__block_maindiv }} ">
+        {% if block.settings.card_link != blank and block.settings.card_image != blank %}
+          <a href="{{ block.settings.card_link }}" class="card__link">
+            {%- assign image_width = section.settings.image_width -%}
+            {%- assign image_height = section.settings.image_height -%}
+            {%- assign card_image_styles = section.settings.card_image_styles -%}
+            {{-
+              block.settings.card_image
+              | image_url: width: image_width, height: image_height
+              | image_tag: class: card_image_styles
+            -}}
+          </a>
+        {% endif %}
         <div class="p-5">
-          <h3 class="text-xl font-bold tracking-tight text-gray-900 dark:text-white">
-            <a href="#">Bonnie Green</a>
+          <h3 class="{{ block.settings.card__block_title_style }}">
+            {{ block.settings.card__block_title }}
           </h3>
-          <span class="text-gray-500 dark:text-gray-400">CEO & Web Developer</span>
+          <span class="{{ block.settings.card__block_subtitle_style }}">{{ block.settings.card__block_subtitle }}</span>
           <p class="mt-3 mb-4 font-light text-gray-500 dark:text-gray-400">
             Bonnie drives the technical strategy of the flowbite platform and brand.
           </p>
@@ -98,7 +99,7 @@
     {
       "type": "textarea",
       "label": "Card Section Styles",
-      "id": "cards__main",
+      "id": "card__main",
       "default": "bg-white dark:bg-gray-900 py-8 px-4 mx-auto max-w-screen-xl lg:py-16 lg:px-6"
     },
     {
@@ -122,7 +123,7 @@
     {
       "type": "textarea",
       "label": "Card Block Div Styles",
-      "id": "cards__block_div",
+      "id": "card__block_div",
       "default": "grid gap-8 mb-6 lg:mb-16 md:grid-cols-2"
     }
   ],
@@ -136,6 +137,46 @@
           "label": "Card Image",
           "id": "card_image",
           "info": "Select an image for the card"
+        },
+        {
+          "type": "text",
+          "label": "Card Link",
+          "id": "card_link",
+          "default": "/collections/all?discount=SAVE25"
+        },
+        {
+          "type": "text",
+          "label": "Card Title",
+          "id": "card__block_title",
+          "default": "John Micheal"
+        },
+        {
+          "type": "text",
+          "label": "Card Subtitle",
+          "id": "card__block_subtitle",
+          "default": "Web Developer and Designer"
+        },
+        {
+          "type": "header",
+          "content": "Tailwind Styling Classes"
+        },
+        {
+          "type": "textarea",
+          "label": "Card Block Styling",
+          "id": "card__block_maindiv",
+          "default": "items-center bg-gray-50 rounded-lg shadow sm:flex dark:bg-gray-800 dark:border-gray-700 "
+        },
+        {
+          "type": "textarea",
+          "label": "Card Block Title Styling",
+          "id": "card__block_title_style",
+          "default": "text-xl font-bold tracking-tight text-gray-900 dark:text-white"
+        },
+        {
+          "type": "textarea",
+          "label": "Card Block Subtitle Styling",
+          "id": "card__block_subtitle_style",
+          "default": "text-gray-500 dark:text-gray-400"
         }
       ]
     }
