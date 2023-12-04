@@ -395,7 +395,8 @@
             {
                 "type": "html",
                 "id": "tailwind_css",
-                "label": "Tailwind css"
+                "label": "Tailwind css",
+                "default": "@layer utilities {.pause { animation-play-state: paused;}}"
             }
         ]
     }
