@@ -1,12 +1,12 @@
 <footer class="footer {{ section.settings.footer__main }}">
   {% for block in section.blocks %}
-    <div class="footer__section">
+    <div class="footer__section {{ block.settings.footer__section }}">
       <input
         type="checkbox"
         id="footer-toggle-{{ forloop.index }}"
         class="footer__toggle-checkbox {{ block.settings.footer__toggle-checkbox }}"
       >
-      <label for="footer-toggle-{{ forloop.index }}" class="footer__toggle {{ block.settings.footer__toggle }}">
+      <label for="footer-toggle-{{ forloop.index }}" class="footer__heading {{ block.settings.footer__heading }}">
         {{- block.settings.heading -}}
       </label>
       <ul class="footer__links-list">
@@ -55,39 +55,27 @@
         },
         {
           "type": "textarea",
-          "id": "footer__toggle",
-          "label": "Style Footer Toggle",
-          "default": "text-2xl text-white font-semibold mb-5 tracking-wide r"
+          "id": "footer__section",
+          "label": "Style Footer Block Section",
+          "default": "w-full sm:w-1/2 md:w-1/4 lg:w-1/4 xl:w-1/4 p-2 mr-4 mb-4"
+        },
+        {
+          "type": "textarea",
+          "id": "footer__heading",
+          "label": "Style Footer Heading",
+          "default": "text-2xl text-white font-semibold mb-5 px-2 py-2"
         },
         {
           "type": "textarea",
           "id": "footer__link",
           "label": "Style Footer Links",
-          "default": "block text-white mb-3 no-underline"
+          "default": "margin-6"
         },
         {
           "type": "textarea",
           "id": "footer__toggle-checkbox",
           "label": "Style Footer Toggle Checkbox",
-          "default": " md:inline-block"
-        },
-        {
-          "type": "textarea",
-          "id": "footer__form",
-          "label": "Style Footer Form",
-          "default": "flex gap-4 "
-        },
-        {
-          "type": "textarea",
-          "id": "footer__input",
-          "label": "Style Footer Input",
-          "default": "p-4 border border-none rounded flex-grow-1 "
-        },
-        {
-          "type": "textarea",
-          "id": "footer__button",
-          "label": "Style Footer Button",
-          "default": " bg-purple-600 text-white border-none p-4 rounded cursor-pointer hover bg-purple-700"
+          "default": "display-none"
         }
       ]
     }
@@ -119,13 +107,31 @@
       "type": "textarea",
       "id": "footer__main",
       "label": "Style Footer Section",
-      "default": "bg-purple-800 text-white p-10 flex flex-wrap justify-between md:flex-col md:flex-basis-full md:p-0"
+      "default": " bg-purple-800 text-white p-8 flex flex-wrap justify-content-between  "
     },
     {
       "type": "textarea",
       "id": "footer__title",
       "label": "Style Footer Title",
       "default": "text-2xl font-semibold text-white mb-5 uppercase tracking-wide md:text-center"
+    },
+    {
+      "type": "textarea",
+      "id": "footer__form",
+      "label": "Style Footer Form",
+      "default": "flex gap-4 "
+    },
+    {
+      "type": "textarea",
+      "id": "footer__input",
+      "label": "Style Footer Input",
+      "default": "p-4 border-none rounded flex-grow-1 text-black"
+    },
+    {
+      "type": "textarea",
+      "id": "footer__button",
+      "label": "Style Footer Button",
+      "default": " bg-purple-600 text-white border-none p-4 rounded cursor-pointer hover bg-purple-700"
     }
   ],
   "presets": [
