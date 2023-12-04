@@ -14,7 +14,8 @@
   <!-- Upper Row Carousel -->
   {%- assign image_url_width = section.settings.image_url_width -%}
   {%- assign image_url_height = section.settings.image_url_height -%}
-  <div class="carousel__row {{ section.settings.carousel__row }} carousel__row--upper {{ block.settings.carousel__row--upper }}">
+  <div class="carousel__row {{ section.settings.carousel__row }}">
+    <div class="carousel__row--upper {{ block.settings.carousel__row--upper }}">
     {% for block in section.blocks %}
       {% if block.type == 'upper-image' %}
         {%- assign carousel__image_style = "carousel__image " | append: section.settings.carousel__image -%}
@@ -27,10 +28,12 @@
         </div>
       {% endif %}
     {% endfor %}
+    </div>
   </div>
 
   <!-- Lower Row Carousel -->
-  <div class="carousel__row {{ section.settings.carousel__row }} carousel__row--lower {{ block.settings.carousel__row--lower}}">
+  <div class="carousel__row {{ section.settings.carousel__row }}">
+    <div class="carousel__row--lower {{ block.settings.carousel__row--lower }}">
     {% for block in section.blocks %}
       {% if block.type == 'lower-image' %}
         {%- assign carousel__image_style = "carousel__image " | append: section.settings.carousel__image -%}
@@ -43,6 +46,7 @@
         </div>
       {% endif %}
     {% endfor %}
+    </div>
   </div>
 </div>
 
