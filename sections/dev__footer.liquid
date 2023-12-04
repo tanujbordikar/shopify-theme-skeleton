@@ -23,8 +23,14 @@
       {{ section.settings.newsletter_heading }}
     </p>
     <form class="footer__form {{ section.settings.footer__form }}">
-      <input type="email" placeholder="{{ section.settings.email_placeholder }}" class="footer__input {{ section.settings.footer__input }}">
-      <button type="submit" class="footer__button {{ section.settings.footer__button }}">{{ section.settings.button_text }}</button>
+      <input
+        type="email"
+        placeholder="{{ section.settings.email_placeholder }}"
+        class="footer__input {{ section.settings.footer__input }}"
+      >
+      <button type="submit" class="footer__button {{ section.settings.footer__button }}">
+        {{ section.settings.button_text }}
+      </button>
     </form>
   </div>
 </footer>
@@ -63,19 +69,19 @@
           "type": "textarea",
           "id": "footer__heading",
           "label": "Style Footer Heading",
-          "default": "text-2xl text-white font-semibold mb-5 px-2 py-2"
+          "default": "text-2xl text-white font-semibold mb-5"
         },
         {
           "type": "textarea",
           "id": "footer__link",
           "label": "Style Footer Links",
-          "default": "margin-6"
+          "default": "m-2"
         },
         {
           "type": "textarea",
           "id": "footer__toggle-checkbox",
           "label": "Style Footer Toggle Checkbox",
-          "default": "display-none"
+          "default": "inline-block md:hidden"
         }
       ]
     }
@@ -131,7 +137,7 @@
       "type": "textarea",
       "id": "footer__button",
       "label": "Style Footer Button",
-      "default": " bg-purple-600 text-white border-none p-4 rounded cursor-pointer hover bg-purple-700"
+      "default": " bg-purple-400 text-white border-none p-4 rounded cursor-pointer hover:bg-purple-500"
     }
   ],
   "presets": [
