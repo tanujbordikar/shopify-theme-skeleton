@@ -30,10 +30,10 @@
           {%- assign image_url_width = section.settings.image_url_width -%}
           {%- assign image_tag_width = section.settings.image_tag_width -%}
           <div class="featured-collection__card-img_tag {{ block.settings.featured-collection__card-img_tag }}">
-            {% if block.settings.image %}
+            {% if block.settings.image != blank %}
               {{ block.settings.image | image_url: width: image_url_width | image_tag: width: image_tag_width }}
             {% else %}
-              {{ 'product-1' | placeholder_svg_tag }}
+              {{ 'image' | placeholder_svg_tag }}
             {% endif %}
           </div>
           <div class="featured-collection__deal-tag {{ block.settings.featured-collection__deal-tag }}">DEAL - {{ block.settings.deal }}</div>
