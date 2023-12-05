@@ -9,16 +9,16 @@
       <label for="footer-toggle-{{ forloop.index }}" class="footer__heading {{ block.settings.footer__heading }}">
         {{- block.settings.heading -}}
       </label>
-      <ul class="footer__links-list">
+      <ul class="footer__links-list {{ block.settings.footer__links-list_ul }} ">
         {% for link in linklists[block.settings.menu].links %}
-          <li class="footer__link-item">
+          <li class="footer__link-item {{ block.settings.footer__links-list_li }}">
             <a href="{{ link.url }}" class="footer__link {{ block.settings.footer__link }}">{{ link.title }}</a>
           </li>
         {% endfor %}
       </ul>
     </div>
   {% endfor %}
-  <div class="footer__section footer__section--newsletter">
+  <div class="footer__section footer__section--newsletter {{ section.settings.footer__section--newsletter }}">
     <p class="footer__title footer__title--common {{ section.settings.footer__title }}">
       {{ section.settings.newsletter_heading }}
     </p>
@@ -73,6 +73,18 @@
         },
         {
           "type": "textarea",
+          "id": "footer__links-list_ul",
+          "label": "Style Footer List",
+          "default": "p-2"
+        },
+        {
+          "type": "textarea",
+          "id": "footer__links-list_li",
+          "label": "Style Footer List Items",
+          "default": "p-2"
+        },
+        {
+          "type": "textarea",
           "id": "footer__link",
           "label": "Style Footer Links",
           "default": "m-2"
@@ -114,6 +126,12 @@
       "id": "footer__main",
       "label": "Style Footer Section",
       "default": " bg-purple-800 text-white p-8 flex flex-wrap justify-content-between  "
+    },
+    {
+      "type": "textarea",
+      "id": "footer__section--newsletter",
+      "label": "Style Footer Section Newsletter",
+      "default": " p-2 "
     },
     {
       "type": "textarea",
