@@ -829,6 +829,10 @@ video {
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
 }
 
+.animate-\[blink_1s_infinite\] {
+  animation: blink 1s infinite;
+}
+
 .animate-\[slide_5s_linear_infinite\] {
   animation: slide 5s linear infinite;
 }
