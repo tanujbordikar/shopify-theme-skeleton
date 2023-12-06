@@ -1,8 +1,4 @@
 {%- style -%}
-  .blinking_circle {
-    animation: blink 1s infinite;
-  }
-
   @keyframes blink {
     0%,
     100% {
@@ -79,7 +75,7 @@
       "type": "text",
       "id": "notification__blinking_circle",
       "label": "Style Blinking Circle",
-      "default": "inline-block h-2 w-2 md:h-3 md:w-3 bg-purple-300 rounded-full mr-1"
+      "default": "inline-block h-2 w-2 md:h-3 md:w-3 bg-purple-300 rounded-full mr-1 animate-[blink_1s_infinite]"
     },
     {
       "type": "text",
