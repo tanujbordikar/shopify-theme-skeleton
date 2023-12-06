@@ -1,7 +1,7 @@
 <div class="{{ section.settings.timeline__main_section }}">
   <div class="{{ section.settings.timeline__section }}">
     {% for block in section.blocks %}
-      <ol>
+      <ol class="timeline__main_ol_list_style {{ block.settings.timeline__main_ol_list_style }}">
         <li class="timeline__main_list_style {{ block.settings.timeline__main_list_style }}">
           <div
             class="timeline__main_line_style {{ block.settings.timeline__main_line_style }}"
@@ -33,13 +33,13 @@
       "type": "textarea",
       "id": "timeline__main_section",
       "label": "Main Section Styling",
-      "default": "bg-blue-100 p-4"
+      "default": "bg-blue-100 p-5"
     },
     {
       "type": "textarea",
       "id": "timeline__section",
       "label": "Section Styling",
-      "default": "bg-blue-100 p-4 relative border-s border-gray-200 dark:border-gray-700"
+      "default": "relative border-s border-gray-200 dark:border-gray-700"
     }
   ],
   "blocks": [
@@ -69,6 +69,12 @@
           "type": "header",
           "content": "Tailwind Styling Classes"
         },
+        {
+            "type": "textarea",
+            "id": "timeline__main_ol_list_style",
+            "label": "Ordered List Styling",
+            "default": "p-1"
+          },
         {
           "type": "textarea",
           "id": "timeline__main_list_style",
