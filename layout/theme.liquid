@@ -25,7 +25,15 @@
     {% render 'meta-tags' %}
     {% if settings.tailwind_enabled %}
       {% if request.design_mode %}
-        <script src="{{ 'tailwind.min.js' | asset_url }}" defer="defer"></script>
+        <script>
+          document.addEventListener("DOMContentLoaded", function() {
+            document.body.style.opacity = "1";
+          });
+        </script>
+        
+        {% # theme-check-disable %}
+        <script src="https://cdn.tailwindcss.com"></script>
+        {% # theme-check-enable %}
         <script>
           document.addEventListener('DOMContentLoaded', function() {
             {{ settings.tailwind_config }}
@@ -76,7 +84,7 @@
     {% endstyle %}
   </head>
 
-  <body>
+  <body {% if settings.tailwind_enabled and request.design_mode %}style="opacity:0;transition:0.1s ease;"{% endif %}>
     <a class="skip-to-content-link button visually-hidden" href="#MainContent">
       {{ 'accessibility.skip_to_text' | t }}
     </a>
