@@ -9,7 +9,7 @@
     {% for block in section.blocks %}
       <div class="card__block_maindiv {{ block.settings.card__block_maindiv }} ">
         {% if block.settings.card_link != blank and block.settings.card_image != blank %}
-          <a href="{{ block.settings.card_link }}" class="card__link">
+          <a href="{{ block.settings.card_link }}" class="card__link {{ block.settings.card_link_style }}">
             {%- assign image_width = section.settings.image_width -%}
             {%- assign image_height = section.settings.image_height -%}
             {%- assign card_image_styles = section.settings.card_image_styles -%}
@@ -20,7 +20,7 @@
             -}}
           </a>
         {% endif %}
-        <div class="p-5">
+        <div class="{{ block.settings.card__block_style }}">
           <h3 class="{{ block.settings.card__block_title_style }}">
             {{ block.settings.card__block_title }}
           </h3>
@@ -183,6 +183,18 @@
           "label": "Card Block Styling",
           "id": "card__block_maindiv",
           "default": "items-center bg-gray-50 rounded-lg shadow sm:flex dark:bg-gray-800 dark:border-gray-700 m-6 "
+        },
+        {
+          "type": "textarea",
+          "label": "Card Block Text Div Styling",
+          "id": "card__block_style",
+          "default": "p-5"
+        },
+        {
+          "type": "textarea",
+          "label": "Card Block Link Styling",
+          "id": "card_link_style",
+          "default": "items-center"
         },
         {
           "type": "textarea",
