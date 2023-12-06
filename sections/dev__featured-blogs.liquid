@@ -6,11 +6,12 @@
     {{ section.settings.heading }}
   </h1>
 
-  <div class="blog-posts columns-{{ section.settings.columns_desktop }}">
+  <div class="blog-posts columns-{{ section.settings.columns_desktop }} {{ section.settings.blog-posts }}">
     {% for article in blog.articles limit: section.settings.post_limit %}
       <article class="blog-post {{ section.settings.color_scheme }} {{ section.settings.blog_post_styles }}">
         {% if section.settings.show_image and article.image %}
-          {{ article.image | image_url: 'master' | image_tag: article.title }}
+          {% assign blog-post__image_classes = section.settings.blog-post__image %}
+          {{ article.image | image_url: width: 2000 | image_tag: class: blog-post__image_classes }}
         {% endif %}
 
         <h1 class="blog-post__title {{ section.settings.article_title_styles }}">
@@ -39,7 +40,7 @@
 
   {% if section.settings.show_view_all %}
     <a href="{{ blog.url }}" class="featured-blog__view-all {{ section.settings.view_all_styles }}">
-      {{- section.settings.view_all_text -}}
+      {{ section.settings.view_all_text }}
     </a>
   {% endif %}
 </div>
@@ -56,7 +57,14 @@
     {
       "type": "textarea",
       "label": "Featured Blog Section Styles",
-      "id": "featured_blog_styles"
+      "id": "featured_blog_styles",
+      "default": "mx-6 my-2  md:mx-10 md:my-4 flex flex-col"
+    },
+    {
+      "type": "textarea",
+      "label": "Blog Posts",
+      "id": "blog-posts",
+      "default": "flex flex-col gap-4 md:block md:gap-4"
     },
     {
       "type": "inline_richtext",
@@ -67,12 +75,14 @@
     {
       "type": "textarea",
       "label": "Heading Styles",
-      "id": "heading_styles"
+      "id": "heading_styles",
+      "default": "text-2xl md:text-3xl font-semibold capitalize mb-4"
     },
     {
       "type": "textarea",
       "label": "Article Title Styles",
-      "id": "article_title_styles"
+      "id": "article_title_styles",
+      "default": "font-bold md:text-lg mt-2 md:mt-1"
     },
     {
       "type": "blog",
@@ -135,7 +145,8 @@
     {
       "type": "textarea",
       "label": "Blog Post Styles",
-      "id": "blog_post_styles"
+      "id": "blog_post_styles",
+      "default": "bg-gray-100 p-3"
     },
     {
       "type": "checkbox",
@@ -157,28 +168,39 @@
     },
     {
       "type": "textarea",
+      "label": "Blog Image Styles",
+      "id": "blog-post__image",
+      "default": "w-full h-[150px] md:h-[200px] object-cover"
+    },
+    {
+      "type": "textarea",
       "label": "Date Styles",
-      "id": "date_styles"
+      "id": "date_styles",
+      "default": "text-xs md:text-sm"
     },
     {
       "type": "textarea",
       "label": "Author Styles",
-      "id": "author_styles"
+      "id": "author_styles",
+      "default": "text-sm font-semibold"
     },
     {
       "type": "textarea",
       "label": "Content Styles",
-      "id": "content_styles"
+      "id": "content_styles",
+      "default": "text-gray-600 mt-2 text-sm md:text-base"
     },
     {
       "type": "textarea",
       "label": "Read More Link Styles",
-      "id": "read_more_styles"
+      "id": "read_more_styles",
+      "default": "text-xs md:text-sm underline text-blue-900 hover:text-blue-600"
     },
     {
       "type": "textarea",
       "label": "View All Link Styles",
-      "id": "view_all_styles"
+      "id": "view_all_styles",
+      "default": "text-sm md:text-base font-semibold py-1 bg-blue-300 w-fit mx-auto px-2 rounded-lg hover:bg-blue-400 hover:cursor-pointer mt-5"
     },
     {
       "type": "checkbox",
