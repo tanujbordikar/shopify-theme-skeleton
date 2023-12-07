@@ -40,8 +40,8 @@
         <h3 class="featured-collection__title {{ block.settings.featured-collection__title }}">{{ block.settings.title }}</h3>
         <p class="featured-collection__description {{ block.settings.featured-collection__description }}">{{ block.settings.description }}</p>
         <p class="featured-collection__price {{ block.settings.featured-collection__price }}">
-          €{{ block.settings.price }}
-          <span class="featured-collection__strikePrice {{ block.settings.featured-collection__strikePrice }}"><s>€{{ block.settings.strikeThroughPrice }}</s></span>
+          {{ section.settings.product_currency }} {{ block.settings.price }}
+          <span class="featured-collection__strikePrice {{ block.settings.featured-collection__strikePrice }}"><s>{{ section.settings.product_currency }} {{ block.settings.strikeThroughPrice }}</s></span>
         </p>
       </div>
     {% endfor %}
@@ -99,6 +99,12 @@
       "label": "Tags (Comma Separated)",
       "id": "tags",
       "default": "all,multivitamin,wellness_beauty,single_support,kids"
+    },
+    {
+      "type": "text",
+      "id": "product_currency",
+      "label": "Product Currency",
+      "default": "$"
     },
     {
       "type": "header",
