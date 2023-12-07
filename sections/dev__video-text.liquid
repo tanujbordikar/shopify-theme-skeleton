@@ -1,206 +1,180 @@
-<!-- sections/video-text-section.liquid -->
-<div class="video-text-section {{ section.settings.section_styles }}">
-  <div class="video-text-section__video-container {{ section.settings.video_container_styles }}">
-    <!-- Video iframe with play icon -->
-    <div class="video-text-section__video-overlay {{ section.settings.video_overlay_styles }}">
-      <iframe
-        src="{{ section.settings.frame_video_url }}"
-        frameborder="0"
-        allowfullscreen
-        class="video-text-section__video-frame {{ section.settings.video_frame_styles }}"
-      ></iframe>
-      <div class="video-text-section__play-icon-container {{ section.settings.play_icon_container_styles }}">
-        <svg
-          class="video-text-section__play-icon {{ section.settings.play_icon_styles }}"
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 24 24"
-        >
-          <path d="M3 22v-20l18 10-18 10z"/>
-        </svg>
-      </div>
-    </div>
-    <!-- End Video iframe with play icon -->
+<!-- video-text-section.liquid -->
 
-    <!-- Modal for the Main video -->
-    <div class="video-text-section__video-modal {{ section.settings.modal_styles }}" id="video-modal">
-      <iframe
-        src="{{ section.settings.main_video_url }}"
-        frameborder="0"
-        allowfullscreen
-        class="video-text-section__modal-frame {{ section.settings.modal_frame_styles }}"
-      ></iframe>
-      <button class="video-text-section__close-modal {{ section.settings.close_button_styles }}" onclick="closeModal()">
-        Close
-      </button>
-    </div>
+<div class="video-text-container {{ section.settings.video_text_container }}">
+  <!-- Video container -->
+  <div class="video-container {{ section.settings.video_container }}">
+
+    <video
+      class="video-container__video {{ section.settings.video_container_video }}"
+      controls
+      autoplay
+      loop>
+      <source src={{ section.settings.video_link }} />
+    </video>
   </div>
 
-  <div class="video-text-section__text-content {{ section.settings.text_content_styles }}">
-    <!-- Right half content -->
-    <h2 class="video-text-section__heading {{ section.settings.heading_styles }}">{{ section.settings.heading }}</h2>
-    <h3 class="video-text-section__sub-heading {{ section.settings.sub_heading_styles }}">
-      {{ section.settings.sub_heading }}
-    </h3>
-    <p class="video-text-section__paragraph {{ section.settings.paragraph_styles }}">
-      {{ section.settings.paragraph }}
-    </p>
-    <div class="video-text-section__link-section {{ section.settings.link_section_styles }}">
-      <a href="{{ section.settings.link_url }}" class="video-text-section__link {{ section.settings.link_styles }}">
-        {{- section.settings.link_url_text -}}
-      </a>
-    </div>
+  <!-- Text container -->
+  <div class="text-container {{ section.settings.text_container }}">
+    {% for block in section.blocks %}
+      {% case block.type %}
+        {% when 'heading' %}
+          <h2 class="text-container__heading {{ section.settings.text_container_heading }}">
+            {{ block.settings.heading }}
+          </h2>
+        {% when 'sub_heading' %}
+          <h3 class="text-container__sub-heading {{ section.settings.text_container_sub_heading }}">
+            {{ block.settings.sub_heading }}
+          </h3>
+        {% when 'paragraph' %}
+          <p class="text-container__paragraph {{ section.settings.text_container_paragraph }}">
+            {{ block.settings.paragraph }}
+          </p>
+        {% when 'button' %}
+          <a href={{ block.settings.button_link }} class="text-container__button {{ section.settings.text_container_button }}">
+            {{ block.settings.button_text }}
+          </a>
+      {% endcase %}
+    {% endfor %}
   </div>
 </div>
 
-<script>
-  document.addEventListener('DOMContentLoaded', function () {
-    function openModal() {
-      const scrollY = window.scrollY;
-      document.getElementById('video-modal').style.display = 'flex';
-      document.body.classList.add('modal-open');
-    }
-
-    function closeModal() {
-      document.getElementById('videoModal').style.display = 'none';
-      document.body.classList.remove('modal-open');
-      window.scrollTo(0, scrollY);
-    }
-
-    document.querySelector('.video-text-section__play-icon-container').addEventListener('click', openModal);
-    document.querySelector('.video-text-section__close-modal').addEventListener('click', closeModal);
-  });
-</script>
-
 {% schema %}
-{
-  "name": "Video with Text Overlay",
-  "settings": [
-    {
-      "type": "url",
-      "label": "Frame Video URL",
-      "id": "frame_video_url"
-    },
-    {
-      "type": "url",
-      "label": "Main Video URL",
-      "id": "main_video_url"
-    },
-    {
-      "type": "text",
-      "label": "Heading",
-      "id": "heading",
-      "default": "GEZOND LEVEN"
-    },
-    {
-      "type": "text",
-      "label": "Sub Heading",
-      "id": "sub_heading",
-      "default": "HET GEHEIM ZIT IN JE ROUTINE"
-    },
-    {
-      "type": "textarea",
-      "label": "Paragraph",
-      "id": "paragraph",
-      "default": "Elke dag supplementen slikken is best een uitdaging. Maar als het lekkere Yummygums zijn, houd je dat gemakkelijk vol. Plezier in je routine motiveert om goed voor jezelf te blijven zorgen."
-    },
-    {
-      "type": "url",
-      "label": "Link URL",
-      "id": "link_url"
-    },
-    {
-      "type": "text",
-      "label": "Link URL Text",
-      "id": "link_url_text",
-      "default": "Gummies Met Een Missie"
-    },
-
-    {
-      "type": "header",
-      "content": "Apply Tailwind CSS Classes",
-      "info": "Note: Insert classes with space between them."
-    },
-    {
-      "type": "textarea",
-      "label": "Heading Styles",
-      "id": "heading_styles"
-    },
-    {
-      "type": "textarea",
-      "label": "Sub Heading Styles",
-      "id": "sub_heading_styles"
-    },
-    {
-      "type": "textarea",
-      "label": "Paragraph Styles",
-      "id": "paragraph_styles"
-    },
-    {
-      "type": "textarea",
-      "label": "Section Styles",
-      "id": "section_styles"
-    },
-    {
-      "type": "textarea",
-      "label": "Video Container Styles",
-      "id": "video_container_styles"
-    },
-    {
-      "type": "textarea",
-      "label": "Video Overlay Styles",
-      "id": "video_overlay_styles"
-    },
-    {
-      "type": "textarea",
-      "label": "Video Frame Styles",
-      "id": "video_frame_styles"
-    },
-    {
-      "type": "textarea",
-      "label": "Play Icon Container Styles",
-      "id": "play_icon_container_styles"
-    },
-    {
-      "type": "textarea",
-      "label": "Play Icon Styles",
-      "id": "play_icon_styles"
-    },
-    {
-      "type": "textarea",
-      "label": "Modal Styles",
-      "id": "modal_styles"
-    },
-    {
-      "type": "textarea",
-      "label": "Modal Frame Styles",
-      "id": "modal_frame_styles"
-    },
-    {
-      "type": "textarea",
-      "label": "Close Button Styles",
-      "id": "close_button_styles"
-    },
-    {
-      "type": "textarea",
-      "label": "Text Content Styles",
-      "id": "text_content_styles"
-    },
-    {
-      "type": "textarea",
-      "label": "Link Section Styles",
-      "id": "link_section_styles"
-    },
-    {
-      "type": "textarea",
-      "label": "Link Styles",
-      "id": "link_styles"
-    }
-  ],
-  "presets": [
-    {
-      "category": "Custom",
-      "name": "Video with Text Overlay"
-    }
-  ]
-}
+  {
+    "name": "Video with Text",
+    "settings": [
+      {
+        "type": "video",
+        "id": "video_link",
+        "label": "Video Link"
+      },
+      {
+        "type": "header",
+        "content": "Apply Tailwind CSS Classes (If Needed)",
+        "info": "Note: Insert classes with space between them."
+      },
+      {
+        "type": "text",
+        "id": "video_text_container",
+        "label": "Video Text Container",
+        "default": "p-4 md:p-8 flex flex-col items-center justify-center md:flex-row"
+      },
+      {
+        "type": "text",
+        "id": "video_container",
+        "label": "Video Container",
+        "default": "w-full md:w-1/2 md:order-1"
+      },
+      {
+        "type": "text",
+        "id": "video_container_video",
+        "label": "Video",
+        "default": "w-full h-full rounded-lg"
+      },
+      {
+        "type": "text",
+        "id": "text_container",
+        "label": "Text Container",
+        "default": "w-full text-center md:w-1/2 md:order-2 p-4 md:p-8 py-10"
+      },
+      {
+        "type": "text",
+        "id": "text_container_heading",
+        "label": "Heading",
+        "default": "text-2xl md:text-4xl font-bold mb-4"
+      },
+      {
+        "type": "text",
+        "id": "text_container_sub_heading",
+        "label": "Sub Heading",
+        "default": "text-lg md:text-3xl text-gray-700 mb-4"
+      },
+      {
+        "type": "text",
+        "id": "text_container_paragraph",
+        "label": "Paragraph",
+        "default": "text-base md:text-lg text-gray-700 mb-4"
+      },
+      {
+        "type": "text",
+        "id": "text_container_button",
+        "label": "Button",
+        "default": "md:text-lg py-2 px-5 rounded-full border-2 border-slate-400 inline-block"
+      }
+    ],
+    "blocks": [
+      {
+        "name": "Heading",
+        "type": "heading",
+        "settings": [
+          {
+            "type": "text",
+            "label": "Heading",
+            "id": "heading",
+            "default": "GEZOND LEVEN"
+          }
+        ]
+      },
+      {
+        "name": "Sub Heading",
+        "type": "sub_heading",
+        "settings": [
+          {
+            "type": "text",
+            "label": "Sub Heading",
+            "id": "sub_heading",
+            "default": "HET GEHEIM ZIT IN JE ROUTINE"
+          }
+        ]
+      },
+      {
+        "name": "Paragraph",
+        "type": "paragraph",
+        "settings": [
+          {
+            "type": "text",
+            "label": "Paragraph",
+            "id": "paragraph",
+            "default": "Elke dag supplementen slikken is best een uitdaging. Maar als he lekkere Yummygums zijn, houd je dat gemakkelijk vol. Plezier in je  outine motiveert om goed voor jezelf te blijven zorgen."
+          }
+        ]
+      },
+      {
+        "name": "Button",
+        "type": "button",
+        "settings": [
+          {
+            "type": "text",
+            "label": "Button Text",
+            "id": "button_text",
+            "default": "Your Button"
+          },
+          {
+            "type": "url",
+            "label": "Button Link",
+            "id": "button_link"
+          }
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "name": "Video with Text",
+        "category": "Custom",
+        "blocks": [
+          {
+            "type": "heading"
+          },
+          {
+            "type": "sub_heading"
+          },
+          {
+            "type": "paragraph"
+          },
+          {
+            "type": "button"
+          }
+        ]
+      }
+    ]
+  }
 {% endschema %}
