@@ -1,4 +1,4 @@
-  <div class="color-{{ section.settings.color_scheme }} gradient isolate">
+<div class="collage_class {{ section.settings.collage_class }}">
   {% if section.settings.heading != blank %}
     <div class="collage-wrapper-title {{ section.settings.collage-wrapper-title }}">
         {{ section.settings.heading }}
@@ -35,19 +35,17 @@
                 </div>
                 {% when 'collection' %}
                 <div class="collection-card {{ block.settings.collection-card }}">
-                  <div class="collection">
                     {%- if block.settings.collection != blank -%}
                       {{ block.settings.collection | image_url: width: image_url_width | image_tag: width: image_tag_width }}
                     {% else %}
                       {{ 'image' | placeholder_svg_tag }}
                     {% endif %}
-                    <h3 class="collection__title">{{ block.settings.collection.title }}</h3>
-                    <p class="collection__description text-base">{{ block.settings.collection.description }}</p>
+                    <div class="collection__title {{ block.settings.collection__title }}">{{ block.settings.collection.title }}</div>
+                    <div class="collection__description {{ block.settings.collection__description }}">{{ block.settings.collection.description }}</div>
                     <!-- Display collection items or details as needed -->
                     <a href="{{ block.settings.collection.url }}" class="collection__button {{ block.settings.collection__button }}">
                       {{- block.settings.collection_text | default: block.settings.collection.title -}}
                     </a>
-                  </div>
                 </div>
                 {% when 'video' %}
                 <div class="video-card {{ block.settings.video-card }}">
@@ -76,54 +74,6 @@
       "label": "Heading"
     },
     {
-      "type": "select",
-      "id": "desktop_layout",
-      "options": [
-        {
-          "value": "left",
-          "label": "Left"
-        },
-        {
-          "value": "right",
-          "label": "Right"
-        }
-      ],
-      "default": "left",
-      "label": "Desktop Layout"
-    },
-    {
-      "type": "select",
-      "id": "mobile_layout",
-      "options": [
-        {
-          "value": "collage",
-          "label": "Collage"
-        },
-        {
-          "value": "column",
-          "label": "Column"
-        }
-      ],
-      "default": "column",
-      "label": "Mobile Layout"
-    },
-    {
-      "type": "select",
-      "id": "card_styles",
-      "options": [
-        {
-          "value": "none",
-          "label": "None"
-        },
-        {
-          "value": "product-card-wrapper",
-          "label": "Product Card Wrapper"
-        }
-      ],
-      "default": "product-card-wrapper",
-      "label": "Card Styles"
-    },
-    {
       "type": "text",
       "id": "image_url_width",
       "label": "Image URL width",
@@ -138,6 +88,12 @@
     {
       "type": "header",
       "content": "Styling"
+    },
+    {
+      "type": "textarea",
+      "id": "collage_class",
+      "label": "Collage Style Section",
+      "default": "bg-slate-100 gradient isolate"
     },
     {
       "type": "textarea",
@@ -270,6 +226,18 @@
         },
         {
           "type": "text",
+          "id": "collection__title",
+          "label": "Collection Title Style",
+          "default": "text-xl font-semibold"
+        },
+        {
+          "type": "text",
+          "id": "collection__description",
+          "label": "Collection Description Style",
+          "default": "text-lg"
+        },
+        {
+          "type": "text",
           "id": "collection__button",
           "label": "Collection Button Style Section",
           "default": "inline-block px-4 py-2 text-base text-center no-underline rounded-md transition duration-300 ease-in-out bg-green-600 text-white"
@@ -288,7 +256,10 @@
         {
           "type": "video_url",
           "id": "video_url",
-          "accept": ["youtube", "vimeo"],
+          "accept": [
+            "youtube",
+            "vimeo"
+          ],
           "default": "https://www.youtube.com/watch?v=_9VUPq3SxOc",
           "label": "Video URL",
           "info": "Enter the video URL"
