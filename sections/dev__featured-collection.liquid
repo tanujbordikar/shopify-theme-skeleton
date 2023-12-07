@@ -1,5 +1,3 @@
-{%- assign featured-collection__container_css = "flex overflow-x-auto" -%}
-
 <div class="featured-collection {{ section.settings.featured-collection }}">
   <div class="featured-collection__centered-content {{ section.settings.featured-collection__centered-content }}">
     <div class="featured-collection__feature-headers {{ section.settings.featured-collection__feature-headers }}">{{ section.settings.heading }}</div>
@@ -19,7 +17,7 @@
     </div>
   </div>
 
-  <div class="featured-collection__product-container {{ block.settings.featured-collection__product-container }} {{ featured-collection__container_css }}">
+  <div class="featured-collection__product-container {{ section.settings.featured-collection__product-container }}">
     {% for block in section.blocks %}
       <div
         class="featured-collection__product-card {{ block.settings.featured-collection__product-card }}" 
@@ -107,31 +105,31 @@
       "content": "Styling"
     },
     {
-      "type": "text",
+      "type": "textarea",
       "id": "featured-collection",
       "label": "Collection Style",
       "default": "w-90 mx-auto p-20 md:my-5 md:p-5"
     },
     {
-      "type": "text",
+      "type": "textarea",
       "id": "featured-collection__feature-headers",
       "label": "Heading Style",
       "default": "mb-4 text-4xl font-bold max-md:text-3xl"
     },
     {
-      "type": "text",
+      "type": "textarea",
       "id": "featured-collection__centered-content",
       "label": "Collections Content Style",
       "default": "mx-auto mb-10 text-center"
     },
     {
-      "type": "text",
+      "type": "textarea",
       "id": "featured-collection__view-all-link-section",
       "label": "View All Products Style",
       "default": "text-purple-700 font-semibold"
     },
     {
-      "type": "text",
+      "type": "textarea",
       "id": "featured-collection__tabsCSS",
       "label": "Category Tab Style",
       "default": "flex flex-wrap justify-center items-center my-4 py-0 list-none md:m-6 max-md:mx-auto max-md:p-0 max-md:w-full"
@@ -141,6 +139,12 @@
       "id": "featured-collection__tab-link",
       "label": "Single Category Tab Style",
       "default": "inline-block px-4 py-2 m-1 border border-gray-300 rounded bg-gray-100 text-sm text-center text-gray-700 transition duration-300 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:border-blue-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50 max-md:text-xs max-md:flex-grow max-md:overflow-hidden max-md:whitespace-nowrap max-md:overflow-ellipsis mdmax-:px-2 max-md:py-1"
+    },
+    {
+      "type": "textarea",
+      "id": "featured-collection__product-container",
+      "label": "Product Container Style",
+      "default": "flex overflow-x-auto flex-nowrap justify-start items-stretch mx-auto my-0 pb-[30px]"
     }
   ],
   "blocks": [
@@ -198,12 +202,6 @@
         {
           "type": "header",
           "content": "Stying"
-        },
-        {
-          "type": "textarea",
-          "id": "featured-collection__product-container",
-          "label": "Product Container Style",
-          "default": "flex flex-nowrap overflow-x-auto justify-start items-stretch mx-auto my-0 pb-[30px]"
         },
         {
           "type": "textarea",
