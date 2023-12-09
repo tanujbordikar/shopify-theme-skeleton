@@ -31,13 +31,6 @@
           </a>
         {% endif %}
       </div>
-
-      {% assign column_counter = column_counter | plus: 1 %}
-      {% if column_counter == 3 %}
-        {% assign column_counter = 0 %}
-        </div>
-        <div class="multi-column__container {{ section.settings.multi-column__container }}">
-      {% endif %}
     {% endfor %}
   </div>
 </div>
@@ -73,7 +66,7 @@
       "type": "text",
       "id": "multi-column__container",
       "label": "Style Multi-Column Container",
-      "default": "mt-7 md:mt-5 flex flex-col gap-5 md:gap-10 md:flex-row"
+      "default": "mt-7 md:mt-4 flex flex-wrap gap-4 "
     },
     {
       "type": "text",
