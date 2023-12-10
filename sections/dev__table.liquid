@@ -1,0 +1,40 @@
+{% for block in section.blocks %}
+{% endfor %}
+
+{% schema %}
+{
+  "name": "Table Display",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Tailwind Styling Classes"
+    },
+    {
+      "type": "textarea",
+      "id": "timeline__main_section",
+      "label": "Main Section Styling",
+      "default": "bg-blue-100 p-5"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "timeline_block",
+      "name": "Timeline",
+      "settings": [
+        {
+          "type": "textarea",
+          "id": "timeline__main_time",
+          "label": "Time",
+          "default": "August 2023"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "category": "Table",
+      "name": "Table Display"
+    }
+  ]
+}
+{% endschema %}
