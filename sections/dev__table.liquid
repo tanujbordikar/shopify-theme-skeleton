@@ -1,11 +1,13 @@
-<div class="relative overflow-x-auto">
-  <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
-    <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+<div class="table__maindiv {{ section.settings.table__maindiv }} ">
+  <table class="table__subdiv {{ section.settings.table__subdiv }} ">
+    <thead class="table__thead  {{ section.settings.table__thead }}">
       <tr>
-        <th scope="col" class="px-6 py-3">Product name</th>
-        <th scope="col" class="px-6 py-3">Color</th>
-        <th scope="col" class="px-6 py-3">Category</th>
-        <th scope="col" class="px-6 py-3">Price</th>
+        <th scope="col" class="table__trow {{ section.settings.table__trow }} ">
+          {{ section.settings.table__heading1 }}
+        </th>
+        <th scope="col" class="px-6 py-3">{{ section.settings.table__heading2 }}</th>
+        <th scope="col" class="px-6 py-3">{{ section.settings.table__heading3 }}</th>
+        <th scope="col" class="px-6 py-3">{{ section.settings.table__heading4 }}</th>
       </tr>
     </thead>
     <tbody>
@@ -28,14 +30,56 @@
   "name": "Table Display",
   "settings": [
     {
+      "type": "text",
+      "id": "table__heading1",
+      "label": "Table Heading First",
+      "default": "Product Name"
+    },
+    {
+      "type": "text",
+      "id": "table__heading2",
+      "label": "Table Heading Second",
+      "default": "Color"
+    },
+    {
+      "type": "text",
+      "id": "table__heading3",
+      "label": "Table Heading Third",
+      "default": "Category"
+    },
+    {
+      "type": "text",
+      "id": "table__heading4",
+      "label": "Table Heading Fourth",
+      "default": "Price"
+    },
+    {
       "type": "header",
       "content": "Tailwind Styling Classes"
     },
     {
       "type": "textarea",
-      "id": "timeline__main_section",
-      "label": "Main Section Styling",
-      "default": "bg-blue-100 p-5"
+      "id": "table__maindiv",
+      "label": "Main Table Section Styling",
+      "default": "relative overflow-x-auto p-5 "
+    },
+    {
+      "type": "textarea",
+      "id": "table__subdiv",
+      "label": "Sub Table Section Styling",
+      "default": "w-full text-sm text-left rtl:text-right text-gray-400 "
+    },
+    {
+      "type": "textarea",
+      "id": "table__thead",
+      "label": "Table Head Styling",
+      "default": "text-xs text-gray-300 uppercase bg-gray-700 "
+    },
+    {
+      "type": "textarea",
+      "id": "table__trow",
+      "label": "Table Row Styling",
+      "default": "px-6 py-3"
     }
   ],
   "blocks": [
