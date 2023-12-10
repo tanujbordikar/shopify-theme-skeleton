@@ -20,16 +20,17 @@
         </div>
         <div class="contact__email-field w-1/2">
           <input
-            autocomplete="email"
+            class="contact__style--input {{ section.settings.contact__style--input }}"
+            placeholder="Email"
             type="email"
             id="ContactForm-email"
-            class="contact__style--input {{ section.settings.contact__style--input }}"
             name="contact[email]"
             spellcheck="false"
             autocapitalize="off"
             value="{% if form.email %}{{ form.email }}{% elsif customer %}{{ customer.email }}{% endif %}"
             aria-required="true"
-            placeholder="Email"
+            autocomplete="email"
+            required
           >
         </div>
       </div>
@@ -40,10 +41,11 @@
           id="ContactForm-phone"
           class="contact__style--input {{ section.settings.contact__style--input }}"
           autocomplete="tel"
-          pattern="[0-9\-]*"
+          pattern="[0-9]{10}"
+          inputmode="numeric"
           value="{% if form.phone %}{{ form.phone }}{% elsif customer %}{{ customer.phone }}{% endif %}"
           placeholder="Phone Number"
-        >
+        >        
       </div>
       {% comment %} Third Row {% endcomment %}
       <div class="contact__message-field w-full mt-4">
@@ -56,9 +58,11 @@
                 {{- form.body -}}
               </textarea>
       </div>
-      <div class="contact__submit-button {{ section.settings.contact__submit-button }}">
+      <button
+        type="submit"
+        name="commit" class="contact__submit-button {{ section.settings.contact__submit-button }}">
         {{ section.settings.send_button_text }}
-      </div>
+      </button>
     {%- endform -%}
   </div>
 </div>
