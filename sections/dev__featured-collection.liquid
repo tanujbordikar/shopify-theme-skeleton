@@ -60,7 +60,7 @@
           {{ section.settings.product_currency }}
           {{ block.settings.price }}
           <span class="featured-collection__strikePrice {{ block.settings.featured-collection__strikePrice }}">
-            <s>
+            <s class="featured-collection__s-tag {{ block.settings.featured-collection__s-tag }}">
               {{ section.settings.product_currency }}
               {{ block.settings.strikeThroughPrice }}
             </s>
@@ -291,6 +291,11 @@
           "id": "featured-collection__price",
           "label": "Price Style",
           "default": "ml-3 font-bold text-black"
+        },
+        {
+          "type": "text",
+          "id": "featured-collection__s-tag",
+          "label": "Strike Tag Style"
         },
         {
           "type": "text",
