@@ -1,3 +1,7 @@
+<style>
+  .announcement__content.translate-x-full { transform: translateX(-100%); }
+</style>
+
 <div class="announcement" {{ block.shopify_attributes }}>
   <div class="announcement__wrapper relative overflow-hidden">
     <div
@@ -23,6 +27,17 @@
     </div>
   </div>
 </div>
+
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const announcementContent = document.querySelector('.announcement__content');
+    setInterval(() => {
+      announcementContent.classList.toggle('translate-x-full');
+    }, {{ section.settings.animation_duration | times: 1000 }});
+  });
+</script>
+
 
 {% schema %}
 {
@@ -67,15 +82,4 @@
 }
 {% endschema %}
 
-<style>
-  .announcement__content.translate-x-full { transform: translateX(-100%); }
-</style>
 
-<script>
-  document.addEventListener('DOMContentLoaded', function () {
-    const announcementContent = document.querySelector('.announcement__content');
-    setInterval(() => {
-      announcementContent.classList.toggle('translate-x-full');
-    }, {{ section.settings.animation_duration | times: 1000 }});
-  });
-</script>
