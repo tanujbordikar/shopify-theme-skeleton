@@ -1,15 +1,14 @@
-{% assign vertical_offset_for_trigger = 300 %}
-{% assign position_from_bottom = '6em' %}
-
+<section>
 <a id="BackToTop" href="#" title="Back to the top" class="back-to-top hide">
   <i class="arrow"></i>
 </a>
+</section>
 
 <script>
   (function() {
   function trackScroll() {
       var scrolled = window.pageYOffset;
-      var coords = {{ vertical_offset_for_trigger }};
+      var coords = {{ section.settings.vertical_offset_for_trigger }};
 
       if (scrolled > coords) {
       goTopBtn.classList.remove('hide');
@@ -45,7 +44,7 @@
 
     .back-to-top {
       position: fixed;
-      bottom: {{ position_from_bottom }};
+      bottom: {{ section.settings.position_from_bottom }};
       right: 0px;
       text-decoration: none;
       color: #7a7a7a;
@@ -68,3 +67,32 @@
       display: none !important;
     }
 </style>
+
+{% schema %}
+{
+  "name": "Back-to-Top Button",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "vertical_offset_for_trigger",
+      "label": "Vertical Offset for Triggering",
+      "default": "300"
+    },
+    {
+      "type": "text",
+      "id": "position_from_bottom",
+      "label": "Position from the Bottom",
+      "default": "4em"
+    }
+  ],
+  "presets": [
+    {
+      "category": "Custom",
+      "name": "Back to Top Button"
+    }
+  ]
+}
+{% endschema %}
+
