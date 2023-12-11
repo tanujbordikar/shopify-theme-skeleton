@@ -38,7 +38,9 @@
               class="card__button {{ section.settings.card_button_styles }}"
             >
               {{ block.settings.card_button_text }}
-              {% render 'icon-right-arrow' %}
+              <span class="card__button-icon {{ section.settings.card_button_icon_styles }}">
+                {% render 'icon-right-arrow' %}
+              </span>
             </a>
           {% endif %}
         </div>
@@ -133,7 +135,7 @@
       "type": "textarea",
       "label": "Card Button Icon Styles",
       "id": "card_button_icon_styles",
-      "default": "rtl:rotate-180 w-3.5 h-3.5 ms-2"
+      "default": "rtl:rotate-180 w-3 h-3 ms-2 mt-1 md:w-3.5 md:h-3.5"
     }
   ],
   "blocks": [
