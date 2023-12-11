@@ -1,0 +1,70 @@
+{% assign vertical_offset_for_trigger = 300 %}
+{% assign position_from_bottom = '6em' %}
+
+<a id="BackToTop" href="#" title="Back to the top" class="back-to-top hide">
+  <i class="arrow"></i>
+</a>
+
+<script>
+  (function() {
+  function trackScroll() {
+      var scrolled = window.pageYOffset;
+      var coords = {{ vertical_offset_for_trigger }};
+
+      if (scrolled > coords) {
+      goTopBtn.classList.remove('hide');
+      }
+      if (scrolled < coords) {
+      goTopBtn.classList.add('hide');
+      }
+  }
+
+  function backToTop() {
+      if (window.pageYOffset > 0) {
+      window.scrollBy(0, -80);
+      setTimeout(backToTop, 0);
+      }
+  }
+
+  var goTopBtn = document.querySelector('.back-to-top');
+
+  window.addEventListener('scroll', trackScroll);
+  goTopBtn.addEventListener('click', backToTop);
+  })();
+</script>
+
+<style>
+  .arrow {
+      display: inline-block;
+      width: 0;
+      height: 0;
+      border-left: 20px solid transparent;
+      border-right: 20px solid transparent;
+      border-bottom: 25px solid #000;
+    }
+
+    .back-to-top {
+      position: fixed;
+      bottom: {{ position_from_bottom }};
+      right: 0px;
+      text-decoration: none;
+      color: #7a7a7a;
+      background-color: #eee;
+      padding: 0.3em;
+      border-top-left-radius: 3px;
+      border-bottom-left-radius: 3px;
+      z-index: 60000;
+      transition: background-color 0.3s, color 0.3s;
+      border-radius: 10px;
+    }
+
+    .back-to-top:hover {
+      text-decoration: none;
+      color: #414141;
+      background-color: #ddd;
+    }
+
+    .hide {
+      display: none !important;
+    }
+</style>
