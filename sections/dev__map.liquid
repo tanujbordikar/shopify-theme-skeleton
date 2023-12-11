@@ -1,30 +1,23 @@
-<!-- sections/map.liquid -->
-<div class="map-section">
-  <div class="map-container" id="map-container"></div>
-</div>
+<section class="body-font relative text-gray-600">
+  <div class="absolute inset-0 bg-gray-300">
+    <iframe width="100%" height="100%" frameborder="0" marginheight="0" marginwidth="0" title="map" scrolling="no" src="https://maps.google.com/maps?width=100%&height=600&hl=en&q={{ section.settings.map_address }}&ie=UTF8&t={{ section.settings.default_map_type }}&z={{ section.settings.default_zoom }}&iwloc=B&output=embed"></iframe>
+  </div>
+  <div class="container mx-auto flex px-5 py-24">
+    <div class="relative flex flex-wrap rounded bg-white py-6 shadow-md mt-[100px]">
+      <div class="px-6 lg:w-1/2">
+        <h2 class="title-font text-xs font-semibold tracking-widest text-gray-900">{{ section.settings.map_address_heading }}</h2>
+        <p class="mt-1 flex">{{ section.settings.map_address }}</p>
+      </div>
+      <div class="mt-4 px-6 lg:mt-0 lg:w-1/2">
+        <h2 class="title-font text-xs font-semibold tracking-widest text-gray-900">{{ section.settings.email_address_heading }}</h2>
+        <a class="leading-relaxed text-indigo-500">{{ section.settings.email_address }}</a>
+        <h2 class="title-font mt-4 text-xs font-semibold tracking-widest text-gray-900">{{ section.settings.phone_number_heading }}</h2>
+        <p class="leading-relaxed">{{ section.settings.phone_number }}</p>
+      </div>
+    </div>
+  </div>
+</section>
 
-<script>
-  function initializeMap() {
-    var apiKey = '{{ section.settings.api_key }}';
-    var defaultLat = parseFloat('{{ section.settings.default_latitude }}') || 34.0522;
-    var defaultLng = parseFloat('{{ section.settings.default_longitude }}') || -118.2437;
-    var defaultZoom = '{{ section.settings.default_zoom | default: 10 }}';
-    var defaultMapType = '{{ section.settings.default_map_type | default: "roadmap" }}';
-
-    // Use the settings to initialize the map
-    var map = new google.maps.Map(document.getElementById('map-container'), {
-      center: { lat: defaultLat, lng: defaultLng },
-      zoom: defaultZoom,
-      mapTypeId: defaultMapType,
-    });
-  }
-
-  // Load the Google Maps API script
-  var script = document.createElement('script');
-  script.src = 'https://maps.googleapis.com/maps/api/js?key=' + apiKey + '&callback=initializeMap';
-  script.defer = true;
-  document.head.appendChild(script);
-</script>
 
 {% schema %}
 {
@@ -32,21 +25,39 @@
   "settings": [
     {
       "type": "text",
-      "id": "api_key",
-      "label": "Google Map API Key",
-      "default": "YOUR_API_KEY"
+      "id": "map_address_heading",
+      "label": "Address Heading",
+      "default": "ADDRESS"
     },
     {
       "type": "text",
-      "id": "default_latitude",
-      "label": "Default Latitude",
-      "default": "34.0522"
+      "id": "map_address",
+      "label": "Address",
+      "default": "Rooigemlaan 532  9000 Ghent, Belgium"
     },
     {
       "type": "text",
-      "id": "default_longitude",
-      "label": "Default Longitude",
-      "default": "-118.2437"
+      "id": "email_address_heading",
+      "label": "Email Heading",
+      "default": "EMAIL"
+    },
+    {
+      "type": "text",
+      "id": "email_address",
+      "label": "Enter your Email",
+      "default": "example@email.com"
+    },
+    {
+      "type": "text",
+      "id": "phone_number_heading",
+      "label": "Phone Number Heading",
+      "default": "PHONE"
+    },
+    {
+      "type": "text",
+      "id": "phone_number",
+      "label": "Phone Number",
+      "default": "123-456-7890"
     },
     {
       "type": "range",
@@ -55,7 +66,7 @@
       "min": 1,
       "max": 20,
       "step": 1,
-      "default": 10
+      "default": 14
     },
     {
       "type": "select",
@@ -63,36 +74,33 @@
       "label": "Default Map Type",
       "options": [
         {
-          "value": "roadmap",
-          "label": "Roadmap"
+          "value": "",
+          "label": "Map"
         },
         {
-          "value": "satellite",
+          "value": "k",
           "label": "Satellite"
         },
         {
-          "value": "hybrid",
+          "value": "h",
           "label": "Hybrid"
         },
         {
-          "value": "terrain",
+          "value": "p",
           "label": "Terrain"
         }
       ],
-      "default": "roadmap"
+      "default": "k"
+    },
+    {
+      "type": "header",
+      "content": "Tailwind Styling"
     }
   ],
   "presets": [
     {
       "category": "Custom",
-      "name": "Google Map Integration",
-      "settings": {
-        "api_key": "YOUR_CUSTOM_API_KEY",
-        "default_latitude": "40.7128",
-        "default_longitude": "-74.0060",
-        "default_zoom": 12,
-        "default_map_type": "roadmap"
-      }
+      "name": "Google Map Integration"
     }
   ]
 }
