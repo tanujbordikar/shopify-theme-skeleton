@@ -1,8 +1,4 @@
-{%- style -%}
-  .blinking_circle {
-    animation: blink 1s infinite;
-  }
-
+area{%- style -%}
   @keyframes blink {
     0%,
     100% {
@@ -70,37 +66,37 @@
       "content": "Tailwind Styling Classes"
     },
     {
-      "type": "text",
+      "type": "textarea",
       "id": "notification",
       "label": "Style Notification Container",
       "default": "bg-purple-900 text-white py-2 gap-1"
     },
     {
-      "type": "text",
+      "type": "textarea",
       "id": "notification__blinking_circle",
       "label": "Style Blinking Circle",
-      "default": "inline-block h-2 w-2 md:h-3 md:w-3 bg-purple-300 rounded-full mr-1"
+      "default": "inline-block h-2 w-2 md:h-3 md:w-3 bg-purple-300 rounded-full mr-1 animate-[blink_1s_infinite]"
     },
     {
-      "type": "text",
+      "type": "textarea",
       "id": "notification__simple_texts_div",
       "label": "Style Simple Text Div",
       "default": "leading-1 md:leading-5 pointer-events-none mr-2 md:mr-4 text-center"
     },
     {
-      "type": "text",
+      "type": "textarea",
       "id": "notification__style_text",
       "label": "Style Notification Text",
       "default": "text-sm md:text-base"
     },
     {
-      "type": "text",
+      "type": "textarea",
       "id": "notification__style_sub_text",
       "label": "Style Notification Sub Text",
       "default": "text-xs md:text-sm font-semibold"
     },
     {
-      "type": "text",
+      "type": "textarea",
       "id": "notification__style_bold_text",
       "label": "Style Notification Bold Text",
       "default": "text-sm md:text-xl font-bold underline hover:text-gray-300 uppercase"

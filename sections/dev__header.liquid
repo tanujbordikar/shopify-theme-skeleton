@@ -7,19 +7,24 @@
   <div class="logo" id="logo">
     {% if section.settings.logo != blank %}
       <a href="#">
-        {%- assign logo_alt = section.settings.logo.alt | default: shop.name | escape -%}
-        {%- assign logo_height = section.settings.logo_width | divided_by: section.settings.logo.aspect_ratio -%}
+        {%- liquid
+          assign image_url_width = section.settings.image_url_width
+          assign logo_image_styles = section.settings.logo_image_styles
+          assign logo_alt = section.settings.logo.alt | default: shop.name | escape
+          assign logo_height = section.settings.logo_width | divided_by: section.settings.logo.aspect_ratio
+        -%}
         {% capture sizes %}(max-width: {{ section.settings.logo_width | times: 2 }}px) 50vw, {{ section.settings.logo_width }}px{% endcapture %}
         {% capture widths %}{{ section.settings.logo_width }}, {{ section.settings.logo_width | times: 1.5 | round }}, {{ section.settings.logo_width | times: 2 }}{% endcapture %}
         {{
           section.settings.logo
-          | image_url: width: 600
+          | image_url: width: image_url_width
           | image_tag:
             widths: widths,
             height: logo_height,
             width: section.settings.logo_width,
             alt: logo_alt,
             sizes: sizes,
+            class: logo_image_styles,
             preload: true
         }}
       </a>
@@ -119,6 +124,22 @@
       "type": "color",
       "id": "background_color",
       "label": " Background Color"
+    },
+    {
+      "type": "header",
+      "content": "Tailwind Styling"
+    },
+    {
+      "type": "text",
+      "id": "image_url_width",
+      "label": "Image URL width",
+      "default": "500"
+    },
+    {
+      "type": "text",
+      "id": "logo_image_styles",
+      "label": "Logo Image Style Section",
+      "default": "w-full rounded-lg"
     }
   ]
 }
