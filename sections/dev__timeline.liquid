@@ -16,6 +16,14 @@
             {{ block.settings.timeline__main_subtitle }}
           </p>
           {% comment %} Adding button here {% endcomment %}
+          {% if block.settings.button_add == true %}
+            <a
+              href="{{ block.settings.button_link }}"
+              class="{{ block.settings.button_style }}"
+            >
+              {{- block.settings.button_label }}
+            </a>
+          {% endif %}
         </li>
       </ol>
     {% endfor %}
@@ -67,6 +75,23 @@
           "default": "Get access to over 20+ pages including a dashboard layout, charts, kanban board, calendar, and pre-order E-commerce & Marketing pages."
         },
         {
+          "type": "checkbox",
+          "id": "button_add",
+          "label": "Add a Button"
+        },
+        {
+          "type": "text",
+          "id": "button_label",
+          "label": "Button",
+          "default": "Add a Button"
+        },
+        {
+          "type": "text",
+          "id": "button_link",
+          "label": "Button Link",
+          "default": "collections/"
+        },
+        {
           "type": "header",
           "content": "Tailwind Styling Classes"
         },
@@ -105,6 +130,12 @@
           "id": "timeline__main_subtitle_style",
           "label": "Subtitle Styling",
           "default": "mb-4 text-base font-normal text-gray-600"
+        },
+        {
+          "type": "textarea",
+          "id": "button_style",
+          "label": "Button Styling",
+          "default": "inline-flex items-center px-4 py-2 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:outline-none focus:ring-gray-200 focus:text-blue-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700 dark:focus:ring-gray-700"
         }
       ]
     }
