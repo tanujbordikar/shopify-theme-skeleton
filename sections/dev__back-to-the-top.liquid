@@ -1,72 +1,51 @@
-<section class="back-to-top_section_classes">
-  <a id="BackToTop" href="#" title="Back to the top" class="back-to-top_classes back-to-top hide">
-    <i class="arrow_classes arrow"></i>
+<section class="back-to-top_section_classes {{ section.settings.back-to-top_section_classes }}">
+  <a
+    id="BackToTop"
+    href="#"
+    title="Back to the top"
+    class="back-to-top_classes {{ section.settings.back-to-top_classes }}"
+  >
+    <i class="arrow_classes {{ section.settings.arrow_classes }}"></i>
   </a>
 </section>
 
 <script>
+  document.addEventListener('DOMContentLoaded', function () {
+    var goTopBtn = document.querySelector('.back-to-top_classes');
+    goTopBtn.style.display = 'none';
+  });
+
   (function() {
-  function trackScroll() {
+    function trackScroll() {
       var scrolled = window.pageYOffset;
-      var coords = {{ section.settings.vertical_offset_for_trigger }};
+      var coords = 300;
+      var goTopBtn = document.querySelector('.back-to-top_classes');
 
       if (scrolled > coords) {
-      goTopBtn.classList.remove('hide');
+        goTopBtn.style.display = 'block';
+      } else {
+        goTopBtn.style.display = 'none'; // Hide the arrow when scrolling up
       }
-      if (scrolled < coords) {
-      goTopBtn.classList.add('hide');
-      }
-  }
+    }
 
-  function backToTop() {
+    function backToTop() {
+      var goTopBtn = document.querySelector('.back-to-top_classes');
       if (window.pageYOffset > 0) {
-      window.scrollBy(0, -80);
-      setTimeout(backToTop, 0);
+        window.scrollBy(0, -80);
+        setTimeout(function() {
+          goTopBtn.style.display = 'none';
+        }, 0);
       }
-  }
+    }
 
-  var goTopBtn = document.querySelector('.back-to-top');
+    window.addEventListener('scroll', trackScroll);
 
-  window.addEventListener('scroll', trackScroll);
-  goTopBtn.addEventListener('click', backToTop);
+    document.addEventListener('DOMContentLoaded', function() {
+      var goTopBtn = document.querySelector('.back-to-top_classes');
+      goTopBtn.addEventListener('click', backToTop);
+    });
   })();
 </script>
-
-<style>
-  .arrow {
-    display: inline-block;
-    width: 0;
-    height: 0;
-    border-left: 20px solid transparent;
-    border-right: 20px solid transparent;
-    border-bottom: 25px solid #000;
-  }
-
-  .back-to-top {
-    position: fixed;
-    bottom: {{ section.settings.position_from_bottom }};
-    right: 0px;
-    text-decoration: none;
-    color: #7a7a7a;
-    background-color: #eee;
-    padding: 0.3em;
-    border-top-left-radius: 3px;
-    border-bottom-left-radius: 3px;
-    z-index: 60000;
-    transition: background-color 0.3s, color 0.3s;
-    border-radius: 10px;
-  }
-
-  .back-to-top:hover {
-    text-decoration: none;
-    color: #414141;
-    background-color: #ddd;
-  }
-
-  .hide {
-    display: none !important;
-  }
-</style>
 
 {% schema %}
 {
@@ -75,16 +54,25 @@
   "class": "section",
   "settings": [
     {
-      "type": "text",
-      "id": "vertical_offset_for_trigger",
-      "label": "Vertical Offset for Triggering",
-      "default": "300"
+      "type": "header",
+      "content": "Tailwind Styling"
     },
     {
-      "type": "text",
-      "id": "position_from_bottom",
-      "label": "Position from the Bottom",
-      "default": "4em"
+      "type": "textarea",
+      "id": "back-to-top_section_classes",
+      "label": "Section Styling"
+    },
+    {
+      "type": "textarea",
+      "id": "back-to-top_classes",
+      "label": "Back to Top Section Styling",
+      "default": "fixed no-underline text-[#7a7a7a] bg-[#eee] z-[60000] transition-[#eee] duration-[0.3s,#7a7a7a] delay-[0.3s] p-[0.3em] rounded-tl-[3px] rounded-bl-[3px] rounded-[10px] right-0 bottom-[4em] hover:no-underline hover:text-[#414141] hover:bg-[#ddd]"
+    },
+    {
+      "type": "textarea",
+      "id": "arrow_classes",
+      "label": "Arrow Icon Styling",
+      "default": "inline-block w-0 h-0 border-b-[25px] border-b-black border-x-[20px] border-x-transparent border-solid"
     }
   ],
   "presets": [
