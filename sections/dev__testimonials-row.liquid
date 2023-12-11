@@ -8,7 +8,6 @@
       {% for testimonial in section.blocks %}
         <blockquote class="testimonial-block {{ section.settings.testimonials_block_styles }}">
           <div class="testimonial-content {{ section.settings.testimonials_content_styles }}">
-            {% comment %} {% assign testimonial_image_class = 'testimonial-image' | append: testimonial.settings.image_styles %} {% endcomment %}
             {% if testimonial.settings.testimonial_image %}
               {{ testimonial.settings.testimonial_image | image_url: width: section.settings.image_width, height: section.settings.image_height | image_tag: class: section.settings.testimonials_image_styles }}
             {% endif %}
