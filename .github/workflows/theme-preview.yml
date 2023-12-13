@@ -12,6 +12,15 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v2
 
+      - name: Debug API Authentication
+        run: |
+          curl -v -X GET "https://${{ secrets.SHOPIFY_STORE_URL }}/admin/api/2021-10/shop.json" \
+            -H "Content-Type: application/json" \
+            -H "X-Shopify-Access-Token: ${{ secrets.SHOPIFY_PASSWORD }}"
+        env:
+          SHOPIFY_STORE_URL: ${{ secrets.SHOP_STORE }}
+          SHOPIFY_PASSWORD: ${{ secrets.SHOP_PASSWORD }}
+
       # Create and deploy a PR specific Shopify theme when PR is opened/updated
       - name: Deploy PR-specific Shopify theme
         if: github.event.action != 'closed'
