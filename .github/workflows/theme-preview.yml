@@ -14,12 +14,12 @@ jobs:
 
       - name: Debug API Authentication
         run: |
-          curl -v -X GET "https://${{ secrets.SHOPIFY_STORE_URL }}/admin/api/2021-10/shop.json" \
+          curl -v -X GET "https://${{ secrets.SHOP_STORE }}/admin/api/2021-10/shop.json" \
             -H "Content-Type: application/json" \
-            -H "X-Shopify-Access-Token: ${{ secrets.SHOPIFY_PASSWORD }}"
+            -H "X-Shopify-Access-Token: ${{ secrets.SHOP_PASSWORD }}"
         env:
-          SHOPIFY_STORE_URL: ${{ secrets.SHOP_STORE }}
-          SHOPIFY_PASSWORD: ${{ secrets.SHOP_PASSWORD }}
+          SHOP_STORE: ${{ secrets.SHOP_STORE }}
+          SHOP_PASSWORD: ${{ secrets.SHOP_PASSWORD }}
 
       # Create and deploy a PR specific Shopify theme when PR is opened/updated
       - name: Deploy PR-specific Shopify theme
