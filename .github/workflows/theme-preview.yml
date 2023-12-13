@@ -14,7 +14,7 @@ jobs:
 
       - name: Debug API Authentication
         run: |
-          curl -v -X GET "https://${{ secrets.SHOP_STORE }}/admin/api/2021-10/shop.json" \
+          curl -v -X GET "https://${{ secrets.SHOP_STORE }}/admin/api/2023-10/shop.json" \
             -H "Content-Type: application/json" \
             -H "X-Shopify-Access-Token: ${{ secrets.SHOP_PASSWORD }}"
         env:
