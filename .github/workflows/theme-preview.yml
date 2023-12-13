@@ -18,8 +18,8 @@ jobs:
         uses: matthew-petrie/shopify-theme-actions@1.2.2
         with:
           ACTION: 'DEPLOYMENT_PREVIEW'
-          SHOPIFY_STORE_URL: ${{ secrets.SHOP_STORE }}
-          SHOPIFY_PASSWORD: ${{ secrets.SHOP_PASSWORD }}
+          SHOPIFY_STORE_URL: 'theme-skeleton.myshopify.com'
+          SHOPIFY_PASSWORD: 'clowee'
           SHOPIFY_API_KEY: ${{ secrets.SHOPIFY_API_KEY_THEME }}
           SHOPIFY_THEME_DIRECTORY: '.' # Or your theme directory
           SHOPIFY_ALLOW_LIVE_THEME_DEPLOYMENT: false # Set to true if deploying to a live theme
