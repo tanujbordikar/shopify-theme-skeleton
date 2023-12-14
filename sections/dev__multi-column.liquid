@@ -9,9 +9,11 @@
     {% for block in section.blocks %}
       <div class="multi-column__item {{ section.settings.multi-column__item }}">
         {% if block.settings.image %}
+          {%- assign image_alt = block.settings.image_alt_text -%}
+          {%- assign image_styles = section.settings.multi-column__style--item-img -%}
           <div class="multi-column__item-img {{ section.settings.multi-column__item-img }}">
-            {{ block.settings.image | image_url: width: 200 | image_tag: alt: block.settings.image_alt_text,
-                class: section.settings.multi-column__style--item-img }}
+            {{ block.settings.image | image_url: width: 200 | image_tag: alt: image_alt,
+                class: image_styles }}
           </div>
         {% endif %}
 
@@ -77,7 +79,7 @@
     {
       "type": "textarea",
       "id": "multi-column__item-img",
-      "label": "Style Column Item Image",
+      "label": "Style Column Item Image Container",
       "default": "w-full h-[150px] md:h-[200px] overflow-hidden rounded-[10px]"
     },
     {
