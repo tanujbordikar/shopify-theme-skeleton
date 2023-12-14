@@ -10,7 +10,7 @@
       <div class="multi-column__item {{ section.settings.multi-column__item }}">
         {% if block.settings.image %}
           <div class="multi-column__item-img {{ section.settings.multi-column__item-img }}">
-            {{ block.settings.image | image_url: width: 200 | image_tag: alt: 'alt_text',
+            {{ block.settings.image | image_url: width: 200 | image_tag: alt: block.settings.image_alt_text,
                 class: section.settings.multi-column__style--item-img }}
           </div>
         {% endif %}
@@ -126,6 +126,11 @@
           "type": "image_picker",
           "id": "image",
           "label": "Image"
+        },
+        {
+          "type": "text",
+          "id": "image_alt_text",
+          "label": "Image Alt Text"
         },
         {
           "type": "text",
