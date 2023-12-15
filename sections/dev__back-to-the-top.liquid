@@ -9,42 +9,45 @@
   </a>
 </section>
 
+<style>
+  .back-to-top_classes {
+    transition: opacity 0.3s;
+    opacity: 0;
+    text-decoration: none;
+  }
+  
+  .back-to-top_classes.show {
+    opacity: 1;
+  }
+</style>
+
 <script>
   document.addEventListener('DOMContentLoaded', function () {
     var goTopBtn = document.querySelector('.back-to-top_classes');
-    goTopBtn.style.display = 'none';
-  });
-
-  (function() {
+    if (!goTopBtn) return; // Check if button exists
+  
     function trackScroll() {
       var scrolled = window.pageYOffset;
       var coords = 300;
-      var goTopBtn = document.querySelector('.back-to-top_classes');
-
       if (scrolled > coords) {
-        goTopBtn.style.display = 'block';
+        goTopBtn.classList.add('show'); // Use CSS class for showing/hiding
       } else {
-        goTopBtn.style.display = 'none'; // Hide the arrow when scrolling up
+        goTopBtn.classList.remove('show');
       }
     }
-
+  
     function backToTop() {
-      var goTopBtn = document.querySelector('.back-to-top_classes');
       if (window.pageYOffset > 0) {
         window.scrollBy(0, -80);
-        setTimeout(function() {
-          goTopBtn.style.display = 'none';
-        }, 0);
+        requestAnimationFrame(backToTop); // Smooth scrolling
+      } else {
+        goTopBtn.classList.remove('show'); // Ensure it's hidden after reaching the top
       }
     }
-
-    window.addEventListener('scroll', trackScroll);
-
-    document.addEventListener('DOMContentLoaded', function() {
-      var goTopBtn = document.querySelector('.back-to-top_classes');
-      goTopBtn.addEventListener('click', backToTop);
-    });
-  })();
+  
+    window.addEventListener('scroll', trackScroll); // Consider debouncing this
+    goTopBtn.addEventListener('click', backToTop);
+  });
 </script>
 
 {% schema %}
