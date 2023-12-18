@@ -1,5 +1,8 @@
 # Shopify Theme Skeleton
 
+![deardigital-skeleton](https://github.com/dear-digital/shopify-theme-skeleton/assets/78968174/f850b586-018a-4915-b814-31aa59a8b37b)
+
+
 ## **Introduction: 🖥️ Shopify Theme Development**
 
 **Shopify-theme skeleton** is a foundational theme for Shopify developers, providing a clean, essential base for custom theme development.
