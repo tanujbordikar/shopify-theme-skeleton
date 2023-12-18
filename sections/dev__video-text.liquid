@@ -19,7 +19,7 @@
     {%- else -%}
       {%- liquid
         assign loop = ''
-        if section.settings.enable_video_looping
+        if section.settings.enable_link_video_looping
           assign loop = '&loop=1&playlist=' | append: video_id
         endif
       -%}
@@ -28,8 +28,7 @@
           <div class="youtube-embed-container {{ section.settings.youtube-embed_container_styles }}">
             <iframe
               class="youtube-iframe {{ section.settings.youtube-iframe_classes }}"
-              src="https://www.youtube.com/embed/{{ video_id }}?enablejsapi=1&autoplay=1{{ loop }}"
-              allow="autoplay; encrypted-media"
+              src="https://www.youtube.com/embed/{{ video_id }}?autoplay=1{{ loop }}"
               allowfullscreen
               title="{{ section.settings.description | escape }}"
             ></iframe>
@@ -41,7 +40,6 @@
             <iframe
               class="vimeo-iframe {{ section.settings.vimeo-iframe_classes }}"
               src="https://player.vimeo.com/video/{{ video_id }}?autoplay=1{{ loop }}"
-              allow="autoplay; encrypted-media"
               allowfullscreen
               title="{{ section.settings.description | escape }}"
             ></iframe>
@@ -126,9 +124,10 @@
       "info": "Use a YouTube or Vimeo URL"
     },
     {
-      "type": "image_picker",
-      "id": "cover_image",
-      "label": "Cover image"
+      "type": "checkbox",
+      "id": "enable_link_video_looping",
+      "label": "Play link video on loop",
+      "default": true
     },
     {
       "type": "text",
