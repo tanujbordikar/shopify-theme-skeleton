@@ -22,17 +22,10 @@
           "settings": {
             "app_id": "4d89ddd8_1703135906"
           }
-        },
-        "f1c5a985-4a96-485b-99e0-74d1fcc263e9": {
-          "type": "shopify:\/\/apps\/powr-image-slider\/blocks\/app-block\/db02efbb-fd06-4a97-88f3-663cfa9effba",
-          "settings": {
-            "app_id": "Your app ID here"
-          }
         }
       },
       "block_order": [
-        "7c450dac-4942-4fac-a28c-0a5a89d540f9",
-        "f1c5a985-4a96-485b-99e0-74d1fcc263e9"
+        "7c450dac-4942-4fac-a28c-0a5a89d540f9"
       ],
       "settings": {
       }
