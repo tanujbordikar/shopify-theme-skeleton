@@ -1,12 +1,7 @@
 <footer class="footer {{ section.settings.footer__main }}">
   {% for block in section.blocks %}
     <div class="footer__section {{ block.settings.footer__section }}">
-      <input
-        type="checkbox"
-        id="footer-toggle-{{ forloop.index }}"
-        class="footer__toggle-checkbox {{ block.settings.footer__toggle-checkbox }}"
-      >
-      <label for="footer-toggle-{{ forloop.index }}" class="footer__heading {{ block.settings.footer__heading }}">
+      <label class="footer__heading {{ block.settings.footer__heading }}">
         {{- block.settings.heading -}}
       </label>
       <ul class="footer__links-list {{ block.settings.footer__links-list_ul }} ">
@@ -34,6 +29,7 @@
     </form>
   </div>
 </footer>
+
 
 {% schema %}
 {
@@ -88,12 +84,6 @@
           "id": "footer__link",
           "label": "Style Footer Links",
           "default": "m-2"
-        },
-        {
-          "type": "textarea",
-          "id": "footer__toggle-checkbox",
-          "label": "Style Footer Toggle Checkbox",
-          "default": "inline-block md:hidden"
         }
       ]
     }
@@ -125,7 +115,7 @@
       "type": "textarea",
       "id": "footer__main",
       "label": "Style Footer Section",
-      "default": " bg-purple-800 text-white p-8 flex flex-wrap justify-content-between  "
+      "default": " bg-purple-800 text-white p-8 flex flex-wrap justify-content-between max-md:p-2"
     },
     {
       "type": "textarea",
