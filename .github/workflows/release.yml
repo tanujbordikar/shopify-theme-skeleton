@@ -3,63 +3,24 @@ name: Release
 on:
   push:
     tags:
-      - v*
+      - "v*"
+    branches:
+      - "main"
 
 jobs:
-  changelog:
-    name: Update Changelog
-    runs-on: ubuntu-latest
-    outputs:
-      id: version
-      settable: true
+  release:
+    name: "Release"
+    runs-on: "ubuntu-latest"
     steps:
-      - name: Get version from tag
-        id: version
-        run: echo "::set-output name=version::${GITHUB_REF/refs\/tags\/v/}"
-      - name: Checkout code
-        uses: actions/checkout@v2
-        with:
-          ref: main
-      - name: Update Changelog
-        uses: heinrichreimer/github-changelog-generator-action@v2.1.1
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          issues: true
-          issuesWoLabels: true
-          pullRequests: true
-          prWoLabels: true
-          addSections: '{"documentation":{"prefix":"**Documentation:**","labels":["documentation"]}}'
-      - uses: stefanzweifel/git-auto-commit-action@v4
-        with:
-          commit_message: Update Changelog for tag ${{ steps.version.outputs.version }}
-          file_pattern: CHANGELOG.md
-
-  release_notes:
-    name: Create Release Notes
-    runs-on: ubuntu-latest
-    needs: changelog
-    steps:
-      - name: Get version from changelog job
-        id: version
-        run: echo "::set-output name=version::${{ needs.changelog.outputs.version }}"
-      - name: Checkout code
-        uses: actions/checkout@v2
-        with:
-          ref: main
-      - name: Get Changelog Entry
-        id: changelog_reader
-        uses: mindsers/changelog-reader-action@v1
-        with:
-          version: ${{ steps.version.outputs.version }}
-          path: ./CHANGELOG.md
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+      #
       - name: Create Release
         id: create_release
-        uses: actions/create-release@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        uses: "marvinpinto/action-automatic-releases@latest"
         with:
-          tag_name: ${{ github.ref }}
-          release_name: Release ${{ github.ref }}
-          body: ${{ steps.changelog_reader.outputs.log_entry }}
-          draft: false
+          repo_token: "${{ secrets.GITHUB_TOKEN }}"
           prerelease: false
+          release_title: "What's Changed"
+          changelog_file: "CHANGELOG.md"
+          body: ${{ steps.generate_changelog.outputs.changelog }}
