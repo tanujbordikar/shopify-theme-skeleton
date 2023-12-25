@@ -57,11 +57,17 @@ We follow Semantic Versioning (SemVer) for versioning our releases. The version 
 
    The release notes will be automatically generated, including a title, body content, headings, changes, contributors, and links to corresponding pull requests. First-time contributors receive a special mention.
 
+   ![53be8bcbb7e1663ca0f5569809f93bd5.png](https://imgtr.ee/images/2023/12/25/53be8bcbb7e1663ca0f5569809f93bd5.png)
+
 8. **Publish Release**
 
    Click `Publish release` to make your release notes public. Users can now react to your release notes, and a link to the full changelog is automatically generated.
 
-   ![Publish Release](https://imgtr.ee/images/2023/12/24/35707bf6c9e1df7699937bb943b2484b.png)
+   ![415e9f269e66122c1b1a61d321957ebd.png](https://imgtr.ee/images/2023/12/25/415e9f269e66122c1b1a61d321957ebd.png)
+
+9. **Final Release**
+
+   ![8b03cf8b904a9c4c51380fedf993919c.png](https://imgtr.ee/images/2023/12/25/8b03cf8b904a9c4c51380fedf993919c.png)
 
 ## Benefits of Auto-generating Release Notes
 
