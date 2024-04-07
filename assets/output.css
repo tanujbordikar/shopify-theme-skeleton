@@ -2677,6 +2677,26 @@ video {
   }
 }
 
+@media (min-width: 1536px) {
+  .\32xl\:mx-24 {
+    margin-left: 6rem;
+    margin-right: 6rem;
+  }
+
+  .\32xl\:mx-36 {
+    margin-left: 9rem;
+    margin-right: 9rem;
+  }
+
+  .\32xl\:mt-5 {
+    margin-top: 1.25rem;
+  }
+
+  .\32xl\:gap-0 {
+    gap: 0px;
+  }
+}
+
 .\[\&\:\:-webkit-scrollbar-thumb\:hover\]\:bg-gray-900::-webkit-scrollbar-thumb:hover {
   --tw-bg-opacity: 1;
   background-color: rgb(17 24 39 / var(--tw-bg-opacity));
