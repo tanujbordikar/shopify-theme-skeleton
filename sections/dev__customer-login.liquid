@@ -1,90 +1,234 @@
-<div class="login-container__classes h-full flex items-center justify-center py-12 px-6 md:px-4 lg:px-8" x-data="{ loginForm: true, pwRecoverForm: false }">
-    <div x-show="loginForm" class="login__classes max-w-md w-full space-y-8">
-        <div>
-            <h1 class="login-title__classes text-center text-3xl font-bold mt-6">Sign in to your account</h1>
-        </div>
-        <div class="login-form__classes mt-8">
-            {% form 'customer_login' %}
-                {% if form.errors %}
-                    <div class="login-error__classes relative border border-red-400 bg-red-100 text-red 700 px-4 py-3" role="alert">
-                        <strong class="login-error-title__classes font-bold">Error!</strong>
-                        <p class="login-error-message__classes block sm:inline">{{ form.errors | default_errors }}</p>
-                    </div>
-                {% endif %}
-
-                <div class="login-email__classes my-2">
-                    <label for="email_address" class="login-email-label__classes sr-only">Email address</label>
-                    <input type="email"
-                        name="customer[email]"
-                        id="email_address"
-                        autocomplete="email"
-                        class="login-email-input__classes relative block w-full px-3 py-2 border"
-                        placeholder="Email address"
-                    >
-                </div>
-
-                {% if form.password_needed %}
-                    <div class="password__classes my-2">
-                        <label for="password" class="password-label__classes sr-only">Password</label>
-                        <input type="password"
-                            name="customer[password]"
-                            id="password"
-                            autocomplete="current-password"
-                            class="password-input__classes relative block w-full px-3 py-2 border"
-                            placeholder="Password"
-                        >
-                    </div>
-                {% endif %}
-
-                <div class="forgot-password__classes my-2 text-sm">
-                    <a x-on:click="loginForm = false; pwRecoverForm = true" href="#" class="forgot-password-link__classes underline text-gray-500 hover:text-gray-900">
-                        Forgot your password?
-                    </a>
-                </div>
-                <div>
-                    <button type="submit" class="login-button__classes relative w-full py-2 px-4 text-sm font-medium text-white bg-gray-600 hover:bg-gray-900">
-                        Sign in
-                    </button>
-                </div>
-            {% endform %}
-        </div>
+<div
+  class="login-container__classes h-full flex items-center justify-center py-12 px-6 md:px-4 lg:px-8"
+  x-data="{ loginForm: true, pwRecoverForm: false }"
+>
+  <div x-show="loginForm" class="login__classes max-w-md w-full space-y-8">
+    <div>
+      <h1 class="login-title__classes text-center text-3xl font-bold mt-6">{{ section.settings['login-title'] }}</h1>
     </div>
-    <div x-show="pwRecoverForm" class="recover-password__classes max-w-md w-full space-y-8">
+    <div class="login-form__classes mt-8">
+      {% form 'customer_login' %}
+        {% if form.errors %}
+          <div
+            class="login-error__classes relative border border-red-400 bg-red-100 text-red 700 px-4 py-3"
+            role="alert"
+          >
+            <strong class="login-error-title__classes font-bold">{{ section.settings['login-error-title'] }}</strong>
+            <p class="login-error-message__classes block sm:inline">{{ form.errors | default_errors }}</p>
+          </div>
+        {% endif %}
+
+        <div class="login-email__classes my-2">
+          <label for="email_address" class="login-email-label__classes sr-only">
+            {{- section.settings['login-email-label'] -}}
+          </label>
+          <input
+            type="email"
+            name="customer[email]"
+            id="email_address"
+            autocomplete="email"
+            class="login-email-input__classes relative block w-full px-3 py-2 border"
+            placeholder="{{ section.settings.login-email-placeholder }}"
+          >
+        </div>
+
+        {% if form.password_needed %}
+          <div class="login-password__classes my-2">
+            <label for="password" class="login-password-label__classes sr-only">
+              {{- section.settings['login-password-label'] -}}
+            </label>
+            <input
+              type="password"
+              name="customer[password]"
+              id="password"
+              autocomplete="current-password"
+              class="login-password-input__classes relative block w-full px-3 py-2 border"
+              placeholder="{{ section.settings.login-password-placeholder }}"
+            >
+          </div>
+        {% endif %}
+
+        <div class="forgot-password__classes my-2 text-sm">
+          <a
+            x-on:click="loginForm = false; pwRecoverForm = true"
+            href="#"
+            class="forgot-password-link__classes underline text-gray-500 hover:text-gray-900"
+          >
+            {{ section.settings['forgot-password-text'] }}
+          </a>
+        </div>
         <div>
-            <h1 class="recover-password-title__classes text-center text-3xl font-bold mt-6">Recover your password</h1>
+          <button
+            type="submit"
+            class="login-button__classes relative w-full py-2 px-4 text-sm font-medium text-white bg-gray-600 hover:bg-gray-900"
+          >
+            {{ section.settings['login-button'] }}
+          </button>
         </div>
-        <div class="recover-password-form__classes mt-8">
-            {% form 'recover_customer_password' %}
-                {% if form.errors %}
-                    <div class="recover-password-error__classes relative border border-red-400 bg-red-100 text-red 700 px-4 py-3" role="alert">
-                        <strong class="recover-password-error-title__classes font-bold">Error!</strong>
-                        <p class="recover-password-error-message__classes block sm:inline">{{ form.errors | default_errors }}</p>
-                    </div>
-                {% endif %}
-
-                <div class="recover-password-email__classes my-2">
-                    <label for="email" class="recover-password-email-label__classes sr-only">Email address</label>
-                    <input type="email"
-                        name="email"
-                        id="email"
-                        autocomplete="email"
-                        class="recover-password-email-input__classes relative block w-full px-3 py-2 border"
-                        placeholder="Email address"
-                    >
-                </div>
-
-                <div>
-                    <button type="submit" class="recover-password-button__classes relative w-full py-2 px-4 text-sm font-medium text-white bg-gray-600 hover:bg-gray-900">
-                        Recover password
-                    </button>
-                </div>
-
-                <div class="back-to-login__classes mt-8 text-sm">
-                    <a x-on:click="loginForm = true; pwRecoverForm = false" href="#" class="back-to-login-link__classes underline text-gray-500 hover:text-gray-900">Back to login</a>
-                </div>
-            {% endform %}
-        </div>
+      {% endform %}
     </div>
+  </div>
+  <div x-show="pwRecoverForm" class="recover-password__classes max-w-md w-full space-y-8">
+    <div>
+      <h1 class="recover-password-title__classes text-center text-3xl font-bold mt-6">
+        {{ section.settings['recover-password-title'] }}
+      </h1>
+    </div>
+    <div class="recover-password-form__classes mt-8">
+      {% form 'recover_customer_password' %}
+        {% if form.errors %}
+          <div
+            class="recover-password-error__classes relative border border-red-400 bg-red-100 text-red 700 px-4 py-3"
+            role="alert"
+          >
+            <strong class="recover-password-error-title__classes font-bold">
+              {{- section.settings['recover-password-error-title'] -}}
+            </strong>
+            <p class="recover-password-error-message__classes block sm:inline">{{ form.errors | default_errors }}</p>
+          </div>
+        {% endif %}
+
+        <div class="recover-password-email__classes my-2">
+          <label for="email" class="recover-password-email-label__classes sr-only">
+            {{- section.settings['recover-password-email-label'] -}}
+          </label>
+          <input
+            type="email"
+            name="email"
+            id="email"
+            autocomplete="email"
+            class="recover-password-email-input__classes relative block w-full px-3 py-2 border"
+            placeholder="{{ section.settings.recover-password-email-placeholder }}"
+          >
+        </div>
+
+        <div>
+          <button
+            type="submit"
+            class="recover-password-button__classes relative w-full py-2 px-4 text-sm font-medium text-white bg-gray-600 hover:bg-gray-900"
+          >
+            {{ section.settings['recover-password-button'] }}
+          </button>
+        </div>
+
+        <div class="back-to-login__classes mt-8 text-sm">
+          <a
+            x-on:click="loginForm = true; pwRecoverForm = false"
+            href="#"
+            class="back-to-login-link__classes underline text-gray-500 hover:text-gray-900"
+          >
+            {{- section.settings['back-to-login-text'] -}}
+          </a>
+        </div>
+      {% endform %}
+    </div>
+  </div>
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/alpinejs@2.8.2/dist/alpine.min.js" defer></script>
+
+{% schema %}
+{
+  "name": "Customer Login Page",
+  "tag": "section",
+  "settings": [
+    {
+        "type": "header",
+        "content": "Login Section"
+    },
+    {
+      "type": "text",
+      "id": "login-title",
+      "default": "Sign in to your account",
+      "label": "Login Page Title"
+    },
+    {
+      "type": "text",
+      "id": "login-error-title",
+      "default": "Error!",
+      "label": "Login Error Title"
+    },
+    {
+      "type": "text",
+      "id": "login-email-label",
+      "default": "Email address",
+      "label": "Login Email address Label"
+    },
+    {
+      "type": "text",
+      "id": "login-email-placeholder",
+      "default": "Email address",
+      "label": "Login Email address Placeholder"
+    },
+    {
+      "type": "text",
+      "id": "login-password-label",
+      "default": "Password",
+      "label": "Login Password Label"
+    },
+    {
+      "type": "text",
+      "id": "login-password-placeholder",
+      "default": "Password",
+      "label": "Login Password Placeholder"
+    },
+    {
+      "type": "text",
+      "id": "forgot-password-text",
+      "default": "Forgot your password?",
+      "label": "Forgot Password Text"
+    },
+    {
+      "type": "text",
+      "id": "login-button",
+      "default": "Sign In",
+      "label": "Login Button Text"
+    },
+    {
+        "type": "header",
+        "content": "Recover Password Section"
+    },
+    {
+      "type": "text",
+      "id": "recover-password-title",
+      "default": "Recover your password",
+      "label": "Recover Password Title"
+    },
+    {
+      "type": "text",
+      "id": "recover-password-error-title",
+      "default": "Error!",
+      "label": "Recover Password Error Title"
+    },
+    {
+      "type": "text",
+      "id": "recover-password-email-label",
+      "default": "Email address",
+      "label": "Recover Password Email address Label"
+    },
+    {
+      "type": "text",
+      "id": "recover-password-email-placeholder",
+      "default": "Email address",
+      "label": "Recover Password Email address Placeholder"
+    },
+    {
+      "type": "text",
+      "id": "recover-password-button",
+      "default": "Recover password",
+      "label": "Recover Password Button Text"
+    },
+    {
+      "type": "text",
+      "id": "back-to-login-text",
+      "default": "Back to Login",
+      "label": "Back to Login Title"
+    },
+    {
+      "type": "header",
+      "content": "Apply Tailwind CSS Classes",
+      "info": "Note: Insert classes with space between them."
+    }
+  ]
+}
+{% endschema %}
