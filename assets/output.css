@@ -2972,21 +2972,17 @@ video {
   }
 }
 
-.\[\&\:\:-webkit-scrollbar-thumb\:hover\]\:bg-gray-900::-webkit-scrollbar-thumb:hover {
+.\[\&\:\:-webkit-scrollbar-thumb\:hover\]\:bg-gray-600::-webkit-scrollbar-thumb:hover {
   --tw-bg-opacity: 1;
-  background-color: rgb(17 24 39 / var(--tw-bg-opacity));
+  background-color: rgb(75 85 99 / var(--tw-bg-opacity));
 }
 
-.\[\&\:\:-webkit-scrollbar-thumb\]\:bg-gray-700::-webkit-scrollbar-thumb {
+.\[\&\:\:-webkit-scrollbar-thumb\]\:bg-gray-500::-webkit-scrollbar-thumb {
   --tw-bg-opacity: 1;
-  background-color: rgb(55 65 81 / var(--tw-bg-opacity));
+  background-color: rgb(107 114 128 / var(--tw-bg-opacity));
 }
 
-.\[\&\:\:-webkit-scrollbar-track\]\:bg-gray-300::-webkit-scrollbar-track {
+.\[\&\:\:-webkit-scrollbar-track\]\:bg-gray-200::-webkit-scrollbar-track {
   --tw-bg-opacity: 1;
-  background-color: rgb(209 213 219 / var(--tw-bg-opacity));
-}
-
-.\[\&\:\:-webkit-scrollbar\]\:h-\[2px\]::-webkit-scrollbar {
-  height: 2px;
+  background-color: rgb(229 231 235 / var(--tw-bg-opacity));
 }
