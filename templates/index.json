@@ -35,6 +35,18 @@
             "announcement": "Announce something important here"
           }
         },
+        "slide_Q7ejwK": {
+          "type": "slide",
+          "settings": {
+            "announcement": "Announce something important here"
+          }
+        },
+        "slide_rgE4YC": {
+          "type": "slide",
+          "settings": {
+            "announcement": "Announce something important here"
+          }
+        },
         "slide_YzK4En": {
           "type": "slide",
           "settings": {
@@ -44,6 +56,8 @@
       },
       "block_order": [
         "slide_krkhw6",
+        "slide_Q7ejwK",
+        "slide_rgE4YC",
         "slide_YzK4En"
       ],
       "settings": {
