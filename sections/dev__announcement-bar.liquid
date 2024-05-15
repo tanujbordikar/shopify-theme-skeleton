@@ -23,7 +23,7 @@
       class="carousel slide " 
       data-bs-ride="{% if section.settings.carousel_autoplay > 0 %}carousel{% else %}false{% endif %}"
       data-bs-interval="{{ section.settings.carousel_autoplay | times: 1000 }}"
-      aria-label="{{ 'general.accessibility.announcements' | t }}"
+      aria-label="announce"
       style="max-width: {{ section.settings.container_max_width }}px;">
       <div class="carousel-inner">
         {% for block in section.blocks %}
@@ -48,16 +48,16 @@
           type="button" 
           data-bs-target="#carousel-{{ section.id }}" 
           data-bs-slide="prev"
-          aria-label="{{ 'general.accessibility.previous' | t }}">
-          {% render 'svg-icons', icon: 'chevron-left', size: 22 %}
+          aria-label="blocks">
+          {% render 'icon-next', icon: 'chevron-left', size: 22 %}
         </button>
         <button 
           class="carousel-control carousel-control-next" 
           type="button" 
           data-bs-target="#carousel-{{ section.id }}" 
           data-bs-slide="next"
-          aria-label="{{ 'general.accessibility.next' | t }}">
-          {% render 'svg-icons', icon: 'chevron-right', size: 22 %}
+          aria-label="buttons">
+          {% render 'icon-right-arrow', icon: 'chevron-right', size: 22 %}
         </button>
       {% endif %}
     </div>
