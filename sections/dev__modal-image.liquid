@@ -1,37 +1,43 @@
 <!-- modal-image.liquid -->
 <div id="modal_window">
-<div class="modal-dark-overlay {{ section.settings.style_modal-dark-overlay }}"></div>
-<div class="modal-container {{ section.settings.style_modal-container }}">
-  <div class="modal {{ section.settings.style_modal }}">
-    <div class="modal-img {{ section.settings.modal-img }}">
-      {%- assign image_url_width = section.settings.image_url_width -%}
-      {%- assign image_url_height = section.settings.image_url_height -%}
-      <div class="modal-img_tag {{ section.settings.modal-img_tag }}">
-        {% if section.settings.image != blank %}
-          {{
-            section.settings.image
-            | image_url: width: image_url_width, height: image_url_height
-            | image_tag: class: section.settings.modal_image_styles
-          }}
-        {% else %}
-          {{ 'image' | placeholder_svg_tag }}
-        {% endif %}
+  <div class="modal-dark-overlay {{ section.settings.style_modal-dark-overlay }}"></div>
+  <div class="modal-container {{ section.settings.style_modal-container }}">
+    <div class="modal {{ section.settings.style_modal }}">
+      <div class="modal-img {{ section.settings.modal-img }}">
+        {%- assign image_url_width = section.settings.image_url_width -%}
+        {%- assign image_url_height = section.settings.image_url_height -%}
+        <div class="modal-img_tag {{ section.settings.modal-img_tag }}">
+          {% if section.settings.image != blank %}
+            {{
+              section.settings.image
+              | image_url: width: image_url_width, height: image_url_height
+              | image_tag: class: section.settings.modal_image_styles
+            }}
+          {% else %}
+            {{ 'image' | placeholder_svg_tag }}
+          {% endif %}
+        </div>
+      </div>
+      <button
+        id="closeModal"
+        class="close {{ section.settings.style_close }}"
+        onclick="document.getElementById('modal_window').style.display='none'"
+      >
+        {% render 'icon-cross' %}
+      </button>
+      <div class="modal-content {{ section.settings.modal-content }}">
+        <div class="modal-offers {{ section.settings.modal-style_offers }}">{{ section.settings['modal-offers'] }}</div>
+        <input
+          type="email"
+          placeholder="Email Address(*)"
+          class="modal-email-input {{ section.settings.style_modal_email_input }}"
+        >
+        <button id="submitEmailButton" class="modal-submit-button {{ section.settings.style_modal_submit_button }}">
+          {{ section.settings.modal_button }}
+        </button>
       </div>
     </div>
-    <button id="closeModal" class="close {{ section.settings.style_close }}" onclick="document.getElementById('modal_window').style.display='none'">{% render 'icon-cross' %}</button>
-    <div class="modal-content {{ section.settings.modal-content }}">
-      <div class="modal-offers {{ section.settings.modal-style_offers }}">{{ section.settings['modal-offers'] }}</div>
-      <input
-        type="email"
-        placeholder="Email Address(*)"
-        class="modal-email-input {{ section.settings.style_modal_email_input }}"
-      >
-      <button id="submitEmailButton" class="modal-submit-button {{ section.settings.style_modal_submit_button }}">
-        {{ section.settings.modal_button }}
-      </button>
-    </div>
   </div>
-</div>
 </div>
 
 <script>
@@ -153,7 +159,6 @@
       "id": "style_modal_email_input",
       "default": "border border-gray-300 px-3 py-2 rounded-md focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500 w-full text-xs md:text-sm"
     },
-
     {
       "type": "textarea",
       "label": "Style Modal Submit Button",
