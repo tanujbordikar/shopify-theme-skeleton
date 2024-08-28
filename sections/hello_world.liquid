@@ -1,6 +1,21 @@
+<div>{{ section.settings.section_title }}</div>
+
 {% schema %}
+{
+  "name": "Section name",
+  "settings": [
+      {
+        "type": "text",
+        "id": "section_title",
+        "label": "Section Title",
+        "default": "Hello World"
+    }
+  ],
+    "presets": [
   {
-    "name": "Section name",
-    "settings": []
+    "category": "Custom",
+    "name": "Hello World Display"
   }
+]
+}
 {% endschema %}
