@@ -1,3 +1,12 @@
+/*
+* ------------------------------------------------------------
+* IMPORTANT: The contents of this file are auto-generated.
+*
+* This file may be updated by the Shopify admin theme editor
+* or related systems. Please exercise caution as any changes
+* made to this file may be overwritten.
+* ------------------------------------------------------------
+*/
 {
   "sections": {
     "00f180cc-37f9-4ca3-b4c4-fda0760014c8": {
@@ -14,77 +23,15 @@
         "simple-cta__button": "inline-block bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded"
       }
     },
-    "1703136243197f9627": {
-      "type": "apps",
+    "hello_world_cGp9fR": {
+      "type": "hello_world",
       "settings": {
-      }
-    },
-    "dev_custom_liquid_zqwktC": {
-      "type": "dev__custom-liquid",
-      "settings": {
-        "custom_liquid": "{%- if predictive_search.performed -%}\n  {% liquid \n      assign results = predictive_search.resources.products.size\n\n      if settings.search_collections\n        assign results = results | plus: predictive_search.resources.collections.size\n      endif\n      if settings.search_articles\n        assign results = results | plus: predictive_search.resources.articles.size\n      endif\n      if settings.search_pages\n        assign results = results | plus: predictive_search.resources.pages.size\n    endif\n  %}\n  <div \n    id=\"predictive-search-results\"\n    class=\"predictive-search-results pt-7\"\n    data-results-text=\"{{ 'general.search.results' | t: count: results }}\">\n    {%- if predictive_search.resources.products.size > 0 -%}\n      <h3 \n        id=\"predictive-search-products-title\"\n        class=\"title title-border-bottom h6 text-center mb-4\">\n        <span>{{- 'general.search.products' | t }} ({{- predictive_search.resources.products.size -}})<\/span>\n      <\/h3>\n      <ul \n        id=\"predictive-search-results-products-list\" \n        class=\"predictive-search-results-products-list list-group list-group-flush list-unstyled mb-6\" \n        role=\"group\"\n        aria-labelledby=\"predictive-search-products-title\">\n        {%- for product in predictive_search.resources.products -%}\n          <li \n            id=\"predictive-search-option-product-{{ forloop.index }}\" \n            class=\"list-group-item\"\n            role=\"option\" \n            aria-selected=\"false\">\n            <a \n              href=\"{{ product.url }}\"\n              class=\"list-group-item-action\"\n              tabindex=\"-1\">\n              <div class=\"row mx-n3 align-items-center\">\n                <div class=\"col-6 px-3\">\n                  {% render 'image-url', img: product.featured_image, orientation: settings.product_card_img_orientation, class: settings.product_card_img_border %}\n                <\/div>\n                <div class=\"col-12 px-3\">\n                  <h3 class=\"cart-item-product-title h6 mb-1\">\n                    {{ product.title }}\n                  <\/h3>\n                  {% render 'product-rating-badge', product: product %}\n                  {% render 'product-card-price', product: product %}\n                <\/div>\n              <\/div>\n            <\/a>\n          <\/li>\n        {%- endfor -%}\n      <\/ul>\n    {%- endif -%}\n    <div \n      id=\"predictive-search-option-search-keywords\" \n      class=\"predictive-search-option-search-keywords\">\n      <button\n        class=\"btn btn-outline-primary w-100 d-flex align-items-center justify-content-between\"\n        tabindex=\"-1\"\n        role=\"option\"\n        aria-selected=\"false\">\n        {{- 'general.search.search_for' | t: terms: predictive_search.terms -}}\n        {% render 'svg-icons', icon: 'arrow-right', size: 22 %}\n      <\/button>\n    <\/div>\n  <\/div>\n{%- endif -%}",
-        "background_color": ""
-      }
-    },
-    "dev_announcement_bar_j7KMXw": {
-      "type": "dev__announcement-bar",
-      "blocks": {
-        "slide_krkhw6": {
-          "type": "slide",
-          "settings": {
-            "announcement": "Announce something important here"
-          }
-        },
-        "slide_Q7ejwK": {
-          "type": "slide",
-          "settings": {
-            "announcement": "Announce something important here"
-          }
-        },
-        "slide_rgE4YC": {
-          "type": "slide",
-          "settings": {
-            "announcement": "Announce something important here"
-          }
-        },
-        "slide_YzK4En": {
-          "type": "slide",
-          "settings": {
-            "announcement": "Free shipping over $100 USD"
-          }
-        }
-      },
-      "block_order": [
-        "slide_krkhw6",
-        "slide_Q7ejwK",
-        "slide_rgE4YC",
-        "slide_YzK4En"
-      ],
-      "settings": {
-        "bg_color": "bg-body",
-        "bg_opacity": 100,
-        "bg_gradient": "",
-        "text_color": "text-body",
-        "border_top_width": 0,
-        "border_bottom_width": 0,
-        "border_color": "border-body",
-        "border_opacity": 100,
-        "container_max_width": "600",
-        "font_size": "fs-sm",
-        "font_size_desktop": "fs-desktop-sm",
-        "text_transform": "text-capitalize",
-        "letter_spacing": 0,
-        "carousel_autoplay": 5,
-        "carousel_vertical": true,
-        "pt": 3,
-        "pb": 3
+        "section_title": "Hello World"
       }
     }
   },
   "order": [
     "00f180cc-37f9-4ca3-b4c4-fda0760014c8",
-    "1703136243197f9627",
-    "dev_custom_liquid_zqwktC",
-    "dev_announcement_bar_j7KMXw"
+    "hello_world_cGp9fR"
   ]
 }
